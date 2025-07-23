@@ -1,0 +1,110 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #fff;
+}
+
+/* Slider contenedor */
+.SliderWrap {
+  width: 100%;
+  background: #e3e3e3;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Área deslizante */
+.Contenido3 {
+  display: flex;
+  width: 200%;
+  transition: transform 1s ease;
+}
+
+/* Slide individual */
+.Slide {
+  width: 100%;
+  min-height: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 80px;
+  flex-shrink: 0;
+}
+
+/* Columna de texto */
+.Texto {
+  max-width: 500px;
+}
+
+.Texto h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.Texto h3 {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.Texto p {
+  font-size: 1rem;
+  margin: 15px 0;
+}
+
+.Galaxy2 {
+  margin-top: 15px;
+}
+
+.Button {
+  background: blue;
+  color: white;
+  padding: 10px 25px;
+  border: none;
+  margin-right: 10px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.Galaxy2 a {
+  text-decoration: none;
+  color: blue;
+  font-weight: bold;
+}
+
+/* Imagen del teléfono */
+.Imagen img {
+  height: 360px;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* Transiciones de slide */
+#slide1:checked ~ .SliderWrap .Contenido3 {
+  transform: translateX(0%);
+}
+
+#slide2:checked ~ .SliderWrap .Contenido3 {
+  transform: translateX(-100%);
+}
+
+/* Puntos */
+.PuntosCarruselManual {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.PuntosCarruselManual .Puntos {
+  width: 10px;
+  height: 10px;
+  background: #bbb;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#slide1:checked ~ .PuntosCarruselManual label[for="slide1"],
+#slide2:checked ~ .PuntosCarruselManual label[for="slide2"] {
+  background: #000;
+}

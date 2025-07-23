@@ -1,0 +1,1031 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+p,h1,h2,h3,h4{
+    margin: 0;
+}
+
+a{
+  color: #000000;
+  font-weight: bold;
+  border-bottom: 1px solid rgb(0, 0, 0); 
+  padding-bottom: 1px; 
+  text-decoration: none; 
+}
+.Contenido1{
+    background-color: black;
+    color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+.Inicio1{
+    display: flex;
+    place-items: center;
+    padding: 10px 0 10px 90px;
+    gap: 20px;
+    select{
+      background-color: black;
+      border: none;
+      color: white;
+    }
+    select option{
+      color: rgb(255, 255, 255);
+    }  
+}
+.Inicio2{
+    display: flex;
+    justify-content: right;
+    place-items: center;
+    padding: 10px 120px 10px 0;
+    .MyAccount{
+      padding: 0 20px 0 20px;
+    }
+    .Item{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      padding: 0 0 0 20px;
+    }
+    .Car{
+      gap: 10px;
+      padding: 0 20px 0 20px;
+    }
+}
+.EN{
+    border-right: 1px solid #929292;
+    padding: 0 15px 0 0;
+}
+.USD{
+    border-right: 1px solid #929292;
+    padding: 0 15px 0 0;
+}
+.MyAccount{
+    border-right: 1px solid #929292;
+}
+.Car{
+    border-right: 1px solid #929292;
+}
+.Carrito1{
+    width: 30px;
+}
+}
+
+.Contenido2{
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  background-color: black;
+  color: white;
+  border-top: 1px solid #929292;
+  .BarraStore{
+    display: flex;
+    padding: 20px 0 20px 110px;
+    gap: 40px;    
+    align-items: center;                       
+    .ContenedorQS{
+      display: flex;
+      align-items: center;
+    }
+    .Quick{
+      font-size: 40px;
+    }
+    .Qstore{
+      background-color: yellow;
+      color: black;
+      font-size: 15px;
+      border-radius: 10px;
+      margin: 5px 0 0 0;
+      padding: 3px 4px 3px 4px;
+    }
+    select{
+      background-color: black;
+      border: none;
+      color: white;
+    }
+    select option{
+      color: rgb(255, 255, 255);
+    }
+  }
+  .BarraBusqueda{
+    display: flex;
+    justify-content: right;
+    padding: 20px 120px 20px 0;
+    .BarraBusqueda1{
+      position: relative;
+    }
+    .BarraStyle{
+      width: 450px;
+      height: 40px;
+      border-radius: 50px;
+      border-color: none;
+    }
+    .PosLupa{
+      position: absolute;
+      top: 11px;
+      right: 20px;
+      cursor: pointer;
+      img{
+        width: 18px;
+        height: 18px;
+      }
+    }
+    input.BarraStyle{
+      padding: 0 0 0 20px;
+    }
+  }
+}
+
+.Contenido3{
+  .Con1, Con2{
+    display: flex;
+    justify-content: center;
+    background-color: rgb(238, 247, 253);
+    padding: 0 0 0 0;
+  }
+  .Galaxy1{
+    display: flex;
+    justify-content: center;
+  }
+  .Galaxy{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+    padding: 30px 80px 20px 0; 
+    h1{
+      font-size: 40px;
+    }
+  } 
+  .Galaxy2{
+    display: flex;
+    align-items: center;
+    gap: 20px; 
+
+    .Button{
+      padding: 10px 15px 10px 15px;
+      border: none;
+      background-color: rgb(64, 64, 252);
+      color: white;
+      border-radius: 1000px;
+      cursor: pointer;
+    }
+  }
+  .PuntosCarrusel {
+    display: flex;
+    align-items: last baseline;
+    gap: 5px;
+    padding: 0 0 20px 0; 
+    .Puntos {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .Puntos.Activo {
+      background-color: #0008ff; 
+      box-shadow: 0 0 20px 3px #0008ff;;
+    }
+        .Puntos{
+          background-color: rgb(139, 139, 139);
+        }
+  }
+  .FotoGalaxy{
+    display: flex;
+    padding: 30px 0 0 20px;
+    .Primera{
+      display: flex;
+      align-items: flex-end;
+      .Primera1{
+        width: 213px;
+        height: 300px;
+      }
+      }
+      
+      .Segunda{
+        display: flex;
+      }
+  }
+}
+
+.Contenido4{
+  display: flex;
+  justify-content: center;
+  .Contenido4Padre{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 0 0 0;
+}
+.ContenedorOurTop{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 50px; 
+  padding: 20px 0 0 0;
+  img{
+    width: 80px;
+    height: 80px;
+    padding: 30px 30px 30px 30px;
+  }
+  .IMG{
+    background-color: rgb(241, 241, 241);
+  }
+  .Texto{
+    display: flex;
+    flex-direction: column;
+    padding: 15px  0 0 0;
+    gap: 5px;
+    p{
+      text-align: center;
+    }
+    .NombreNegrilla{
+      font-weight: bold;
+    }
+  }
+}
+.HR1{
+  padding: 10px 0 0 0;
+}
+}
+
+.Contenido5{
+  display: flex;
+  justify-content: center;
+  .Contenido5Padre{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding-top: 80px;
+
+  .Button2{
+    padding: 10px 20px 10px 20px;
+    border: none;
+    background-color: blue;
+    color: white;
+    border-radius: 1000px;
+    cursor: pointer;
+  }
+  .C5-1{
+    background-color: #f3f1e9;
+  }
+  .C5-2{
+    background-color: #f9e8ef;
+  }
+  .C5-3{
+    background-color: #e7eff4;
+  }
+  .C5-4{
+    background-color: #f7f7f7;
+  }
+  .C5-5{
+    background-color: #e3edf6;
+  }
+  .C5-6{
+    background-color: #eee8f7;
+  }
+  .C5Con1{
+    display: flex;
+    gap: 20px;
+  }
+    .C5Texto{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 20px;
+      padding: 60px 0 60px 40px;
+    }
+    .Cuadro p1{
+      display: inline-block;
+      background-color: white;
+      padding: 5px;
+      font-size: 10px;
+    }
+    h2{
+      font-size: 23px;
+    }
+    .C5Img{
+      display: flex;
+      align-items: flex-end;
+    }
+    .C5Img1{
+      display: flex;
+      align-items: center;
+    }
+    img{
+      width: 280px;
+      height: 280px;
+    }
+    .EspacioA5{
+      padding: 15px 0 0 0;
+    }
+  }
+}
+
+  .Contenido6{
+    padding-top:  100px;
+    .EspacioC61{
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+    .ContenidoBarraC6{
+      width: 86.46%;
+      display: flex;
+      justify-content: center;
+      background-color: #f7f7f7;
+      padding: 100px 0 0 0;
+      .BarraC6{
+        display: flex;
+        gap: 70px;
+        align-items: center;
+        .Todo{
+          padding: 0 0 0 15px;
+        }
+      }
+      .EspacioLinea{
+        display: flex;
+        justify-content: center;
+        gap: 34.5vw;
+        height: 67px;
+        border-bottom: 1px solid rgb(165, 165, 165);
+      }
+      .BarraC6 p{
+        display: inline-block;
+        padding: 20px 0 28px 0;
+        color: #000;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+      }
+      .BarraC6 p:hover{
+        border-bottom: 2px solid blue;
+      }
+      .Flechas1{
+        display: flex;
+        justify-content: center
+      }
+      .Flechas{
+        display: flex;
+        align-items: center;
+        padding: 0 0 0 25px;
+        gap: 5px;
+        button{
+          background-color: white;
+          border: transparent;
+          border-radius: 50%;
+          width: 30px;
+          height: 30px;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .Contenido62{
+      width: 100%;
+      .C6Con2{
+        display: flex;
+        justify-content: center;
+        padding: 0 0 60px 0;
+      }
+      .EspacioC62{
+        display: flex;
+        justify-content: center;
+        width: 86.46%;   
+        background-color: #f7f7f7;
+        gap: 32px;
+        padding: 20px 0 40px 0;
+        .ProductosC6{
+          background-color: white;
+          .DesP{
+            padding: 10px 0 0 5px;
+          }
+          #Des2{
+            background-color: white;
+            color: white;
+          }
+      
+          p{
+            background-color: red;
+            display: inline-block;
+            color: white;
+            padding: 2px 5px 2px 5px;
+            font-size: 10px;
+          }
+        }
+        .TImagen{
+          width: 190px;
+          height: 190px;
+          padding: 20px;
+        }
+        #Im1{
+          padding-top: 48px;
+        }
+      }
+      .EspacioUltimo{
+        display: flex;
+        justify-content: center;
+        padding-bottom: 20px;
+      }
+    }
+}
+
+@media (min-width: 300px) and (max-width: 800px) {
+
+  .Contenido1 {
+    display: grid;
+    grid-template-columns: 1fr;
+    .Inicio1{
+      display: flex;
+      justify-content: center;
+      padding: 10px 0 10px 0;
+      gap: 20px;
+      border-bottom: 1px solid #929292;
+      .EN,.USD{
+        border-right: 0;
+        padding: 0;
+      }
+    }
+    .Inicio2{
+      display: flex;
+      justify-content: center;
+      padding: 5px 0 5px 0;
+      gap: 20px;
+      .Free p{
+        align-content: center;
+      }
+      .MyAccount,.Comprar,.Carrito{
+        border-right: 0;
+        padding: 0;
+      }
+      .Car{
+        border-right: 0px;
+      }
+      .Car img{
+        width: 25px;
+      }
+    .Item{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      padding: 0;
+    }
+    }
+  }
+
+  .Contenido2 {
+    display: flex;
+    flex-direction: column;
+    .BarraStore{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      padding: 0 10px 0 10px;
+      gap: 0;
+      text-align: center;
+    }
+    .BarraBusqueda{
+      display: flex;
+      justify-content: center;
+      padding: 10px 0 10px 0;
+      gap: 0;
+      .BarraBusqueda1{
+        input{
+          width: 260px;
+        }
+      }
+    }
+  }
+
+  .Contenido3 {
+    .Con1{
+      display: grid;
+      grid-template-columns: 1fr;
+      padding: 0;
+      position: relative;
+    }
+    .Galaxy1{
+      display: flex;
+      justify-content: center;
+      padding: 20px 0 0 0;
+      text-align: center;
+    .Galaxy{
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+    .Galaxy2{
+      display: flex;
+      justify-content: center;
+    }
+  }
+  .FotoGalaxy{
+    padding: 0;
+    display: flex;
+    justify-content: center;
+      .Primera1{
+        display: none;
+      }
+      .Segunda{
+        padding: 0;
+      }
+      .Segunda1{
+        width: 200px;
+        height: 269px;
+        padding: 30px 0 0 0;
+        display: flex;
+      }
+    }
+      .PuntosCarrusel{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        position: absolute;
+        left: 50%;
+        bottom: 15px;
+        z-index: 1;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); 
+      }
+    }
+
+  .Contenido4 {
+    .TituloOur{
+      text-align: center;
+      padding: 0 0 5px 0;
+    }
+    .HR1{
+      display: flex;
+      justify-content: center;
+      hr{
+        width: 90%;
+      }
+    }
+  }
+
+  .Contenido5{
+    .Contenido5Padre{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px 0 0 0;
+      gap: 20px;
+      .C5Texto{
+        padding: 20px;
+      }
+      .C5Texto h2, p{
+        text-align: center;
+      }
+    }
+    .C5Con1.C5-1,.C5Con1.C5-2,.C5Con1.C5-3,.C5Con1.C5-3,.C5Con1.C5-4,.C5Con1.C5-5,.C5Con1.C5-6{
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+    .Button22, .EspacioA5{
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  .Contenido6{
+    padding: 40px 0 0 0;
+    .C6Con1{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+    .EspacioC61{
+      width: 96%;
+    }
+    .ContenidoBarraC6{
+      padding: 10px 0 10px 0;
+      width: 90%;
+      .BarraC6{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+      .Todo{
+        padding: 0;
+      }
+      .Best{
+        padding: 20px 0 46px 0;
+      }
+      .Featured{
+        padding-bottom: 46px;
+      }
+      }
+      .EspacioLinea{
+        height: auto;
+      }
+    .Flechas{
+      display: none;
+    }
+    .Flechas1{
+      display: none;
+    }
+    }
+  }
+
+  .Contenido62{
+    .EspacioC62{
+      flex-wrap: wrap;
+      gap: 0;
+      padding: 0;
+    }
+  }
+}
+
+@media (min-width: 300px) and (max-width: 500px) {
+  .Contenido1{
+    *{
+      font-size: 10px;
+    }
+  }
+}
+
+@media (min-width: 600px) and (max-width: 800px) {
+
+.Contenido1{
+  .Inicio1{
+    gap: 80px;
+  }
+  .Inicio2{
+    gap: 80px;
+  }
+}
+.Contenido2{
+  .BarraStore{
+    padding: 0 30px 0 30px;
+  }
+    .BarraBusqueda{
+      .BarraBusqueda1{
+        input{
+          width: 350px;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 700px) and (max-width: 800px) {
+
+.Contenido1{
+  .Inicio1{
+    gap: 100px;
+  }
+  .Inicio2{
+    gap: 100px;
+  }
+}
+
+.Contenido3{
+  .FotoGalaxy{
+      .Primera1{
+        display: flex;
+      }
+      .Segunda1{
+        width: 300px;
+        height: 369px;
+      }
+}
+}
+}
+
+@media (min-width: 801px) and (max-width: 1200px) {
+  .Contenido1 {
+    display: grid;
+    .Inicio1{
+      padding: 10px 0 10px 45px;
+    }
+    .Inicio2{
+      padding: 10px 45px 10px 0;
+    }
+  }
+  .Contenido2 {
+    display: flex;
+    flex-direction: column;
+    .BarraStore{
+      display: flex;
+      justify-content: center;
+      padding: 10px 0 10px 0;
+      gap: 60px;
+      text-align: center;
+    }
+    .BarraBusqueda{
+      display: flex;
+      justify-content: center;
+      padding: 10px 0 10px 0;
+      .BarraBusqueda1{
+        input{
+          width: 380px;
+        }
+      }
+    }
+  }
+
+  .Contenido3 {
+    .Con1{
+      display: grid;
+      grid-template-columns: 1fr;
+      padding: 0;
+      position: relative;
+    }
+    .Galaxy1{
+      display: flex;
+      justify-content: center;
+      padding: 20px 0 0 0;
+      text-align: center;
+    .Galaxy{
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+    .Galaxy2{
+      display: flex;
+      justify-content: center;
+    }
+  }
+  .FotoGalaxy{
+    padding: 0;
+    display: flex;
+    justify-content: center;
+      .Primera1{
+        display: flex;
+      }
+      .Segunda1{
+        width: 300px;
+        height: 369px;
+        padding: 30px 0 0 0;
+        display: flex;
+      }
+    }
+      .PuntosCarrusel{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        position: absolute;
+        left: 50%;
+        bottom: 15px;
+        z-index: 1;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); 
+      }
+    }
+
+  .Contenido4 {
+    .TituloOur{
+      text-align: center;
+      padding: 0 0 5px 0;
+    }
+    .HR1{
+      display: flex;
+      justify-content: center;
+      hr{
+        width: 90%;
+      }
+    }
+  }
+
+  .Contenido5{
+    .Contenido5Padre{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px 0 0 0;
+      gap: 20px;
+    }
+    .C5Con1.C5-1,.C5Con1.C5-2,.C5Con1.C5-3,.C5Con1.C5-3,.C5Con1.C5-4,.C5Con1.C5-5,.C5Con1.C5-6{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .C5Img{
+      padding-top: 20px;
+    }
+    .C5Img1{
+      padding-top: 20px;
+      padding-bottom: 20px;
+    } 
+  }
+
+  .Contenido6{
+    padding: 40px 0 0 0;
+    .C6Con1{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+    .EspacioC61{
+      width: 96%;
+    }
+    .ContenidoBarraC6{
+      padding: 30px 0 10px 0;
+      width: 90%;
+      .BarraC6{
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        padding: 0 0 0 20px;
+        h2{
+          padding-bottom: 31.5px;
+        }
+      .Todo{
+        padding: 0;
+      }
+      .Best{
+        padding: 20px 0 46px 0;
+      }
+      .Featured{
+        padding-bottom: 46px;
+      }
+      .New{
+        padding-bottom: 46px;
+      }
+      }
+      .EspacioLinea{
+        height: auto;
+        display: flex;
+        gap: 100px;
+      }
+    .Flechas{
+      padding: 0 20px 25px 0;
+    }
+    }
+  }
+   .Contenido62{
+    .EspacioC62{
+      flex-wrap: wrap;
+      gap: 0;
+      padding: 0;
+    }
+  }
+}
+
+@media (min-width: 1201px) and (max-width: 1600px) {
+  .Contenido1 {
+    display: grid;
+    .Inicio1{
+      padding: 10px 0 10px 45px;
+    }
+    .Inicio2{
+      padding: 10px 45px 10px 0;
+    }
+  }
+.Contenido2{
+  .BarraStore{
+    padding: 20px 0 20px 40px;
+  }
+  .BarraBusqueda{
+    padding: 20px 40px 20px 0;
+  }
+}
+  .Contenido3 {
+    .Con1{
+      padding: 0;
+      position: relative;
+    }
+    .Galaxy1{
+      display: flex;
+      justify-content: center;
+      padding: 20px 0 0 0;
+      text-align: center;
+    .Galaxy{
+      padding: 30px 0 20px 80px;
+      display: flex;
+      justify-content: center;
+    }
+    .Galaxy2{
+      display: flex;
+      justify-content: center;
+    }
+  }
+    }
+  .Contenido4 {
+    .TituloOur{
+      text-align: center;
+      padding: 0 0 5px 0;
+    }
+    .HR1{
+      display: flex;
+      justify-content: center;
+      hr{
+        width: 90%;
+      }
+    }
+  }
+  .Contenido5{
+    .Contenido5Padre{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px 0 0 0;
+      gap: 20px;
+    }
+    .C5Con1.C5-1,.C5Con1.C5-2,.C5Con1.C5-3,.C5Con1.C5-3,.C5Con1.C5-4,.C5Con1.C5-5,.C5Con1.C5-6{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .C5Img{
+      padding-top: 20px;
+    }
+    .C5Img1{
+      padding-top: 20px;
+      padding-bottom: 20px;
+    } 
+  }
+  .Contenido6{
+    padding: 40px 0 0 0;
+    .C6Con1{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+    .EspacioC61{
+      width: 96%;
+    }
+    .ContenidoBarraC6{
+      padding: 10px 0 10px 0;
+      width: 90%;
+      .BarraC6{
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        padding: 30px 0 0 20px;
+      .Todo{
+        padding: 0;
+      }
+      h2{
+        padding-bottom: 31.5px;
+      }
+      .Best{
+        padding: 20px 0 46px 0;
+      }
+      .Featured{
+        padding-bottom: 46px;
+      }
+      .New{
+        padding-bottom: 46px;
+      }
+      }
+      .EspacioLinea{
+        height: auto;
+        display: flex;
+        gap: 100px;
+      }
+    .Flechas{
+      padding: 0 20px 0 0;
+    }
+    }
+  }
+   .Contenido62{
+    .EspacioC62{
+      flex-wrap: wrap;
+      gap: 0;
+      padding: 0;
+    }
+  }
+}
+
+@media (min-width: 1601px) and (max-width: 1800px) {
+   .Contenido62{
+    .EspacioC62{
+      flex-wrap: wrap;
+      gap: 0;
+      padding: 0;
+    }
+  }
+  .Contenido6{
+    .ContenidoBarraC6{
+      .EspacioLinea{
+        height: auto;
+        display: flex;
+        gap: 100px;
+      }
+    }
+  }
+}
+
+@media (min-width: 1601px) and (max-width: 1700px) {
+  .Contenido4 {
+    .TituloOur{
+      text-align: center;
+      padding: 0 0 5px 0;
+    }
+    .HR1{
+      display: flex;
+      justify-content: center;
+      hr{
+        width: 90%;
+      }
+    }
+  }
+}
