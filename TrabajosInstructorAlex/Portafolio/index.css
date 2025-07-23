@@ -302,6 +302,17 @@ body{
         }
     }
 
+    .Padre1{
+
+         .Presentacion{
+
+             h3{
+                 text-align: center;
+             }
+         }
+    }
+            
+
 
 }
 
