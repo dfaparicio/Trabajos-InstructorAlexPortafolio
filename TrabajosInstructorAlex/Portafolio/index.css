@@ -306,20 +306,15 @@ body{
 
         }
     }
-
-    .Padre1{
-
-         .Presentacion{
-
-             h3{
-                 text-align: center;
-             }
-
-             p{
-                 text-align: justify;
-             }
-         }
+    
+    .Padre1 .Presentacion h3 {
+        text-align: center;
     }
+    
+    .Padre1 .Presentacion p {
+        text-align: justify;
+    }
+
             
 
 
