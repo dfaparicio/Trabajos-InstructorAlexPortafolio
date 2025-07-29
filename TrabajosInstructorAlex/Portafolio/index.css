@@ -1,0 +1,427 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-image: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)),url('./Fondo1.jpg');
+    background-size: cover;
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.ContenedorPContenido{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+.Padre{
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+}
+.BarraContenido{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0px 10px 30px rgba(255, 0, 0, 0.5),
+    0px -10px 30px rgba(255, 0, 0, 0.5);
+
+    .Inicio1{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 0 0 50px;
+        gap: 10px;
+
+        img{
+            width: 50px;
+            height: 50px;
+        }
+    }
+    
+    .Inicio2{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        padding: 0 50px 0 0;
+
+        #Sobre{
+            white-space: nowrap;
+        }
+    }
+}
+
+.Con{
+    user-select: none;
+    cursor: pointer;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    transition: box-shadow 0.2s ease;
+    box-shadow: none;
+    padding: 0 10px 0 10px;
+    border-radius: 10px;
+}
+.Con:hover{
+    box-shadow: 0 0 100px rgba(255, 0, 0, 0.9);
+    transform: translateY(-5px);
+}
+.Con:active{
+    box-shadow: 0 0 50px rgba(255, 0, 0, 1);
+}
+
+
+.Padre1{
+
+    display: flex;
+    justify-content: center;
+    color: white;
+
+    img{
+        width: 150px;
+        height: 150px;
+    }
+
+
+    .Presentacion{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        padding: 50px 0 50px 0;
+
+        width: 90%;
+        border-radius: 10px;
+        box-shadow: 0px 10px 30px rgba(255, 0, 0, 0.3),
+        0px -10px 30px rgba(255, 0, 0, 0.3);
+
+
+        .Programador{
+            width: 80%;
+            p{
+                text-align: center;
+            }
+        }
+        
+        .Lenguajes a{
+            color: red;            
+            transform: scale(1);
+            font-size: 40px;
+        }
+        .Lenguajes{
+            display: flex;
+            gap: 60px;
+        }
+    }
+}
+
+
+.Proyectos{
+    display: flex;
+    justify-content: center;
+    color: white;
+
+    .TituloProyectos{
+        padding: 50px 0 0 0;
+        font-size: 35px;
+        text-align: center;
+    }
+
+    .Listado{
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+        width: 90%;
+        border-radius: 10px;
+        box-shadow: 0px 10px 30px rgba(255, 0, 0, 0.3),
+        0px -10px 30px rgba(255, 0, 0, 0.3);
+
+    }
+
+    .ProyectosC{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 35px;
+
+    }
+
+    .DiseñoP{
+        display: flex;
+        flex-direction: column;
+        gap:50px;
+        justify-content: center;
+        align-items: center;
+
+        width: 340px;
+        height: 350px;
+       
+
+        margin:  0 0 50px 0;
+        padding: 20px;
+
+        border-radius: 20px;
+        box-shadow: 0px 1px 30px rgba(255, 0, 0, 0.3),
+        0px -1px 30px rgba(255, 0, 0, 0.3);
+
+        .INPUT{
+            padding: 20px 0 0 0 ;
+        }
+        .input1{
+            background: none;
+            color: white;
+            border: transparent;
+            border-radius: 100%;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        img{
+            width: 150px;
+            height: 150px;
+        }
+
+
+    }
+
+.input1:hover{
+    box-shadow: 0 0 30px rgba(255, 0, 0, 1);
+}   
+}
+
+
+.DiseñoP{
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.DiseñoP:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 10px 20px rgba(255, 0, 0, 0.9)
+}
+
+
+
+
+
+
+.Redes{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 0 50px 0;
+
+    .ListadoRedes{
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+
+        width: 90%;
+        
+        border-radius: 20px;
+        box-shadow: 0px 10px 30px rgba(255, 0, 0, 0.3),
+        0px -10px 30px rgba(255, 0, 0, 0.3);
+
+    }
+
+    .RedesSociales{
+        display: flex;
+        gap: 30px;
+        padding: 30px;
+    }
+
+    .RedesSociales a{
+        color: red;            
+        transform: scale(1);
+        font-size: 25px;
+    }
+
+
+.RedesSociales a:hover{
+    border-radius: 100%;
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(255, 0, 0, 0.9)
+}
+
+
+
+.RedesSociales a{
+    transition: transform 0.50s ease, box-shadow 0.50s ease;
+}
+
+
+
+
+}
+
+
+
+
+@media (min-width: 1000px) and (max-width: 1850px) {
+
+    .ProyectosC{
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) ;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .NewDiseño{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+
+
+
+@media (min-width: 300px) and (max-width: 1000px) {
+    
+    .BarraContenido{
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+
+        .Inicio1{
+            padding: 20px 0 0 0;
+        }
+        .Inicio2{
+            padding: 20px 0 20px 0;
+            gap: 60px;
+            
+            .Con{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            }
+
+        }
+    }
+
+
+    .ProyectosC{
+        display: grid !important;
+        grid-template-columns: repeat(1, 1fr) ;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .NewDiseño{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+}
+
+
+@media (min-width: 300px) and (max-width: 700px) {
+
+    .BarraContenido{
+
+        .Inicio2{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+
+    .Padre1{
+        .Lenguajes{
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1{
+            text-align: center;
+        }
+    }
+
+
+    .Redes{
+        .RedesSociales{
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    }
+
+
+
+    @media (min-width: 300px) and (max-width: 400px) {
+
+
+        .Proyectos{
+
+            .TituloProyectos{
+                font-size: 20px;
+            }
+
+
+            .DiseñoP{
+                
+                width: 200px;
+                text-align: center;
+            }
+        }
+
+
+    }
+
+
+    @media (min-width: 300px) and (max-width: 700px) {
+
+    .BarraContenido{
+
+        .Inicio2{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+
+    .Padre1{
+        .Lenguajes{
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1{
+            text-align: center;
+        }
+    }
+
+
+    .Redes{
+        .RedesSociales{
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    }
+
+
