@@ -1,0 +1,155 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-size: 30px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.CalculadoraPadre{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0 50px 0;
+    color: white;
+}
+.Calculadora{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    background-color: #fc3d3d;
+    
+
+
+    padding: 50px;
+    border: solid 3px black;
+    border-radius: 100px;
+
+    
+}
+
+.Operaciones{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+
+
+    .Ope{
+        display: flex;
+        justify-content: left;
+        gap: 10px;
+    }
+
+}
+
+.TableroOperaciones{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+
+
+
+    input, button{
+        border-radius: 999px;
+        text-align: center;
+    }
+
+
+
+}
+
+.Borrar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+
+    button{
+        padding: 5px 15px 5px 15px;
+    }
+
+}
+
+.Igual{
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px 0 10px;
+
+    p{
+        font-size: 15px;
+        color: black;
+    }
+
+    button{
+        padding: 10px 60px 10px 60px;
+    }
+}
+
+
+.Resultado{
+    box-shadow: 0 0 10px 5px rgb(255, 255, 255);
+    
+    p{
+        padding: 5px;
+        background: radial-gradient(circle, #e0e0e0 0%, #ffffff 100%);
+        color: rgb(255, 0, 0);
+        font-weight: bold;
+    }
+}
+
+
+
+@media (min-width: 300px) and (max-width: 1000px) {
+
+*{
+    font-size: 20px;
+}
+
+    .Calculadora{
+        display: flex;
+        flex-direction: column;
+    }
+
+.Operaciones{
+    .Ope{
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.Resultado{
+    margin: 10px;
+}
+
+.Calculadora{
+    border-radius: 30px;
+}
+
+.Borrar{
+    display: flex;
+    flex-direction: column;
+}
+    
+}
+
+
+
+@media (min-width: 300px) and (max-width: 400px) {
+
+
+    .Calculadora{
+        padding: 40px 0 40px 0;
+    }
+    
+    .TableroOperaciones{
+        .InputB{
+            padding: 0 10px 0 10px;
+        }
+    }
+    
+
+}
