@@ -89,6 +89,7 @@ body{
 
         input{
             background-color: #ffffff;
+            height: 40px;
         }
     }
 }
