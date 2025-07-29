@@ -1,0 +1,198 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+}
+
+body{
+    background-color: rgb(99, 23, 132);
+}
+
+.TituloC{
+    padding-top: 20px;
+    h1{
+        font-size: 40px;
+    }
+}
+
+.CalculadoraPadre{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0 20px 0;
+    color: rgb(255, 255, 255);
+}
+
+.Calculadora{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    box-shadow: 0px 10px 30px rgba(255, 255, 255, 0.5),
+    0px -10px 30px rgba(255, 255, 255, 0.5);
+
+    padding: 15px;
+    border: solid 3px black;
+    border-radius: 30px;
+}
+
+.Operaciones{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    
+    .Ope{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        width: 100px;
+        height: 100px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        padding: 5px;
+        margin: 25px;
+    }
+}
+
+.TableroOperaciones{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    
+    padding: 5px;
+    button{
+        border-radius: 20px;
+        text-align: center;
+        background-color: #4c4c4c;
+        color: white;
+    }
+}
+
+.Numeros{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .Borrar{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+
+        input{
+            background-color: #ffffff;
+        }
+    }
+}
+
+.BotonB{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    button{
+        padding: 5px 15px 5px 15px;
+    }
+}
+
+.Igual{
+    display: flex;
+    flex-direction: column;
+    padding: 0 5px 0 5px;
+    p{
+        font-size: 15px;
+        color: black;
+    }
+    button{
+        padding: 10px 60px 10px 60px;
+    }
+}
+
+.Resultado{
+    box-shadow: 0 0 10px 5px rgb(255, 255, 255);
+    p{
+        padding: 5px;
+        background: radial-gradient(circle, #e0e0e0 0%, #ffffff 100%);
+        color: rgb(255, 0, 0);
+        font-weight: bold;
+    }
+}
+
+.TableroResultados{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    button{
+        border-radius: 10px;
+        text-align: center;
+        background-color: rgb(244, 63, 63);
+        color: white;
+    }
+}
+
+@media (min-width: 300px) and (max-width: 1000px) {
+    .Calculadora{
+        display: flex;
+        flex-direction: column;
+    }
+.Operaciones{
+    .Ope{
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.Calculadora{
+    border-radius: 30px;
+}
+.Borrar{
+    display: flex;
+    flex-direction: column;
+} 
+}
+
+@media (min-width: 300px) and (max-width: 400px) {
+
+
+    
+    .TituloC{
+        h1{
+            font-size: 40px;
+        }
+    }
+    
+.Operaciones{
+    gap: 20px;
+
+    .Ope{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        width: 80px;
+        height: 80px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        padding: 10px;
+        margin: 0px;
+    }
+}
+.TableroOperaciones{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    .Borrar{
+        padding: 5px;
+    }
+}
+}
