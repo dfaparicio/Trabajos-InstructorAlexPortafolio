@@ -170,10 +170,24 @@ body {
  @media (min-width: 300px) and (max-width: 500px) {
 
 .Titulo{
+    padding: 0 0 20px 0;
 
     h1{
         font-size: 40px;
        
     }
+}
+
+
+.ContenedorLugares {
+  padding: 0;
+}
+
+.ClasLugar{
+  padding: 5px;
+}
+
+.Botones{
+  padding: 10px;
 }
  }
