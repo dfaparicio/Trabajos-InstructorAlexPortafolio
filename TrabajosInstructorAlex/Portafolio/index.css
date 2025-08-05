@@ -4,7 +4,7 @@
 }
 
 body{
-    background-image: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)),url('./Fondo1.jpg');
+    background-image: linear-gradient(#000000e6, rgba(0,0,0,0.9)),url('./Fondo1.jpg');
     background-size: cover;
     margin: 0;
     font-family: 'Courier New', Courier, monospace;
@@ -145,11 +145,18 @@ body{
     }
 
     .ProyectosC{
-        display: flex;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
         justify-content: center;
         align-items: center;
         gap: 35px;
 
+    }
+    
+    .NewDiseño{
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .DiseñoP{
@@ -185,6 +192,9 @@ body{
         img{
             width: 150px;
             height: 150px;
+        }
+        h1{
+            text-align: center;
         }
 
 
@@ -265,20 +275,15 @@ body{
 
 
 
-@media (min-width: 1000px) and (max-width: 1850px) {
+@media (min-width: 1000px) and (max-width: 1600px) {
 
+.Proyectos{
     .ProyectosC{
-        display: grid !important;
-        grid-template-columns: repeat(2, 1fr) ;
-        justify-content: center;
-        align-items: center;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
     }
+}
     
-    .NewDiseño{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
 }
 
 
@@ -312,13 +317,18 @@ body{
     }
 
 
+.Proyectos{
     .ProyectosC{
         display: grid !important;
         grid-template-columns: repeat(1, 1fr) ;
         justify-content: center;
         align-items: center;
     }
+}
     
+
+
+
     .NewDiseño{
         display: flex;
         justify-content: center;
