@@ -5,17 +5,6 @@
     user-select: none;
 }
 
-::-webkit-scrollbar {
-  display: none;
-}
-
-body{
-    background-image: url(../Informacion/Fondo10.jpg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
 .Imagen{
 
     display: flex;
@@ -48,9 +37,8 @@ body{
         font-size: 50px;
         border-radius: 10px;
         box-shadow: 0 0 25px rgb(0, 0, 0, 1);
-        background-color: rgb(0, 0, 0, 0.6);
+        background-color: rgba(255, 255, 255, 0.6);
         padding: 10px 20px 10px 20px;
-        color: white;
     }
 
     img{
@@ -75,9 +63,8 @@ body{
 
     border-radius: 10px;
     box-shadow: 0 0 25px rgb(0, 0, 0, 1);
-    background-color: rgb(0, 0, 0, 0.6);
+    background-color: rgba(255, 255, 255, 0.5);
     font-weight: bold;
-    color: white;
 
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     
