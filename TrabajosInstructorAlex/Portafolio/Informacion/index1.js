@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       <h1 style="color: ${lugar.categoria.colorSecundario};">Datos Básicos</h1>
       <h3>Pais: ${lugar.pais}</h3>
       <h4>Ciudad: ${lugar.ciudad}</h4>
-      <h5 style="color: ${lugar.categoria.colorSecundario};">Descripcion: ${lugar.descripcion}</h5>
+      <h5>Descripcion: ${lugar.descripcion}</h5>
     </div>
 
     <div class="Ubicacion">
@@ -63,3 +63,4 @@ document.addEventListener("DOMContentLoaded", async () => {
   `;
 
 });
+
