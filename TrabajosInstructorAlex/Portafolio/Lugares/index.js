@@ -25,8 +25,6 @@ lugares.data.forEach((item, i) => {
     copiaDivs.querySelector("#Imagen img").src = item.url_imagen;
     copiaDivs.querySelector("#Ver a").href =`../Informacion/index1.html?id=${item.id}`;
 
-    copiaDivs.querySelector("#Nombre div h1"). style=`color: ${lugar.categoria.colorPrimario}`;
-
     
 
     contenedor.appendChild(copiaDivs);
@@ -82,6 +80,7 @@ document.getElementById("BotonIzquierda").addEventListener("click", () => {
   activeIndex = Math.max(1, activeIndex - 1);
   updateCarrusel();
 });
+
 
 
 
