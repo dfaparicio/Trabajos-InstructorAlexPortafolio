@@ -1,0 +1,298 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Quicksand', sans-serif;
+}
+
+body {
+    background-image: url(./Fondo66.jpg);
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat; 
+    min-height: 100vh;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.5), 
+        rgba(0, 0, 0, 0.5)
+    );
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    z-index: -1;
+}
+
+p,h1,h5 {
+    margin: 0;
+}
+
+.Padre {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding-top: 10px;
+    padding-bottom: 50px;
+}
+
+.Encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    padding: 10px 15px 10px 15px;
+
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    backdrop-filter: blur(9px) saturate(180%);
+    -webkit-backdrop-filter: blur(9px) saturate(180%);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+h1 {
+    font-weight: 900;
+    font-size: 30px;
+}
+
+.TituloRegistro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    color: white;
+}
+
+.Opciones {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.Data {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    padding: 50px;
+}
+
+.DivMesa {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    height: fit-content;
+    
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(7px) saturate(180%);
+    -webkit-backdrop-filter: blur(7px) saturate(180%);
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+}
+
+.DivMesa:hover {
+    transform: translateY(-10px) scale(1.02);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+}
+
+.DivMesa img {
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin: 0 auto;
+}
+
+.editMesa {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+
+    h5{
+        padding-top: 12px;
+    }
+}
+
+.editMesa h1,.editMesa h5 {
+    text-align: center;
+}
+
+.botonesMesas {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.botonesMesas button {
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: none;
+
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    transition: transform 0.5s ease;
+}
+
+button:hover {
+    background-color: rgba(255, 255, 255);
+    color: black;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #fff3;
+}
+
+.btn {
+    transition: transform 0.5s ease;
+    background-color: transparent;
+    border: none;
+    color: black;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.btn:hover {
+    background-color: rgba(255, 255, 255);
+    color: black;
+    transform: scale(1.1);
+    box-shadow: 0 0 10px #fff3;
+}
+
+.btn {
+    border: solid 1px black !important;
+}
+
+button:active {
+    background-color: white !important;
+}
+
+.RegistrosMesas {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.EstadoDisponible {
+    .Estado {
+        background-color: #00ff00;
+        color: white;
+        padding: 5px;
+        font-weight: bold;
+        text-shadow: 0 0 5px #000000;
+        box-shadow: 0 0 10px #00ff00, 0 0 10px #00ff00;
+        border-radius: 5px;
+    }
+}
+
+.EstadoOcupada {
+    .Estado {
+        background-color: #0066ff;
+        color: white;
+        padding: 5px;
+        font-weight: bold;
+        text-shadow: 0 0 5px #000000;
+        box-shadow: 0 0 10px #0066ff, 0 0 10px #0066ff;
+        border-radius: 5px;
+    }
+}
+
+.EstadoDeshabilitada {
+    .Estado {
+        background-color: #222;
+        color: white;
+        padding: 5px;
+        font-weight: bold;
+        text-shadow: 0 0 5px #aaa;
+        box-shadow: 0 0 10px #666, 0 0 10px #000;
+        border-radius: 5px;
+    }
+}
+
+
+
+
+
+@media (min-width: 300px) and (max-width: 750px) {
+
+    .Encabezado{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        h1{
+            text-align: center;
+        }
+    }
+    .Opciones{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .Data{
+        display: grid !important;
+        grid-template-columns: repeat(1, 1fr) !important;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+    }
+}
+
+
+@media (min-width: 300px) and (max-width: 400px) {
+    .DivMesa{
+        padding: 10px;
+    }
+    .Opciones{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+
+@media (min-width: 750px) and (max-width: 1200px) {
+    
+    .Data {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+}
+
+
+@media (min-width: 1200px) and (max-width: 1400px) {
+    
+    .Data {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+}
+
+@media (min-width: 1400px) and (max-width: 1700px) {
+    
+    .Data {
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr) !important;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+}
