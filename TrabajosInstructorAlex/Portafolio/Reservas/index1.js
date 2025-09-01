@@ -136,10 +136,8 @@ function cargarMesasDisponibles(mesaActual = null) {
   const select = document.getElementById("mesa");
   if (!select) return;
 
-  // Limpiar opciones previas
   select.innerHTML = "";
 
-  // Opción placeholder
   const placeholder = document.createElement("option");
   placeholder.value = "";
   placeholder.textContent = "Seleccione una mesa";
@@ -153,12 +151,10 @@ function cargarMesasDisponibles(mesaActual = null) {
     const estado = (m.estado || "").toLowerCase();
     const esMesaActual = String(m.id) === String(mesaActual);
 
-    // Si la mesa está ocupada o deshabilitada y NO es la actual, la dejamos bloqueada
     if ((estado === "ocupada" || estado === "deshabilitada") && !esMesaActual) {
       opt.disabled = true;
     }
 
-    // Si es la mesa actual, queda marcada como seleccionada
     if (esMesaActual) {
       opt.selected = true;
     }
@@ -282,18 +278,15 @@ function pintarDatos() {
   let mesas = datos.mesas;
   let reservas = datos.reservas;
 
-  // Obtenemos valores de filtros
   const filtroFecha = document.getElementById("filtroFecha")?.value || "";
   const filtroEstado = document.getElementById("filtroEstado")?.value || "";
 
-  // Aplicamos filtros si existen
   let reservasFiltradas = reservas.filter((r) => {
     let coincideFecha = filtroFecha ? r.fechaReserva === filtroFecha : true;
     let coincideEstado = filtroEstado ? r.estadoReserva === filtroEstado : true;
     return coincideFecha && coincideEstado;
   });
 
-  // Mostrar mensaje si no hay resultados
   if (reservasFiltradas.length === 0) {
     document.getElementById("bodyData").innerHTML = `<div class="alert alert-info">No se encontraron reservas con los filtros aplicados.</div>`;
     return;
@@ -394,7 +387,7 @@ function eliminarReserva(index) {
 function editarReserva(id) {
   let datos = getDatos();
   const reservas = datos.reservas;
-  // 🔥 idReserva es string, entonces lo comparamos como string
+
   const reserva = reservas.find((r) => r.idReserva === String(id));
   const mesas = datos.mesas;
 
@@ -403,12 +396,10 @@ function editarReserva(id) {
     return;
   }
 
-  // Recargar mesas disponibles ANTES de rellenar campos
   cargarMesasDisponibles(reserva.mesa);
 
-  // Rellenar los campos del formulario
   document.getElementById("reservaId").value = reserva.idReserva;
-  document.getElementById("reservaId").disabled = true; // ⚠️ Mejor hacerlo en HTML
+  document.getElementById("reservaId").disabled = true; // 
   document.getElementById("nombre").value = reserva.nombre;
   document.getElementById("apellidos").value = reserva.apellidos;
   document.getElementById("documento").value = reserva.documento;
@@ -420,12 +411,11 @@ function editarReserva(id) {
   document.getElementById("notasAdicionales").value = reserva.notasAdicionales || "";
   document.getElementById("estadoReserva").value = reserva.estadoReserva || "Pendiente";
 
-  // Mostrar modal
+
   const modalElement = document.getElementById("exampleModal");
   const modal = new bootstrap.Modal(modalElement);
   modal.show();
 
-  // Cambiar comportamiento del botón de guardar
   const botonGuardar = modalElement.querySelector("button.btn-primary");
   botonGuardar.textContent = "Actualizar";
   botonGuardar.onclick = function () {
@@ -463,10 +453,10 @@ function actualizarReserva(id, modal) {
     horaReserva, mesa: mesaNueva, ocasion, notasAdicionales, estadoReserva,
   };
 
-  // Actualizar estado de las mesas
+
   let mesas = JSON.parse(localStorage.getItem("mesas")) || [];
 
-  // Liberar la mesa anterior
+
   if (mesaVieja && mesaVieja !== mesaNueva) {
     const indexMesaVieja = mesas.findIndex((m) => String(m.id) === String(mesaVieja));
     if (indexMesaVieja !== -1) {
@@ -523,7 +513,6 @@ function pagarCuenta(index) {
 
       reserva.estadoReserva = "Finalizada";
 
-      // 🔥 Liberar mesa correctamente buscando por id
       const indexMesa = mesas.findIndex((m) => String(m.id) === String(reserva.mesa));
 
       if (indexMesa !== -1) {
