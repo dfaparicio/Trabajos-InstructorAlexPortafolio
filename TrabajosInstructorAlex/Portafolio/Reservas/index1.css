@@ -68,10 +68,17 @@ body::before {
 }
 
 #Informacion{
-    p{
-        margin: 0 !important;
-    }
+    
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 5px !important; 
+    padding: 10px !important;
+    flex: 1 !important; 
 }
+#Informacion p {
+  max-width: 300px; /* ajusta el ancho máximo de las notas */
+}
+
 
 h1 {
     color: white;
@@ -228,7 +235,20 @@ button:hover {
     justify-content: center;
     align-items: center;
 }
-
+.fs-5{
+    color: #000000 !important;
+    font-size: 30px !important;
+}
+.ModalModal{
+    display: flex !important;
+    gap: 10px !important;
+}
+.modal-header{
+    padding: 10px 0 10px 30px;
+}
+.modal-header .btn-close {
+    margin: 0 0 0 180px;
+}
 
 @media (min-width: 300px) and (max-width: 1600px) {
     .Filtros{
@@ -356,8 +376,6 @@ button:hover {
     gap: 10px;
 }
 }
-
-
 
 @media (min-width: 300px) and (max-width: 530px) {
     #Tarjetas{
