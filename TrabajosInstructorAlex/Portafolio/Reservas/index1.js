@@ -1,19 +1,14 @@
 function getDatos() {
   return { reservas: JSON.parse(localStorage.getItem("ReservasData")) || [], mesas: JSON.parse(localStorage.getItem("mesas")) || [], };
 }
-
 console.log(getDatos());
 
-
 document.addEventListener("DOMContentLoaded", () => {
-
   document.getElementById("Padre").innerHTML = `
 <div class="Encabezado">
   <h1>Registro de Reservas</h1>
-
   <div class="Filtros mb-3">
     <div class="Fecha"><label for="filtroFecha"><strong>Filtrar por fecha:</strong></label><input type="date" id="filtroFecha" class="form-control"></div>
-
     <div class="filtroEstado">
       <label for="filtroEstado"><strong>Filtrar por estado:</strong></label>
       <select id="filtroEstado" class="form-control">
@@ -24,44 +19,29 @@ document.addEventListener("DOMContentLoaded", () => {
         <option value="Finalizada">Finalizada</option>
         <option value="No Show">No Show</option>
       </select>
-
     </div>
-
     <div><button class="btn btn-secondary" onclick="limpiarFiltros()">Limpiar filtros</button></div>
-
     <div><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Realizar registro</button></div>
-
   </div>
 </div>
-
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Nueva Reserva</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-
       <div class="modal-body">
-
-        <div style="display: flex; flex-direction: column; gap: 20px; padding: 10px; box-shadow: 2px 2px 2px 2px gray;">
-          <h5 id="tituloReserva"></h5>
-          <label>ID personalizado:</label>
-          <input type="text" id="reservaId" placeholder="ID de la reserva">
-          <label>Nombre:</label>
+        <div class="ModalModal"style="display: flex; flex-direction: column; gap: 20px; padding: 10px; box-shadow: 2px 2px 2px 2px gray;">
+          <label>ID Reserva:</label>
+          <input type="number" id="reservaId" placeholder="ID de la reserva">
+          <label>Nombre Cliente:</label>
           <input type="text" id="nombre" placeholder="Digite el nombre">
-          <label>Apellido:</label>
-          <input type="text" id="apellidos" placeholder="Digite el apellido">
-          <label>Documento:</label>
-          <input type="text" id="documento" placeholder="Digite el documento">
-          <label>Correo:</label>
-          <input type="email" id="correo" placeholder="Digite el correo">
-          <label>Número de personas:</label>
+          <label>Número de Personas:</label>
           <input type="number" id="numeroPersonas" min="1" placeholder="Ingrese número de personas">
-          <label>Fecha de reserva:</label>
+          <label>Fecha de Reserva:</label>
           <input type="date" id="fechaReserva">
-          <label>Hora de reserva:</label>
+          <label>Hora de Reserva:</label>
           <input type="time" id="horaReserva" min="08:00" max="20:00">
           <label>Mesa:</label>
           <select id="mesa">
@@ -89,18 +69,13 @@ document.addEventListener("DOMContentLoaded", () => {
             <option value="Finalizada">Finalizada</option>
             <option value="No Show">No Show</option>
           </select>
-
         </div>
       </div>
-
       <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button><button type="button" class="btn btn-primary" onclick="guardar()">Guardar</button></div>
-
     </div>
   </div>
 </div>
-
 <div id="bodyData"></div>
-
 <button type="button" class="btn btn-primary" onclick="window.location.href='../GestionDeMesas/index.html'">← Volver</button>
 `;
 
@@ -121,10 +96,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (selecMesa) 
         selecMesa.value = idMesa;
     }
-
     modal.show();
   }
-
   document.getElementById("filtroFecha").addEventListener("change", pintarDatos);
   document.getElementById("filtroEstado").addEventListener("change", pintarDatos);
 });
@@ -154,11 +127,9 @@ function cargarMesasDisponibles(mesaActual = null) {
     if ((estado === "ocupada" || estado === "deshabilitada") && !esMesaActual) {
       opt.disabled = true;
     }
-
     if (esMesaActual) {
       opt.selected = true;
     }
-
     select.appendChild(opt);
   });
 }
@@ -169,9 +140,6 @@ function guardar() {
   let reservas = datos.reservas;
 
   const nombre = document.getElementById("nombre").value.trim();
-  const apellidos = document.getElementById("apellidos").value.trim();
-  const documento = document.getElementById("documento").value.trim();
-  const correo = document.getElementById("correo").value.trim();
   const idReserva = document.getElementById("reservaId").value.trim();
   const numeroPersonas = parseInt(document.getElementById("numeroPersonas").value);
   const fechaReserva = document.getElementById("fechaReserva").value;
@@ -192,18 +160,6 @@ function guardar() {
   }
   if (!nombre) {
     Swal.fire({ icon: "error", title: "Nombre requerido", text: "Por favor ingresa el nombre del cliente.", });
-    return;
-  }
-  if (!apellidos) {
-    Swal.fire({ icon: "error", title: "Apellido requerido", text: "Por favor ingresa el apellido del cliente.", });
-    return;
-  }
-  if (!documento) {
-    Swal.fire({ icon: "error", title: "Documento requerido", text: "Por favor ingresa el número de documento.", });
-    return;
-  }
-  if (!correo) {
-    Swal.fire({ icon: "error", title: "Correo requerido", text: "Por favor ingresa un correo electrónico válido.", });
     return;
   }
   if (!numeroPersonas || numeroPersonas <= 0) {
@@ -230,8 +186,7 @@ function guardar() {
 
   let Reserva = parseInt(localStorage.getItem("ultimaReserva")) || 1;
 
-  let nuevaReserva = {
-    numeroReserva: Reserva, idReserva, nombre, apellidos, documento, correo, numeroPersonas,
+  let nuevaReserva = {numeroReserva: Reserva, idReserva, nombre, numeroPersonas,
     fechaReserva, horaReserva, mesa, ocasion, notasAdicionales, estadoReserva,
   };
 
@@ -256,11 +211,8 @@ function guardar() {
     if (result.isConfirmed) {
 
       const modalElement = document.getElementById("exampleModal");
-
       const modal = bootstrap.Modal.getInstance(modalElement);
-
       modal.hide();
-
       limpiarFormularioReserva();
 
       const botonGuardar = modalElement.querySelector("button.btn-primary");
@@ -305,26 +257,17 @@ function pintarDatos() {
       case "No Show": claseEstado = "estadoNoShow"; break;
     }
 
-    let imagenOcasion = "";
-    switch (item.ocasion) {
-      case "Cumpleaños": imagenOcasion = '<img src="../Reservas/Happy.png" alt="Cumpleaños">';
-        break;
-      case "Aniversario": imagenOcasion = '<img src="../Reservas/Aniversario.png" alt="Aniversario">';
-        break;
-      case "Graduación": imagenOcasion = '<img src="../Reservas/Graduacion.png" alt="Graduacion">';
-        break;
-      case "Reunión familiar": imagenOcasion = '<img src="../Reservas/Familia.png" alt="Reunion familiar">';
-        break;
-      case "Cena de negocios": imagenOcasion = '<img src="../Reservas/Negocios.png" alt="Cena de negocios">';
-        break;
-      case "Compromiso": imagenOcasion = '<img src="../Reservas/Compromiso.png" alt="Compromiso">';
-        break;
-      case "Amigos": imagenOcasion = '<img src="../Reservas/Amigos.png" alt="Amigos">';
-        break;
-      case "Otro": imagenOcasion = '<img src="../Reservas/Otros.png" alt="Otro">';
-        break;
-      default: imagenOcasion = "";
-    }
+const imagenes = {
+  "Cumpleaños": "Happy.png",
+  "Aniversario": "Aniversario.png",
+  "Graduación": "Graduacion.png",
+  "Reunión familiar": "Familia.png",
+  "Cena de negocios": "Negocios.png",
+  "Compromiso": "Compromiso.png",
+  "Amigos": "Amigos.png",
+  "Otro": "Otros.png",
+};
+let imagenOcasion = imagenes[item.ocasion] ? `<img src="../Reservas/${imagenes[item.ocasion]}" alt="${item.ocasion}">` : "";
 
     document.getElementById("bodyData").innerHTML += `
   <div id="Tarjetas" class="card mb-3 p-3 ${claseEstado}">
@@ -332,9 +275,6 @@ function pintarDatos() {
       <h5>Reserva #${item.numeroReserva}</h5>
       <p><strong>ID de reserva:</strong> ${item.idReserva}</p>
       <p><strong>Nombre:</strong> ${item.nombre}</p>
-      <p><strong>Apellido:</strong> ${item.apellidos}</p>
-      <p><strong>Documento:</strong> ${item.documento}</p>
-      <p><strong>Correo:</strong> ${item.correo}</p>
       <p><strong>Número de personas:</strong> ${item.numeroPersonas}</p>
       <p><strong>Fecha de reserva:</strong> ${item.fechaReserva}</p>
       <p><strong>Hora de reserva:</strong> ${item.horaReserva}</p>
@@ -342,12 +282,10 @@ function pintarDatos() {
       <p><strong>Notas adicionales:</strong> ${item.notasAdicionales || "Ninguna"}</p>
       <p><strong>Estado de la reserva:</strong> <span>${item.estadoReserva}</span></p>
     </div>
-    
     <div class="OcasionesyBotones">
       <div id="Ocasion"><p><strong>Ocasión:</strong> ${item.ocasion}</p>
       ${imagenOcasion}
     </div>
-
       <div class="Botones">
         <button type="button" class="btn btn-primary" onclick="editarReserva('${item.idReserva}')">✏️ Editar</button>
         <button type="button" class="btn btn-primary" onclick="pagarCuenta(${i})">💵 Pagar cuenta</button>
@@ -401,9 +339,6 @@ function editarReserva(id) {
   document.getElementById("reservaId").value = reserva.idReserva;
   document.getElementById("reservaId").disabled = true; // 
   document.getElementById("nombre").value = reserva.nombre;
-  document.getElementById("apellidos").value = reserva.apellidos;
-  document.getElementById("documento").value = reserva.documento;
-  document.getElementById("correo").value = reserva.correo;
   document.getElementById("numeroPersonas").value = reserva.numeroPersonas;
   document.getElementById("fechaReserva").value = reserva.fechaReserva;
   document.getElementById("horaReserva").value = reserva.horaReserva;
@@ -437,9 +372,6 @@ function actualizarReserva(id, modal) {
   const mesaVieja = reservas[index].mesa;
 
   const nombre = document.getElementById("nombre").value.trim();
-  const apellidos = document.getElementById("apellidos").value.trim();
-  const documento = document.getElementById("documento").value.trim();
-  const correo = document.getElementById("correo").value.trim();
   const numeroPersonas = parseInt(document.getElementById("numeroPersonas").value);
   const fechaReserva = document.getElementById("fechaReserva").value;
   const horaReserva = document.getElementById("horaReserva").value;
@@ -449,13 +381,11 @@ function actualizarReserva(id, modal) {
   const estadoReserva = document.getElementById("estadoReserva").value;
 
   reservas[index] = {
-    ...reservas[index], nombre, apellidos, documento, correo, numeroPersonas, fechaReserva,
+    ...reservas[index], nombre, numeroPersonas, fechaReserva,
     horaReserva, mesa: mesaNueva, ocasion, notasAdicionales, estadoReserva,
   };
 
-
   let mesas = JSON.parse(localStorage.getItem("mesas")) || [];
-
 
   if (mesaVieja && mesaVieja !== mesaNueva) {
     const indexMesaVieja = mesas.findIndex((m) => String(m.id) === String(mesaVieja));
@@ -494,13 +424,8 @@ function actualizarReserva(id, modal) {
 
 // Funcion Pagar
 function pagarCuenta(index) {
-  Swal.fire({
-    title: "¿Finalizar reserva?",
-    text: "¿Estás seguro de que deseas pagar la cuenta y finalizar esta reserva?",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonText: "Sí, pagar",
-    cancelButtonText: "Cancelar",
+  Swal.fire({title: "¿Finalizar reserva?",text: "¿Estás seguro de que deseas pagar la cuenta y finalizar esta reserva?",icon: "warning",
+    showCancelButton: true,confirmButtonText: "Sí, pagar",cancelButtonText: "Cancelar",
   }).then((result) => {
     if (result.isConfirmed) {
       let datos = getDatos();
@@ -524,24 +449,16 @@ function pagarCuenta(index) {
 
       pintarDatos();
 
-      Swal.fire({
-        icon: "success",
-        title: "Reserva finalizada",
-        text: "Se ha finalizado la reserva y liberado la mesa.",
-      });
+      Swal.fire({icon: "success",title: "Reserva finalizada",text: "Se ha finalizado la reserva y liberado la mesa.",});
     }
   });
 }
-
 
 // Funcion LimpiarFormulario
 function limpiarFormularioReserva() {
   document.getElementById("reservaId").value = "";
   document.getElementById("reservaId").disabled = false;
   document.getElementById("nombre").value = "";
-  document.getElementById("apellidos").value = "";
-  document.getElementById("documento").value = "";
-  document.getElementById("correo").value = "";
   document.getElementById("numeroPersonas").value = "";
   document.getElementById("fechaReserva").value = "";
   document.getElementById("horaReserva").value = "";
