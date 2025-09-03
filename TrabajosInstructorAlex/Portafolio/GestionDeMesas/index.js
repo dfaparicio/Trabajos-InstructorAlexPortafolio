@@ -132,18 +132,13 @@ function pintarDatos() {
     }
 
     div.className = `DivMesa ${Estado}`;
-
-    let reservaMesa = reservas.find((r) => r.mesa == mesa.id);
-
-    let infoReserva = "";
-    if (reservaMesa && (reservaMesa.estadoReserva == "Pendiente" || reservaMesa.estadoReserva == "Confirmada")) {
-      infoReserva = `
-            <h5><strong>RESERVA</strong></h5>
-            <p><strong>ID Reserva:</strong> ${reservaMesa.idReserva}</p>
-            <p><strong>Cliente:</strong> ${reservaMesa.nombre}</p>
-            <p><strong>Fecha:</strong> ${reservaMesa.fechaReserva}</p>
-            <p><strong>Hora:</strong> ${reservaMesa.horaReserva}</p>
-            `;
+    
+    let botonReservar = "";
+    
+    if (mesa.estado === "Ocupada") {
+      botonReservar = `<button disabled style="opacity:1; cursor:not-allowed;">📅 Reservar</button>`;
+    } else {
+      botonReservar = `<button onclick="iraReserva(${mesa.id})">📅 Reservar</button>`;
     }
 
     div.innerHTML = `
@@ -153,12 +148,11 @@ function pintarDatos() {
             <p><strong>Capacidad:</strong> ${mesa.cantidadPersonas}</p>
             <p><strong>Ubicación:</strong> ${mesa.ubicacion}</p>
             <p><strong>Estado:</strong> <span class="Estado">${mesa.estado}</span></p>
-            ${infoReserva}
             </div>
             <div class="botonesMesas">
             <button onclick="eliminarMesa(${mesa.id})">❌ Eliminar</button>
             <button onclick="editarMesa(${mesa.id})">✏️ Editar</button>
-            <button onclick="iraReserva(${mesa.id})">📅 Reservar</button>
+            ${botonReservar}
             </div>
         `;
     contenedor.appendChild(div);
@@ -255,6 +249,3 @@ function limpiarCampos() {
 function iraReserva(idMesa) {
   window.location.href = `../Reservas/index1.html?id=${idMesa}&abrirModal=true`;
 }
-
-
-
