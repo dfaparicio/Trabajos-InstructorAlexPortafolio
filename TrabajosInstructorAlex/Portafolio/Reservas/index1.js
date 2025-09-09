@@ -82,9 +82,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
   const abrirModal = params.get("abrirModal");
   const idMesa = params.get("id");
-  
+
   pintarDatos();
-  
+
   cargarMesasDisponibles(idMesa);
 
   if (abrirModal === "true") {
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (idMesa) {
       const selecMesa = document.getElementById("mesa");
-      if (selecMesa) 
+      if (selecMesa)
         selecMesa.value = idMesa;
     }
     modal.show();
@@ -121,15 +121,10 @@ function cargarMesasDisponibles(mesaActual = null) {
     opt.value = String(m.id);
     opt.textContent = `Mesa #${m.numeroMesa} (${m.cantidadPersonas} personas)`;
 
-    const estado = (m.estado || "").toLowerCase();
-    const esMesaActual = String(m.id) === String(mesaActual);
-
-    if ((estado === "ocupada" || estado === "deshabilitada") && !esMesaActual) {
-      opt.disabled = true;
-    }
-    if (esMesaActual) {
+    if (String(m.id) === String(mesaActual)) {
       opt.selected = true;
     }
+
     select.appendChild(opt);
   });
 }
@@ -167,26 +162,58 @@ function guardar() {
     return;
   }
   const hoy = new Date().toISOString().split("T")[0];
-  if (!fechaReserva || fechaReserva <= hoy) {
-    Swal.fire({ icon: "error", title: "Fecha inválida", text: "La fecha de la reserva debe ser mayor a hoy.", });
+  if (!fechaReserva || fechaReserva < hoy) {
+    Swal.fire({ icon: "error", title: "Fecha inválida", text: "La fecha de la reserva debe ser igual o posterior a hoy." });
     return;
   }
-  if (!horaReserva || horaReserva < "08:00" || horaReserva > "20:00") {
-    Swal.fire({ icon: "error", title: "Hora fuera de rango", text: "La hora debe estar entre 08:00 y 20:00.", });
+
+  if (!horaReserva) {
+    Swal.fire({
+      icon: "error", title: "Hora requerida", text: "Por favor selecciona una hora de reserva.",
+    });
     return;
   }
-  if (!mesa) {
-    Swal.fire({ icon: "error", title: "Mesa requerida", text: "Selecciona una mesa disponible.", });
+
+  // Función para convertir hora a minutos
+  function toMinutes(hora) {
+    let [h, m] = hora.split(":").map(Number);
+    return h * 60 + m;
+  }
+
+  const apertura = toMinutes("08:00");
+  const ultimaReserva = toMinutes("20:00");
+  const cierre = toMinutes("22:00");
+
+  const inicio = toMinutes(horaReserva);
+  const fin = inicio + 120;
+
+  if (inicio < apertura) {
+    Swal.fire({ icon: "error", title: "Hora fuera de rango", text: "No puedes reservar antes de las 8:00 a. m." });
     return;
   }
-  if (!ocasion) {
-    Swal.fire({ icon: "error", title: "Ocasión requerida", text: "Selecciona una ocasión especial para la reserva.", });
+
+  if (inicio > ultimaReserva) {
+    Swal.fire({ icon: "error", title: "Hora fuera de rango", text: "La última reserva debe iniciar a más tardar a las 8:00 p. m." });
+    return;
+  }
+
+  if (fin > cierre) {
+    Swal.fire({ icon: "error", title: "Hora fuera de rango", text: "La reserva debe terminar antes de las 10:00 p. m. (hora de cierre)." });
+    return;
+  }
+
+  // Validar Disponibilidad
+  if (!validarDisponibilidadMesa(mesa, fechaReserva, horaReserva, reservas)) {
+    Swal.fire({
+      icon: "error", title: "Mesa no disponible", text: "Esta mesa ya tiene una reserva cercana (menos de 2 horas antes o después).",
+    });
     return;
   }
 
   let Reserva = parseInt(localStorage.getItem("ultimaReserva")) || 1;
 
-  let nuevaReserva = {numeroReserva: Reserva, idReserva, nombre, numeroPersonas,
+  let nuevaReserva = {
+    numeroReserva: Reserva, idReserva, nombre, numeroPersonas,
     fechaReserva, horaReserva, mesa, ocasion, notasAdicionales, estadoReserva,
   };
 
@@ -199,7 +226,10 @@ function guardar() {
   let mesas = JSON.parse(localStorage.getItem("mesas")) || [];
   let indexMesa = mesas.findIndex((m) => String(m.id) === String(mesa));
   if (indexMesa !== -1) {
-    mesas[indexMesa].estado = "Ocupada";
+    // marcamos la mesa como ocupada si la reserva está activa
+    if (estadoReserva === "Pendiente" || estadoReserva === "Confirmada") {
+      mesas[indexMesa].estado = "Ocupada";
+    }
     localStorage.setItem("mesas", JSON.stringify(mesas));
   }
 
@@ -257,17 +287,14 @@ function pintarDatos() {
       case "No Show": claseEstado = "estadoNoShow"; break;
     }
 
-const imagenes = {
-  "Cumpleaños": "Happy.png",
-  "Aniversario": "Aniversario.png",
-  "Graduación": "Graduacion.png",
-  "Reunión familiar": "Familia.png",
-  "Cena de negocios": "Negocios.png",
-  "Compromiso": "Compromiso.png",
-  "Amigos": "Amigos.png",
-  "Otro": "Otros.png",
-};
-let imagenOcasion = imagenes[item.ocasion] ? `<img src="../Reservas/${imagenes[item.ocasion]}" alt="${item.ocasion}">` : "";
+    const imagenes = {
+      "Cumpleaños": "Happy.png", "Aniversario": "Aniversario.png",
+      "Graduación": "Graduacion.png", "Reunión familiar": "Familia.png",
+      "Cena de negocios": "Negocios.png", "Compromiso": "Compromiso.png",
+      "Amigos": "Amigos.png", "Otro": "Otros.png",
+    };
+
+    let imagenOcasion = imagenes[item.ocasion] ? `<img src="../Reservas/${imagenes[item.ocasion]}" alt="${item.ocasion}">` : "";
 
     document.getElementById("bodyData").innerHTML += `
   <div id="Tarjetas" class="card mb-3 p-3 ${claseEstado}">
@@ -310,7 +337,8 @@ function eliminarReserva(index) {
   localStorage.setItem("ReservasData", JSON.stringify(reservas));
 
   let mesas = JSON.parse(localStorage.getItem("mesas")) || [];
-  let indexMesa = mesas.findIndex((m) => String(m.numeroMesa) === String(reserva.mesa));
+  let indexMesa = mesas.findIndex((m) => String(m.id) === String(reserva.mesa));
+
 
   if (indexMesa !== -1) {
     mesas[indexMesa].estado = "Disponible";
@@ -369,8 +397,6 @@ function actualizarReserva(id, modal) {
     return;
   }
 
-  const mesaVieja = reservas[index].mesa;
-
   const nombre = document.getElementById("nombre").value.trim();
   const numeroPersonas = parseInt(document.getElementById("numeroPersonas").value);
   const fechaReserva = document.getElementById("fechaReserva").value;
@@ -380,33 +406,20 @@ function actualizarReserva(id, modal) {
   const notasAdicionales = document.getElementById("notasAdicionales").value.trim();
   const estadoReserva = document.getElementById("estadoReserva").value;
 
+  // Validar disponibilidad ANTES de actualizar  
+  const reservasSinLaActual = reservas.filter(r => r.idReserva !== id);
+  if (!validarDisponibilidadMesa(mesaNueva, fechaReserva, horaReserva, reservasSinLaActual)) {
+    Swal.fire({
+      icon: "error", title: "Mesa no disponible", text: "Esta mesa ya tiene una reserva cercana (menos de 2 horas antes o después).",
+    });
+    return;
+  }
+
   reservas[index] = {
     ...reservas[index], nombre, numeroPersonas, fechaReserva,
     horaReserva, mesa: mesaNueva, ocasion, notasAdicionales, estadoReserva,
   };
 
-  let mesas = JSON.parse(localStorage.getItem("mesas")) || [];
-
-  if (mesaVieja && mesaVieja !== mesaNueva) {
-    const indexMesaVieja = mesas.findIndex((m) => String(m.id) === String(mesaVieja));
-    if (indexMesaVieja !== -1) {
-      mesas[indexMesaVieja].estado = "Disponible";
-    }
-  }
-
-  if (mesaNueva) {
-    const indexMesaNueva = mesas.findIndex((m) => String(m.id) === String(mesaNueva));
-    if (indexMesaNueva !== -1) {
-      if (estadoReserva === "Pendiente" || estadoReserva === "Confirmada") {
-        mesas[indexMesaNueva].estado = "Ocupada";
-      } else {
-        mesas[indexMesaNueva].estado = "Disponible";
-      }
-    }
-  }
-
-
-  localStorage.setItem("mesas", JSON.stringify(mesas));
   localStorage.setItem("ReservasData", JSON.stringify(reservas));
 
   modal.hide();
@@ -424,8 +437,9 @@ function actualizarReserva(id, modal) {
 
 // Funcion Pagar
 function pagarCuenta(index) {
-  Swal.fire({title: "¿Finalizar reserva?",text: "¿Estás seguro de que deseas pagar la cuenta y finalizar esta reserva?",icon: "warning",
-    showCancelButton: true,confirmButtonText: "Sí, pagar",cancelButtonText: "Cancelar",
+  Swal.fire({
+    title: "¿Finalizar reserva?", text: "¿Estás seguro de que deseas pagar la cuenta y finalizar esta reserva?", icon: "warning",
+    showCancelButton: true, confirmButtonText: "Sí, pagar", cancelButtonText: "Cancelar",
   }).then((result) => {
     if (result.isConfirmed) {
       let datos = getDatos();
@@ -433,7 +447,6 @@ function pagarCuenta(index) {
       let mesas = datos.mesas;
 
       const reserva = reservas[index];
-
       if (!reserva) return;
 
       reserva.estadoReserva = "Finalizada";
@@ -441,7 +454,13 @@ function pagarCuenta(index) {
       const indexMesa = mesas.findIndex((m) => String(m.id) === String(reserva.mesa));
 
       if (indexMesa !== -1) {
-        mesas[indexMesa].estado = "Disponible";
+        const quedanReservasActivas = reservas.some(r =>
+          String(r.mesa) === String(reserva.mesa) &&
+          (r.estadoReserva === "Pendiente" || r.estadoReserva === "Confirmada")
+        );
+
+        // Si no quedan reservas activas, la mesa pasa a Disponible
+        mesas[indexMesa].estado = quedanReservasActivas ? "Ocupada" : "Disponible";
       }
 
       localStorage.setItem("ReservasData", JSON.stringify(reservas));
@@ -449,7 +468,10 @@ function pagarCuenta(index) {
 
       pintarDatos();
 
-      Swal.fire({icon: "success",title: "Reserva finalizada",text: "Se ha finalizado la reserva y liberado la mesa.",});
+      Swal.fire({
+        icon: "success", title: "Reserva finalizada", text: "Se ha finalizado la reserva. " +
+          (mesas[indexMesa].estado === "Disponible" ? "La mesa ahora está disponible." : "La mesa sigue ocupada por otras reservas.")
+      });
     }
   });
 }
@@ -473,4 +495,31 @@ function limpiarFiltros() {
   document.getElementById("filtroFecha").value = "";
   document.getElementById("filtroEstado").value = "";
   pintarDatos();
+}
+
+// Funcion Validar Disponibilidad
+function validarDisponibilidadMesa(mesa, fechaReserva, horaReserva, reservas) {
+
+  // Crear objeto Date con la nueva fecha y hora seleccionada
+  const nuevaFechaHora = new Date(fechaReserva + "T" + horaReserva);
+
+  for (let i = 0; i < reservas.length; i++) {
+    let r = reservas[i];
+
+    if (r.estadoReserva !== "Pendiente" && r.estadoReserva !== "Confirmada") {
+      continue;
+    }
+
+    if (String(r.mesa) === String(mesa) && r.fechaReserva === fechaReserva) {
+      const fechaHoraExistente = new Date(r.fechaReserva + "T" + r.horaReserva);
+
+      // Diferencia en horas
+      const diffHoras = Math.abs((nuevaFechaHora - fechaHoraExistente) / (1000 * 60 * 60));
+
+      if (diffHoras < 2) {
+        return false;
+      }
+    }
+  }
+  return true;
 }
