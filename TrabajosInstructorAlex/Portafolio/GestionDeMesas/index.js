@@ -132,14 +132,6 @@ function pintarDatos() {
     }
 
     div.className = `DivMesa ${Estado}`;
-    
-    let botonReservar = "";
-    
-    if (mesa.estado === "Ocupada") {
-      botonReservar = `<button disabled style="opacity:1; cursor:not-allowed;">📅 Reservar</button>`;
-    } else {
-      botonReservar = `<button onclick="iraReserva(${mesa.id})">📅 Reservar</button>`;
-    }
 
     div.innerHTML = `
             <div class="editMesa">
@@ -152,7 +144,7 @@ function pintarDatos() {
             <div class="botonesMesas">
             <button onclick="eliminarMesa(${mesa.id})">❌ Eliminar</button>
             <button onclick="editarMesa(${mesa.id})">✏️ Editar</button>
-            ${botonReservar}
+            <button onclick="iraReserva(${mesa.id})">📅 Reservar</button>
             </div>
         `;
     contenedor.appendChild(div);
