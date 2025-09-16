@@ -5,23 +5,9 @@
 }
 
 body {
-    background-image: url(./Fondo66.jpg);
-    background-position: center;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    min-height: 100vh;
-    position: relative;
+    color: black;
 }
 
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.7));
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
-    z-index: -1;
-}
 
 .Encabezado {
     display: flex;
@@ -30,7 +16,6 @@ body::before {
     width: 95%;
     padding: 10px 15px 10px 15px;
 
-    color: #fff;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 20px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
@@ -76,74 +61,70 @@ body::before {
     flex: 1 !important; 
 }
 #Informacion p {
-  max-width: 300px; /* ajusta el ancho máximo de las notas */
+  max-width: 300px;
 }
 
 
 h1 {
-    color: white;
     font-weight: 900;
 }
 
 .estadoPendiente {
     span {
-        background-color: #3399ff;
-        color: white;
+        background-color: #80bfff; 
         padding: 5px;
         font-weight: bold;
-        text-shadow: 0 0 5px #000000;
-        box-shadow: 0 0 10px #3399ff, 0 0 15px #3399ff;
+        text-shadow: none;
+        box-shadow: 0 0 5px #80bfff;
         border-radius: 5px;
     }
 }
 
 .estadoConfirmada {
     span {
-        background-color: #00cc44;
-        color: white;
+        background-color: #66cc99; 
         padding: 5px;
         font-weight: bold;
-        text-shadow: 0 0 5px #000000;
-        box-shadow: 0 0 10px #00cc44, 0 0 15px #00cc44;
+        text-shadow: none;
+        box-shadow: 0 0 5px #66cc99;
         border-radius: 5px;
     }
 }
 
 .estadoFinalizado {
     span {
-        background-color: #cccccc;
+        background-color: #e0e0e0; 
         color: black;
         padding: 5px;
         font-weight: bold;
         text-shadow: none;
-        box-shadow: 0 0 10px #aaaaaa, 0 0 15px #aaaaaa;
+        box-shadow: 0 0 5px #bbbbbb;
         border-radius: 5px;
     }
 }
 
 .estadoCancelado {
     span {
-        background-color: #ff4d4d;
-        color: white;
+        background-color: #ff9999; 
         padding: 5px;
         font-weight: bold;
-        text-shadow: 0 0 5px #000000;
-        box-shadow: 0 0 10px #ff4d4d, 0 0 15px #ff4d4d;
+        text-shadow: none;
+        box-shadow: 0 0 5px #ff9999;
         border-radius: 5px;
     }
 }
 
 .estadoNoShow {
     span {
-        background-color: #ff9900;
-        color: white;
+        background-color: #ffcc80; 
         padding: 5px;
         font-weight: bold;
-        text-shadow: 0 0 5px #000000;
-        box-shadow: 0 0 10px #ff9900, 0 0 15px #ff9900;
+        text-shadow: none;
+        box-shadow: 0 0 5px #ffcc80;
         border-radius: 5px;
     }
 }
+
 
 #Tarjetas {
     display: flex;
@@ -152,7 +133,6 @@ h1 {
     gap: 10px;
     margin: 0 !important;
 
-    color: #fff;
     background: rgba(255, 255, 255, 0.08);
     border-radius: 20px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
@@ -216,7 +196,6 @@ button:hover {
     align-items: center;
     gap: 20px;
     margin: 0 !important;
-    color: white;
 }
 
 .form-control{
@@ -376,6 +355,8 @@ button:hover {
     gap: 10px;
 }
 }
+
+
 
 @media (min-width: 300px) and (max-width: 530px) {
     #Tarjetas{
