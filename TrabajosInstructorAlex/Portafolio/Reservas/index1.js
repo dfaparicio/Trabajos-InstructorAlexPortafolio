@@ -607,6 +607,3 @@ function actualizarEstadoMesas() {
 
   localStorage.setItem("mesas", JSON.stringify(mesas));
 }
-  return true;
-}
-
