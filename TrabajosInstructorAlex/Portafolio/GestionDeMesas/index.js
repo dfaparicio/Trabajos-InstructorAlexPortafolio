@@ -5,9 +5,14 @@ window.onload = function () {
     datosGuardados = JSON.parse(localStorage.getItem("mesas"));
     pintarDatos();
   }
+
+  setInterval(() => {
+    actualizarEstadoMesas(); 
+    pintarDatos();            
+  }, 5000);
 };
 
-// Funcion GUARDAR
+// Funcion guardar
 function guardar() {
   const id = parseInt(document.getElementById("Id").value);
   const capacidad = parseInt(document.getElementById("Capacidad").value);
@@ -240,4 +245,48 @@ function limpiarCampos() {
 // Funcion GUARDAR
 function iraReserva(idMesa) {
   window.location.href = `../Reservas/index1.html?id=${idMesa}&abrirModal=true`;
+}
+
+// Copiamos la función de reservas.js
+function obtenerDuracionPorOcasion(ocasion) {
+  const duraciones = {
+    "Cumpleaños": 120,
+    "Compromiso": 180,
+    "Aniversario": 120,
+    "Graduación": 150,
+    "Reunión familiar": 180,
+    "Cena de negocios": 90,
+    "Amigos": 120,
+    "Otro": 120
+  };
+  return duraciones[ocasion] || 120;
+}
+
+// Actualizar el estado de la mesas
+function actualizarEstadoMesas() {
+  let reservas = JSON.parse(localStorage.getItem("ReservasData")) || [];
+  let mesas = JSON.parse(localStorage.getItem("mesas")) || [];
+  const ahora = new Date();
+
+  mesas.forEach(mesa => {
+
+    if (mesa.estado === "Deshabilitada") {
+      return;
+    }
+
+    const reservaActiva = reservas.find(r => {
+      if (String(r.mesa) !== String(mesa.id)) return false;
+      if (r.estadoReserva !== "Pendiente" && r.estadoReserva !== "Confirmada") return false;
+
+      const inicio = new Date(`${r.fechaReserva}T${r.horaReserva}`);
+      const fin = new Date(inicio.getTime() + obtenerDuracionPorOcasion(r.ocasion) * 60000);
+
+      return ahora >= inicio && ahora <= fin;
+    });
+
+    // Si hay reserva activa, se pone Ocupada, si no, Disponible
+    mesa.estado = reservaActiva ? "Ocupada" : "Disponible";
+  });
+
+  localStorage.setItem("mesas", JSON.stringify(mesas));
 }
