@@ -5,7 +5,11 @@
 }
 
 body {
-    color: black;
+    background-color: #fdf8f3;
+    background-image: url('https://www.transparenttextures.com/patterns/fabric-of-squares.png');
+    background-repeat: repeat;
+    background-size: auto;
+    color: #1C1C1C;
 }
 
 
@@ -14,18 +18,22 @@ body {
     justify-content: space-between;
     align-items: center;
     width: 95%;
-    padding: 10px 15px 10px 15px;
+    padding: 12px 20px;
 
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.85);
     border-radius: 20px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(9px) saturate(180%);
-    -webkit-backdrop-filter: blur(9px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12); 
+    border: 1px solid rgba(222, 212, 203, 0.6);
+    backdrop-filter: saturate(180%) blur(10px);
+    -webkit-backdrop-filter: saturate(180%) blur(10px);
 
-    h1{
-        font-size: 30px;
-    }
+}
+
+.Encabezado h1 {
+    font-size: 30px;
+    color: #1C1C1C; 
+    font-weight: 900;
+    margin: 0;
 }
 
 .Padre {
@@ -130,23 +138,27 @@ h1 {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
     margin: 0 !important;
+    padding: 20px;
 
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.85); 
     border-radius: 20px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(7px) saturate(180%);
-    -webkit-backdrop-filter: blur(7px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12); 
+    border: 1px solid rgba(222, 212, 203, 0.6); 
+    backdrop-filter: saturate(180%) blur(10px);
+    -webkit-backdrop-filter: saturate(180%) blur(10px);
+
     transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
 }
 
 #Tarjetas:hover {
-    transform: translateY(-10px) scale(1.02);
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+    transform: translateY(-6px) scale(1.03);
+    background: rgba(255, 255, 255, 0.95); 
+    box-shadow: 0 12px 28px rgba(139, 69, 19, 0.25); 
+    border-color: rgba(189, 144, 86, 0.8); 
 }
+
 
 img {
     width: 150px;
@@ -180,15 +192,17 @@ img {
     color: black;
 }
 
-button:hover {
-    transform: translateY(-2px);
-    background-color: rgba(255, 255, 255) !important;
-    color: black !important;
+.btn:hover {
+    background-color: rgba(255, 255, 255);
+    color: black;
+    transform: scale(1.1);
+    box-shadow: 0 0 10px #fff3;
 }
 
 .btn {
-    border: solid 1px black !important;
+    border: none !important;
 }
+
 
 .Filtros{
     display: flex;
@@ -364,3 +378,4 @@ button:hover {
         flex-direction: column;
 }
 }
+
