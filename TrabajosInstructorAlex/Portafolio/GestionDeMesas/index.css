@@ -38,10 +38,10 @@ h5 {
 
     background: rgba(255, 255, 255, 0.85);
     border-radius: 20px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12); 
-    border: 1px solid rgba(222, 212, 203, 0.6); 
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(222, 212, 203, 0.6);
 
-    backdrop-filter: saturate(180%) blur(10px); 
+    backdrop-filter: saturate(180%) blur(10px);
     -webkit-backdrop-filter: saturate(180%) blur(10px);
 
     transition: box-shadow 0.3s ease, background 0.3s ease;
@@ -49,7 +49,7 @@ h5 {
 
 .Encabezado:hover {
     background: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 12px 28px rgba(139, 69, 19, 0.25); 
+    box-shadow: 0 12px 28px rgba(139, 69, 19, 0.25);
     border-color: rgba(189, 144, 86, 0.8);
 }
 
@@ -88,22 +88,19 @@ h1 {
     padding: 25px;
     height: fit-content;
 
-    background: rgba(255, 255, 255, 0.85); 
+    background: rgba(255, 255, 255, 0.85);
     border-radius: 20px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12); 
-    border: 1px solid rgba(222, 212, 203, 0.6); 
-    
-    backdrop-filter: saturate(180%) blur(10px); 
-    -webkit-backdrop-filter: saturate(180%) blur(10px);
+    box-shadow: 0 0 15px rgb(0, 0, 0, 0.5);
+    border-left: 5px solid rgba(88, 37, 37, 0.4);
 
     transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
 }
 
 .DivMesa:hover {
     transform: translateY(-6px) scale(1.03);
-    background: rgba(255, 255, 255, 0.95); 
-    box-shadow: 0 12px 28px rgba(139, 69, 19, 0.25); 
-    border-color: rgba(189, 144, 86, 0.8);
+    background: rgb(237, 237, 237);
+     box-shadow: 0 0 15px rgb(0, 0, 0,0.5);
+    border-left: 5px solid rgba(88, 37, 37, 0.8);
 }
 
 
@@ -297,3 +294,6 @@ button:active {
     }
 
 }
+
+}
+
