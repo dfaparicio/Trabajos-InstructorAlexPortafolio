@@ -1,14 +1,16 @@
-let datosGuardados = [];
-
 window.onload = function () {
   if (localStorage.getItem("mesas")) {
     datosGuardados = JSON.parse(localStorage.getItem("mesas"));
-    pintarDatos();
   }
 
+  // Actualizar inmediatamente al abrir Mesas
+  actualizarEstadoMesas();
+  pintarDatos();
+
+  // Y luego seguir actualizando cada 5 segundos
   setInterval(() => {
-    actualizarEstadoMesas(); 
-    pintarDatos();            
+    actualizarEstadoMesas();
+    pintarDatos();
   }, 5000);
 };
 
@@ -17,7 +19,11 @@ function guardar() {
   const id = parseInt(document.getElementById("Id").value);
   const capacidad = parseInt(document.getElementById("Capacidad").value);
   const ubicacion = document.getElementById("Ubicacion").value.trim();
-  const estado = document.getElementById("Estado").value;
+  let estado = document.getElementById("Estado").value;
+
+  if (!estado) {
+    estado = "Disponible";
+  }
 
   const camposVacios = !id && !capacidad && ubicacion === "" && estado === "";
   if (camposVacios) {
@@ -51,11 +57,6 @@ function guardar() {
     return;
   }
 
-  if (estado === "") {
-    Swal.fire({ icon: "error", title: "Ingrese el esatdo de la mesa", text: "Por favor, completa el campo.", });
-    return;
-  }
-
   Swal.fire({
     title: "¿Confirmar creación?",
     html: `
@@ -76,15 +77,12 @@ function guardar() {
       };
 
       datosGuardados.push(nuevaMesa);
-
       localStorage.setItem("mesas", JSON.stringify(datosGuardados));
-
       pintarDatos();
 
       Swal.fire({ title: "Mesa guardada exitosamente", icon: "success", });
 
       const modal = bootstrap.Modal.getInstance(document.getElementById("exampleModal"));
-
       modal.hide();
 
       limpiarCampos();
@@ -94,9 +92,14 @@ function guardar() {
 
 // Funcion GUARDAR
 function cancelar() {
-  Swal.fire({ title: "Cancelado", text: "No se ha creado ninguna mesa.", icon: "info", });
+  Swal.fire({
+    title: "Cancelado",
+    text: "No se ha creado ninguna mesa.",
+    icon: "info",
+  });
   const modal = bootstrap.Modal.getInstance(document.getElementById("exampleModal"));
   modal.hide();
+  limpiarCampos();
 }
 
 // Funcion GUARDAR
@@ -156,48 +159,85 @@ function pintarDatos() {
   });
 }
 
-// Funcion GUARDAR
+// Funcion editarMesa
 function editarMesa(id) {
-
   const mesa = datosGuardados.find((m) => m.id === id);
 
   if (!mesa) {
-    Swal.fire({ icon: "error", title: "Error", text: "Mesa no encontrada.", });
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: "Mesa no encontrada.",
+    });
     return;
   }
 
+  // Cargar los datos en el formulario
   document.getElementById("Id").value = mesa.id;
   document.getElementById("Id").disabled = true;
   document.getElementById("Capacidad").value = mesa.cantidadPersonas;
   document.getElementById("Ubicacion").value = mesa.ubicacion;
-  document.getElementById("Estado").value = mesa.estado;
+
+  // Mostrar y configurar select para EDITAR
+  const estadoSelect = document.getElementById("Estado");
+  estadoSelect.innerHTML = ""; // Limpiar opciones
+  document.getElementById("divEstado").style.display = "block"; // Mostrar campo
+
+  ["Disponible", "Deshabilitada"].forEach((estado) => {
+    const opcion = document.createElement("option");
+    opcion.value = estado;
+    opcion.text = estado;
+    if (estado === mesa.estado) {
+      opcion.selected = true;
+    }
+    estadoSelect.appendChild(opcion);
+  });
 
   const modalElement = document.getElementById("exampleModal");
-
   const modal = new bootstrap.Modal(modalElement);
-
   modal.show();
 
+  // Cambiar el texto del botón a "Editar"
   const botonGuardar = modalElement.querySelector("button.btn-primary");
-
   botonGuardar.textContent = "Editar";
 
+  // Reemplazar el evento onclick anterior
   botonGuardar.onclick = function () {
     Swal.fire({
-      title: "¿Confirmar edición?", text: "Se actualizarán los datos de esta mesa.", icon: "question",
-      showCancelButton: true, confirmButtonColor: "#3085d6", cancelButtonColor: "#d33", confirmButtonText: "Sí, actualizar", cancelButtonText: "Cancelar"
+      title: "¿Confirmar edición?",
+      text: "Se actualizarán los datos de esta mesa.",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, actualizar",
+      cancelButtonText: "Cancelar"
     }).then((result) => {
       if (result.isConfirmed) {
-
         actualizarMesa(id, modal);
 
-        Swal.fire({ title: "Mesa actualizada", icon: "success", text: "Los datos de la mesa se han guardado correctamente.", });
+        Swal.fire({
+          title: "Mesa actualizada",
+          icon: "success",
+          text: "Los datos de la mesa se han guardado correctamente.",
+        });
       }
     });
   };
+
+  // Escuchar evento cierre modal para limpiar y restaurar
+  modalElement.addEventListener("hidden.bs.modal", function onClose() {
+    limpiarCampos();
+
+    const btnGuardar = modalElement.querySelector("button.btn-primary");
+    btnGuardar.textContent = "Guardar";
+    btnGuardar.onclick = guardar;
+
+    modalElement.removeEventListener("hidden.bs.modal", onClose);
+  });
 }
 
-// Funcion GUARDAR
+// Funcion actualizar mesa
 function actualizarMesa(id, modal) {
 
   const capacidad = parseInt(document.getElementById("Capacidad").value);
@@ -233,21 +273,24 @@ function actualizarMesa(id, modal) {
   }
 }
 
-// Funcion GUARDAR
+// Funcion limpiarCampos
 function limpiarCampos() {
   document.getElementById("Id").value = "";
   document.getElementById("Id").disabled = false;
   document.getElementById("Capacidad").value = "";
   document.getElementById("Ubicacion").value = "";
-  document.getElementById("Estado").value = "";
+
+  const estadoSelect = document.getElementById("Estado");
+  estadoSelect.innerHTML = ""; 
+  document.getElementById("divEstado").style.display = "none";
 }
 
-// Funcion GUARDAR
+// Funcion ir a reserva
 function iraReserva(idMesa) {
   window.location.href = `../Reservas/index1.html?id=${idMesa}&abrirModal=true`;
 }
 
-// Copiamos la función de reservas.js
+// Funcion duracion de cada ocasion
 function obtenerDuracionPorOcasion(ocasion) {
   const duraciones = {
     "Cumpleaños": 120,
@@ -255,38 +298,38 @@ function obtenerDuracionPorOcasion(ocasion) {
     "Aniversario": 120,
     "Graduación": 150,
     "Reunión familiar": 180,
-    "Cena de negocios": 90,
+    "Cena de negocios": 120,
     "Amigos": 120,
-    "Otro": 120
+    "Otro": 60
   };
   return duraciones[ocasion] || 120;
 }
 
-// Actualizar el estado de la mesas
+//Funcion actualizar estado
 function actualizarEstadoMesas() {
   let reservas = JSON.parse(localStorage.getItem("ReservasData")) || [];
   let mesas = JSON.parse(localStorage.getItem("mesas")) || [];
   const ahora = new Date();
 
   mesas.forEach(mesa => {
+    if (mesa.estado === "Deshabilitada") return;
 
-    if (mesa.estado === "Deshabilitada") {
-      return;
-    }
-
+    //Buscar si hay alguna reserva activa SOLO por horario
     const reservaActiva = reservas.find(r => {
       if (String(r.mesa) !== String(mesa.id)) return false;
-      if (r.estadoReserva !== "Pendiente" && r.estadoReserva !== "Confirmada") return false;
 
       const inicio = new Date(`${r.fechaReserva}T${r.horaReserva}`);
       const fin = new Date(inicio.getTime() + obtenerDuracionPorOcasion(r.ocasion) * 60000);
 
+      //La mesa está ocupada solo si la hora actual está dentro del rango
       return ahora >= inicio && ahora <= fin;
     });
 
-    // Si hay reserva activa, se pone Ocupada, si no, Disponible
     mesa.estado = reservaActiva ? "Ocupada" : "Disponible";
   });
 
   localStorage.setItem("mesas", JSON.stringify(mesas));
 }
+  localStorage.setItem("mesas", JSON.stringify(mesas));
+}
+
