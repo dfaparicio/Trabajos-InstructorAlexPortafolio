@@ -151,7 +151,7 @@ function editarMesa(id) {
   const mesa = datosGuardados.find((m) => m.id === id);
 
   if (!mesa) {
-    Swal.fire({icon: "error",title: "Error",text: "Mesa no encontrada.",});
+    Swal.fire({ icon: "error", title: "Error", text: "Mesa no encontrada.", });
     return;
   }
 
@@ -162,7 +162,7 @@ function editarMesa(id) {
 
   // Mostrar y configurar select para EDITAR
   const estadoSelect = document.getElementById("Estado");
-  estadoSelect.innerHTML = ""; 
+  estadoSelect.innerHTML = "";
   document.getElementById("divEstado").style.display = "block";
 
   ["Disponible", "Deshabilitada"].forEach((estado) => {
@@ -294,12 +294,16 @@ function actualizarEstadoMesas() {
     const reservaActiva = reservas.find(r => {
       if (String(r.mesa) !== String(mesa.id)) return false;
 
+      // 👉 Si la reserva está cancelada, no show o finalizada, no ocupa mesa
+      if (["Cancelada", "No Show", "Finalizada"].includes(r.estadoReserva)) return false;
+
       const inicio = new Date(`${r.fechaReserva}T${r.horaReserva}`);
       const fin = new Date(inicio.getTime() + obtenerDuracionPorOcasion(r.ocasion) * 60000);
 
-      //La mesa está ocupada solo si la hora actual está dentro del rango
       return ahora >= inicio && ahora <= fin;
     });
+
+
 
     mesa.estado = reservaActiva ? "Ocupada" : "Disponible";
   });
