@@ -234,7 +234,13 @@ function guardar() {
   }
 
   const conflicto = reservas.some(r => {
-    if (String(r.mesa) !== String(mesa)) return false;
+    if (
+      String(r.mesa) !== String(mesa) ||
+      !["Pendiente", "Confirmada"].includes(r.estadoReserva) ||
+      r.fechaReserva !== fechaReserva
+    ) {
+      return false;
+    }
 
     const inicioExistente = parse(`${r.fechaReserva} ${r.horaReserva}`, "yyyy-MM-dd HH:mm", new Date());
     const finExistente = addMinutes(inicioExistente, obtenerDuracionPorOcasion(r.ocasion));
@@ -244,6 +250,7 @@ function guardar() {
       { start: inicioExistente, end: finExistente }
     );
   });
+
   if (conflicto) {
     return Swal.fire({ icon: "error", title: "Conflicto de reserva", text: "Ya existe otra reserva para esta mesa en ese horario." });
   }
@@ -342,7 +349,9 @@ function pintarDatos() {
       ? `<img src="../Reservas/${imagenes[item.ocasion]}" alt="${item.ocasion}">`
       : "";
 
-    const disabled = (item.estadoReserva === "Finalizada") ? "disabled" : "";
+    const estadosBloqueados = ["Finalizada", "Cancelada", "No Show"];
+    const disabled = estadosBloqueados.includes(item.estadoReserva) ? "disabled style='opacity: 0.5; pointer-events: none;'" : "";
+
 
     document.getElementById("bodyData").innerHTML += `
       <div id="Tarjetas" class="card mb-3 p-3 ${claseEstado}">
