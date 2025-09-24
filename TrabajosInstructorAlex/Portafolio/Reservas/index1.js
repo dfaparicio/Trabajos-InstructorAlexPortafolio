@@ -771,7 +771,3 @@ function actualizarLimiteHora() {
 
   console.log("⏱️ Hora máxima permitida:", horaInput.max);
 }
-
-document.getElementById("nombre").addEventListener("input", function () {
-  this.value = this.value.replace(/[^A-Za-zÁÉÍÓÚáéíóúÑñ\s]/g, "");
-});
