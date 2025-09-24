@@ -275,8 +275,8 @@ function obtenerDuracionPorOcasion(ocasion) {
     "Graduación": 150,
     "Reunión familiar": 180,
     "Cena de negocios": 120,
-    "Amigos": 120,
-    "Otro": 60
+    "Amigos": 30,
+    "Otro": 30
   };
   return duraciones[ocasion] || 120;
 }
