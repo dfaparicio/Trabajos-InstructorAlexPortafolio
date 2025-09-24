@@ -1,15 +1,22 @@
-  import {
-    parse, addMinutes, isBefore, isAfter, areIntervalsOverlapping, parseISO, startOfToday, format
-  } from "https://cdn.jsdelivr.net/npm/date-fns@3.6.0/+esm";
+import {
+  parse,
+  addMinutes,
+  isBefore,
+  isAfter,
+  areIntervalsOverlapping,
+  parseISO,
+  startOfToday,
+  format,
+} from "https://cdn.jsdelivr.net/npm/date-fns@3.6.0/+esm";
 
-  // Expón en window para que lo vean otros scripts
-  window.parse = parse;
-  window.addMinutes = addMinutes;
-  window.isBefore = isBefore;
-  window.isAfter = isAfter;
-  window.areIntervalsOverlapping = areIntervalsOverlapping;
-  window.parseISO = parseISO;
-  window.startOfToday = startOfToday;
+// Expón en window para que lo vean otros scripts
+window.parse = parse;
+window.addMinutes = addMinutes;
+window.isBefore = isBefore;
+window.isAfter = isAfter;
+window.areIntervalsOverlapping = areIntervalsOverlapping;
+window.parseISO = parseISO;
+window.startOfToday = startOfToday;
 
 window.guardar = guardar;
 window.editarReserva = editarReserva;
@@ -18,7 +25,10 @@ window.pagarCuenta = pagarCuenta;
 window.limpiarFiltros = limpiarFiltros;
 
 function getDatos() {
-  return { reservas: JSON.parse(localStorage.getItem("ReservasData")) || [], mesas: JSON.parse(localStorage.getItem("mesas")) || [], };
+  return {
+    reservas: JSON.parse(localStorage.getItem("ReservasData")) || [],
+    mesas: JSON.parse(localStorage.getItem("mesas")) || [],
+  };
 }
 console.log(getDatos());
 
@@ -133,20 +143,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setTimeout(() => {
     pintarDatos();
-    document.getElementById("filtroFecha").addEventListener("change", pintarDatos);
-    document.getElementById("filtroEstado").addEventListener("change", pintarDatos);
+    document
+      .getElementById("filtroFecha")
+      .addEventListener("change", pintarDatos);
+    document
+      .getElementById("filtroEstado")
+      .addEventListener("change", pintarDatos);
   }, 0);
 
   setInterval(() => {
     pintarDatos();
   }, 5000);
 
-  // Eventos para recalcular hora según la ocasión y la fecha
-  document.getElementById("ocasion").addEventListener("change", actualizarLimiteHora);
-  document.getElementById("fechaReserva").addEventListener("change", actualizarLimiteHora);
+  setTimeout(() => {
+    document
+      .getElementById("ocasion")
+      .addEventListener("change", actualizarLimiteHora);
+    document
+      .getElementById("fechaReserva")
+      .addEventListener("change", actualizarLimiteHora);
 
-  // Al cargar, asegurar límites iniciales
-  actualizarLimiteHora();
+    // Al cargar, asegurar límites iniciales
+    actualizarLimiteHora();
+  }, 0);
 });
 
 // Funcion Cargar
@@ -163,7 +182,7 @@ function cargarMesasDisponibles(mesaActual = null) {
   placeholder.textContent = "Seleccione una mesa";
   select.appendChild(placeholder);
 
-  mesas.forEach(m => {
+  mesas.forEach((m) => {
     const opt = document.createElement("option");
     opt.value = String(m.id);
     opt.textContent = `Mesa #${m.numeroMesa} (${m.cantidadPersonas} personas)`;
@@ -177,7 +196,6 @@ function cargarMesasDisponibles(mesaActual = null) {
     }
     if (String(m.id) === String(mesaActual)) {
       opt.selected = true;
-
     }
     select.appendChild(opt);
   });
@@ -192,83 +210,130 @@ function guardar() {
 
   const idReserva = document.getElementById("reservaId").value.trim();
   const nombre = document.getElementById("nombre").value.trim();
-  const numeroPersonas = parseInt(document.getElementById("numeroPersonas").value);
+  const numeroPersonas = parseInt(
+    document.getElementById("numeroPersonas").value
+  );
   const fechaReserva = document.getElementById("fechaReserva").value;
   const horaReserva = document.getElementById("horaReserva").value;
   const mesa = document.getElementById("mesa").value;
   const ocasion = document.getElementById("ocasion").value;
-  const notasAdicionales = document.getElementById("notasAdicionales").value.trim();
+  const notasAdicionales = document
+    .getElementById("notasAdicionales")
+    .value.trim();
   const estadoReserva = "Pendiente";
 
   // Validaciones normales
   if (!idReserva || isNaN(idReserva) || parseInt(idReserva) <= 0) {
-    return Swal.fire({ icon: "error", title: "ID inválido", text: "Por favor ingresa un ID numérico mayor a 0 para la reserva." });
+    return Swal.fire({
+      icon: "error",
+      title: "ID inválido",
+      text: "Por favor ingresa un ID numérico mayor a 0 para la reserva.",
+    });
   }
   if (!document.getElementById("reservaId").disabled) {
-    const existeId = reservas.some(r => String(r.idReserva) === String(idReserva));
+    const existeId = reservas.some(
+      (r) => String(r.idReserva) === String(idReserva)
+    );
     if (existeId) {
-      return Swal.fire({ icon: "error", title: "ID duplicado", text: "Ya existe una reserva con este ID. Usa otro diferente." });
+      return Swal.fire({
+        icon: "error",
+        title: "ID duplicado",
+        text: "Ya existe una reserva con este ID. Usa otro diferente.",
+      });
     }
   }
   if (!nombre) {
-    return Swal.fire({ icon: "error", title: "Nombre requerido", text: "Por favor ingresa el nombre del cliente." });
+    return Swal.fire({
+      icon: "error",
+      title: "Nombre requerido",
+      text: "Por favor ingresa el nombre del cliente.",
+    });
   }
   if (!/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/.test(nombre)) {
-    return Swal.fire({ icon: "error", title: "Nombre inválido", text: "El nombre solo puede contener letras y espacios." });
+    return Swal.fire({
+      icon: "error",
+      title: "Nombre inválido",
+      text: "El nombre solo puede contener letras y espacios.",
+    });
   }
   if (!numeroPersonas || numeroPersonas <= 0) {
-    return Swal.fire({ icon: "error", title: "Número inválido", text: "El número de personas debe ser mayor que 0." });
+    return Swal.fire({
+      icon: "error",
+      title: "Número inválido",
+      text: "El número de personas debe ser mayor que 0.",
+    });
   }
 
+  if (!fechaReserva) {
+    return Swal.fire({
+      icon: "error",
+      title: "Fecha requerida",
+      text: "Por favor selecciona una fecha para la reserva.",
+    });
+  }
 
-if (!fechaReserva) {
-  return Swal.fire({
-    icon: "error",
-    title: "Fecha requerida",
-    text: "Por favor selecciona una fecha para la reserva."
-  });
-}
+  const fechaSeleccionada = parseISO(fechaReserva);
 
-const fechaSeleccionada = parseISO(fechaReserva);
+  if (isNaN(fechaSeleccionada)) {
+    return Swal.fire({
+      icon: "error",
+      title: "Fecha inválida",
+      text: "La fecha ingresada no es válida.",
+    });
+  }
 
-if (isNaN(fechaSeleccionada)) {
-  return Swal.fire({
-    icon: "error",
-    title: "Fecha inválida",
-    text: "La fecha ingresada no es válida."
-  });
-}
-
-if (isBefore(fechaSeleccionada, startOfToday())) {
-  return Swal.fire({
-    icon: "error",
-    title: "Fecha inválida",
-    text: "La fecha debe ser igual o posterior a hoy."
-  });
-}
-
-
+  if (isBefore(fechaSeleccionada, startOfToday())) {
+    return Swal.fire({
+      icon: "error",
+      title: "Fecha inválida",
+      text: "La fecha debe ser igual o posterior a hoy.",
+    });
+  }
 
   if (!horaReserva) {
-    return Swal.fire({ icon: "error", title: "Hora requerida", text: "Por favor selecciona una hora de reserva." });
+    return Swal.fire({
+      icon: "error",
+      title: "Hora requerida",
+      text: "Por favor selecciona una hora de reserva.",
+    });
   }
   if (!mesa) {
-    return Swal.fire({ icon: "error", title: "Mesa requerida", text: "Por favor selecciona una mesa." });
+    return Swal.fire({
+      icon: "error",
+      title: "Mesa requerida",
+      text: "Por favor selecciona una mesa.",
+    });
   }
   if (!ocasion) {
-    return Swal.fire({ icon: "error", title: "Ocasión requerida", text: "Por favor selecciona una ocasión." });
+    return Swal.fire({
+      icon: "error",
+      title: "Ocasión requerida",
+      text: "Por favor selecciona una ocasión.",
+    });
   }
 
-  const apertura = parse(`${fechaReserva} 08:00`, "yyyy-MM-dd HH:mm", new Date());
+  const apertura = parse(
+    `${fechaReserva} 08:00`,
+    "yyyy-MM-dd HH:mm",
+    new Date()
+  );
   const cierre = parse(`${fechaReserva} 23:00`, "yyyy-MM-dd HH:mm", new Date());
-  const inicioReserva = parse(`${fechaReserva} ${horaReserva}`, "yyyy-MM-dd HH:mm", new Date());
+  const inicioReserva = parse(
+    `${fechaReserva} ${horaReserva}`,
+    "yyyy-MM-dd HH:mm",
+    new Date()
+  );
   const duracion = obtenerDuracionPorOcasion(ocasion);
   const finReserva = addMinutes(inicioReserva, duracion);
   if (isBefore(inicioReserva, apertura) || isAfter(finReserva, cierre)) {
-    return Swal.fire({ icon: "error", title: "Horario inválido", text: "Las reservas deben ser entre 08:00 y 23:00, respetando la duración." });
+    return Swal.fire({
+      icon: "error",
+      title: "Horario inválido",
+      text: "Las reservas deben ser entre 08:00 y 23:00, respetando la duración.",
+    });
   }
 
-  const conflicto = reservas.some(r => {
+  const conflicto = reservas.some((r) => {
     if (
       String(r.mesa) !== String(mesa) ||
       !["Pendiente", "Confirmada"].includes(r.estadoReserva) ||
@@ -277,8 +342,15 @@ if (isBefore(fechaSeleccionada, startOfToday())) {
       return false;
     }
 
-    const inicioExistente = parse(`${r.fechaReserva} ${r.horaReserva}`, "yyyy-MM-dd HH:mm", new Date());
-    const finExistente = addMinutes(inicioExistente, obtenerDuracionPorOcasion(r.ocasion));
+    const inicioExistente = parse(
+      `${r.fechaReserva} ${r.horaReserva}`,
+      "yyyy-MM-dd HH:mm",
+      new Date()
+    );
+    const finExistente = addMinutes(
+      inicioExistente,
+      obtenerDuracionPorOcasion(r.ocasion)
+    );
 
     return areIntervalsOverlapping(
       { start: inicioReserva, end: finReserva },
@@ -287,7 +359,11 @@ if (isBefore(fechaSeleccionada, startOfToday())) {
   });
 
   if (conflicto) {
-    return Swal.fire({ icon: "error", title: "Conflicto de reserva", text: "Ya existe otra reserva para esta mesa en ese horario." });
+    return Swal.fire({
+      icon: "error",
+      title: "Conflicto de reserva",
+      text: "Ya existe otra reserva para esta mesa en ese horario.",
+    });
   }
 
   // Aquí recién pedimos confirmación
@@ -299,15 +375,24 @@ if (isBefore(fechaSeleccionada, startOfToday())) {
     <strong>Fecha: ${fechaReserva}</strong><br>
     <strong>Hora de reserva: ${horaReserva}</strong>`,
     icon: "question",
-    showCancelButton: true, confirmButtonText: "Sí, guardar", cancelButtonText: "Cancelar",
+    showCancelButton: true,
+    confirmButtonText: "Sí, guardar",
+    cancelButtonText: "Cancelar",
   }).then((result) => {
     if (result.isConfirmed) {
       let numeroReserva = parseInt(localStorage.getItem("ultimaReserva")) || 1;
 
       const nuevaReserva = {
-        numeroReserva, idReserva, nombre, numeroPersonas,
-        fechaReserva, horaReserva, mesa, ocasion,
-        notasAdicionales, estadoReserva,
+        numeroReserva,
+        idReserva,
+        nombre,
+        numeroPersonas,
+        fechaReserva,
+        horaReserva,
+        mesa,
+        ocasion,
+        notasAdicionales,
+        estadoReserva,
       };
 
       reservas.push(nuevaReserva);
@@ -317,7 +402,9 @@ if (isBefore(fechaSeleccionada, startOfToday())) {
       pintarDatos();
 
       Swal.fire({
-        title: "Registro exitoso", icon: "success", draggable: true,
+        title: "Registro exitoso",
+        icon: "success",
+        draggable: true,
       }).then(() => {
         const modal = bootstrap.Modal.getInstance(modalElement);
         modal.hide();
@@ -345,14 +432,16 @@ function pintarDatos() {
   });
 
   if (reservas.length === 0) {
-    document.getElementById("bodyData").innerHTML =
-      `<div class="alert alert-info">Aún no hay reservas registradas.</div>`;
+    document.getElementById(
+      "bodyData"
+    ).innerHTML = `<div class="alert alert-info">Aún no hay reservas registradas.</div>`;
     return;
   }
 
   if (reservasFiltradas.length === 0) {
-    document.getElementById("bodyData").innerHTML =
-      `<div class="alert alert-warning">No se encontraron reservas con los filtros aplicados.</div>`;
+    document.getElementById(
+      "bodyData"
+    ).innerHTML = `<div class="alert alert-warning">No se encontraron reservas con los filtros aplicados.</div>`;
     return;
   }
 
@@ -362,31 +451,44 @@ function pintarDatos() {
 
     let claseEstado = "";
     switch (item.estadoReserva) {
-      case "Pendiente": claseEstado = "estadoPendiente"; break;
-      case "Confirmada": claseEstado = "estadoConfirmada"; break;
-      case "Finalizada": claseEstado = "estadoFinalizado"; break;
-      case "Cancelada": claseEstado = "estadoCancelado"; break;
-      case "No Show": claseEstado = "estadoNoShow"; break;
+      case "Pendiente":
+        claseEstado = "estadoPendiente";
+        break;
+      case "Confirmada":
+        claseEstado = "estadoConfirmada";
+        break;
+      case "Finalizada":
+        claseEstado = "estadoFinalizado";
+        break;
+      case "Cancelada":
+        claseEstado = "estadoCancelado";
+        break;
+      case "No Show":
+        claseEstado = "estadoNoShow";
+        break;
     }
 
     const imagenes = {
-      "Cumpleaños": "Happy.png",
-      "Aniversario": "Aniversario.png",
-      "Graduación": "Graduacion.png",
+      Cumpleaños: "Happy.png",
+      Aniversario: "Aniversario.png",
+      Graduación: "Graduacion.png",
       "Reunión familiar": "Familia.png",
       "Cena de negocios": "Negocios.png",
-      "Compromiso": "Compromiso.png",
-      "Amigos": "Amigos.png",
-      "Otro": "Otros.png",
+      Compromiso: "Compromiso.png",
+      Amigos: "Amigos.png",
+      Otro: "Otros.png",
     };
 
     let imagenOcasion = imagenes[item.ocasion]
-      ? `<img src="../Reservas/${imagenes[item.ocasion]}" alt="${item.ocasion}">`
+      ? `<img src="../Reservas/${imagenes[item.ocasion]}" alt="${
+          item.ocasion
+        }">`
       : "";
 
     const estadosBloqueados = ["Finalizada", "Cancelada", "No Show"];
-    const disabled = estadosBloqueados.includes(item.estadoReserva) ? "disabled style='opacity: 0.5; pointer-events: none;'" : "";
-
+    const disabled = estadosBloqueados.includes(item.estadoReserva)
+      ? "disabled style='opacity: 0.5; pointer-events: none;'"
+      : "";
 
     document.getElementById("bodyData").innerHTML += `
       <div id="Tarjetas" class="card mb-3 p-3 ${claseEstado}">
@@ -398,15 +500,21 @@ function pintarDatos() {
           <p><strong>Fecha de reserva:</strong> ${item.fechaReserva}</p>
           <p><strong>Hora de reserva:</strong> ${item.horaReserva}</p>
           <p><strong>Mesa:</strong> ${textoMesa}</p>
-          <p><strong>Notas adicionales:</strong> ${item.notasAdicionales || "Ninguna"}</p>
-          <p><strong>Estado de la reserva:</strong> <span>${item.estadoReserva}</span></p>
+          <p><strong>Notas adicionales:</strong> ${
+            item.notasAdicionales || "Ninguna"
+          }</p>
+          <p><strong>Estado de la reserva:</strong> <span>${
+            item.estadoReserva
+          }</span></p>
         </div>
         <div class="OcasionesyBotones">
           <div id="Ocasion"><p><strong>Ocasión:</strong> ${item.ocasion}</p>
           ${imagenOcasion}
         </div>
           <div class="Botones">
-            <button type="button" class="btn btn-primary" onclick="editarReserva('${item.idReserva}')" ${disabled}>✏️ Editar</button>
+            <button type="button" class="btn btn-primary" onclick="editarReserva('${
+              item.idReserva
+            }')" ${disabled}>✏️ Editar</button>
             <button type="button" class="btn btn-primary" onclick="pagarCuenta(${i})" ${disabled}>💵 Pagar cuenta</button>
             <button type="button" class="btn btn-primary" onclick="eliminarReserva(${i})" ${disabled}>❌ Eliminar</button>
           </div>
@@ -431,14 +539,17 @@ function eliminarReserva(index) {
   let mesas = JSON.parse(localStorage.getItem("mesas")) || [];
   let indexMesa = mesas.findIndex((m) => String(m.id) === String(reserva.mesa));
 
-
   if (indexMesa !== -1) {
     mesas[indexMesa].estado = "Disponible";
     localStorage.setItem("mesas", JSON.stringify(mesas));
   }
 
   pintarDatos();
-  Swal.fire({ title: "Reserva eliminada", icon: "success", text: "La reserva fue eliminada correctamente y la mesa quedó disponible.", });
+  Swal.fire({
+    title: "Reserva eliminada",
+    icon: "success",
+    text: "La reserva fue eliminada correctamente y la mesa quedó disponible.",
+  });
 }
 
 // Funcion Editar
@@ -449,7 +560,11 @@ function editarReserva(id) {
   const reserva = reservas.find((r) => r.idReserva === String(id));
 
   if (!reserva) {
-    Swal.fire({ icon: "error", title: "Error", text: "Reserva no encontrada." });
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: "Reserva no encontrada.",
+    });
     return;
   }
 
@@ -462,7 +577,8 @@ function editarReserva(id) {
   document.getElementById("fechaReserva").value = reserva.fechaReserva;
   document.getElementById("horaReserva").value = reserva.horaReserva;
   document.getElementById("ocasion").value = reserva.ocasion;
-  document.getElementById("notasAdicionales").value = reserva.notasAdicionales || "";
+  document.getElementById("notasAdicionales").value =
+    reserva.notasAdicionales || "";
 
   const estadoSelect = document.getElementById("estadoReserva");
   const labelEstado = document.getElementById("labelEstadoReserva");
@@ -481,7 +597,7 @@ function editarReserva(id) {
     optionPendiente.disabled = true;
     estadoSelect.appendChild(optionPendiente);
 
-    estadosPermitidos.forEach(estado => {
+    estadosPermitidos.forEach((estado) => {
       const option = document.createElement("option");
       option.value = estado;
       option.text = estado;
@@ -491,8 +607,12 @@ function editarReserva(id) {
     estadoSelect.addEventListener("change", function () {
       if (reserva.estadoReserva === "Pendiente") {
         Swal.fire({
-          title: "¿Estás seguro?", text: "Si cambias el estado Pendiente, no podrás volver a colocarlo como Pendiente.", icon: "warning",
-          showCancelButton: true, confirmButtonText: "Sí, cambiar", cancelButtonText: "Cancelar"
+          title: "¿Estás seguro?",
+          text: "Si cambias el estado Pendiente, no podrás volver a colocarlo como Pendiente.",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonText: "Sí, cambiar",
+          cancelButtonText: "Cancelar",
         }).then((result) => {
           if (!result.isConfirmed) {
             estadoSelect.value = "Pendiente";
@@ -501,7 +621,7 @@ function editarReserva(id) {
       }
     });
   } else {
-    estadosPermitidos.forEach(estado => {
+    estadosPermitidos.forEach((estado) => {
       const option = document.createElement("option");
       option.value = estado;
       option.text = estado;
@@ -546,17 +666,25 @@ function actualizarReserva(id, modal) {
   const index = reservas.findIndex((r) => r.idReserva === id);
 
   if (index === -1) {
-    Swal.fire({ icon: "error", title: "Error", text: "No se pudo encontrar la reserva para actualizar." });
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: "No se pudo encontrar la reserva para actualizar.",
+    });
     return;
   }
 
   const nombre = document.getElementById("nombre").value.trim();
-  const numeroPersonas = parseInt(document.getElementById("numeroPersonas").value);
+  const numeroPersonas = parseInt(
+    document.getElementById("numeroPersonas").value
+  );
   const fechaReserva = document.getElementById("fechaReserva").value;
   const horaReserva = document.getElementById("horaReserva").value;
   const mesaNueva = document.getElementById("mesa").value;
   const ocasion = document.getElementById("ocasion").value;
-  const notasAdicionales = document.getElementById("notasAdicionales").value.trim();
+  const notasAdicionales = document
+    .getElementById("notasAdicionales")
+    .value.trim();
   const estadoReserva = document.getElementById("estadoReserva").value;
 
   const horaInput = document.getElementById("horaReserva");
@@ -566,11 +694,14 @@ function actualizarReserva(id, modal) {
   const maxPermitido = parse(horaInput.max, "HH:mm", new Date());
 
   // Validar que la hora esté en rango
-  if (isBefore(horaReservaDate, minPermitido) || isAfter(horaReservaDate, maxPermitido)) {
+  if (
+    isBefore(horaReservaDate, minPermitido) ||
+    isAfter(horaReservaDate, maxPermitido)
+  ) {
     Swal.fire({
       icon: "error",
       title: "Hora inválida",
-      text: `La hora debe estar entre ${horaInput.min} y ${horaInput.max}.`
+      text: `La hora debe estar entre ${horaInput.min} y ${horaInput.max}.`,
     });
     return;
   }
@@ -582,18 +713,30 @@ function actualizarReserva(id, modal) {
 
   if (isAfter(horaFinReserva, horaCierre)) {
     Swal.fire({
-      icon: "error", title: "Reserva demasiado tarde",
-      text: `La reserva para "${ocasion}" dura ${duracion / 60}h y debe terminar antes de las 23:00. 
-             Última hora posible: ${horaCierre.getHours() - duracion / 60}:00`
+      icon: "error",
+      title: "Reserva demasiado tarde",
+      text: `La reserva para "${ocasion}" dura ${
+        duracion / 60
+      }h y debe terminar antes de las 23:00. 
+             Última hora posible: ${horaCierre.getHours() - duracion / 60}:00`,
     });
     return;
   }
 
-  // Validar disponibilidad antes de actualizar  
-  const reservasSinLaActual = reservas.filter(r => r.idReserva !== id);
-  if (!validarDisponibilidadMesa(mesaNueva, fechaReserva, horaReserva, ocasion, reservasSinLaActual)) {
+  // Validar disponibilidad antes de actualizar
+  const reservasSinLaActual = reservas.filter((r) => r.idReserva !== id);
+  if (
+    !validarDisponibilidadMesa(
+      mesaNueva,
+      fechaReserva,
+      horaReserva,
+      ocasion,
+      reservasSinLaActual
+    )
+  ) {
     Swal.fire({
-      icon: "error", title: "Mesa no disponible",
+      icon: "error",
+      title: "Mesa no disponible",
       text: "Esta mesa ya tiene una reserva cercana (menos de 2 horas antes o después).",
     });
     return;
@@ -602,20 +745,26 @@ function actualizarReserva(id, modal) {
   // Guardar cambios
   reservas[index] = {
     ...reservas[index],
-    nombre, numeroPersonas, fechaReserva,
-    horaReserva, mesa: mesaNueva, ocasion,
-    notasAdicionales, estadoReserva,
+    nombre,
+    numeroPersonas,
+    fechaReserva,
+    horaReserva,
+    mesa: mesaNueva,
+    ocasion,
+    notasAdicionales,
+    estadoReserva,
   };
 
   localStorage.setItem("ReservasData", JSON.stringify(reservas));
 
   let mesas = datos.mesas;
-  const indexMesa = mesas.findIndex(m => String(m.id) === String(mesaNueva));
+  const indexMesa = mesas.findIndex((m) => String(m.id) === String(mesaNueva));
 
   if (indexMesa !== -1) {
-    const quedanReservasActivas = reservas.some(r =>
-      String(r.mesa) === String(mesaNueva) &&
-      (r.estadoReserva === "Pendiente" || r.estadoReserva === "Confirmada")
+    const quedanReservasActivas = reservas.some(
+      (r) =>
+        String(r.mesa) === String(mesaNueva) &&
+        (r.estadoReserva === "Pendiente" || r.estadoReserva === "Confirmada")
     );
 
     mesas[indexMesa].estado = quedanReservasActivas ? "Ocupada" : "Disponible";
@@ -625,7 +774,11 @@ function actualizarReserva(id, modal) {
   modal.hide();
   pintarDatos();
 
-  Swal.fire({ icon: "success", title: "Reserva actualizada", text: "Los datos de la reserva fueron actualizados correctamente.", });
+  Swal.fire({
+    icon: "success",
+    title: "Reserva actualizada",
+    text: "Los datos de la reserva fueron actualizados correctamente.",
+  });
 
   document.getElementById("reservaId").disabled = false;
 
@@ -637,8 +790,12 @@ function actualizarReserva(id, modal) {
 // Funcion Pagar
 function pagarCuenta(index) {
   Swal.fire({
-    title: "¿Finalizar reserva?", text: "¿Estás seguro de que deseas pagar la cuenta y finalizar esta reserva?", icon: "warning",
-    showCancelButton: true, confirmButtonText: "Sí, pagar", cancelButtonText: "Cancelar",
+    title: "¿Finalizar reserva?",
+    text: "¿Estás seguro de que deseas pagar la cuenta y finalizar esta reserva?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Sí, pagar",
+    cancelButtonText: "Cancelar",
   }).then((result) => {
     if (result.isConfirmed) {
       let datos = getDatos();
@@ -650,16 +807,22 @@ function pagarCuenta(index) {
 
       reserva.estadoReserva = "Finalizada";
 
-      const indexMesa = mesas.findIndex((m) => String(m.id) === String(reserva.mesa));
+      const indexMesa = mesas.findIndex(
+        (m) => String(m.id) === String(reserva.mesa)
+      );
 
       if (indexMesa !== -1) {
-        const quedanReservasActivas = reservas.some(r =>
-          String(r.mesa) === String(reserva.mesa) &&
-          (r.estadoReserva === "Pendiente" || r.estadoReserva === "Confirmada")
+        const quedanReservasActivas = reservas.some(
+          (r) =>
+            String(r.mesa) === String(reserva.mesa) &&
+            (r.estadoReserva === "Pendiente" ||
+              r.estadoReserva === "Confirmada")
         );
 
         // Si no quedan reservas activas, la mesa pasa a Disponible
-        mesas[indexMesa].estado = quedanReservasActivas ? "Ocupada" : "Disponible";
+        mesas[indexMesa].estado = quedanReservasActivas
+          ? "Ocupada"
+          : "Disponible";
       }
 
       localStorage.setItem("ReservasData", JSON.stringify(reservas));
@@ -668,8 +831,13 @@ function pagarCuenta(index) {
       pintarDatos();
 
       Swal.fire({
-        icon: "success", title: "Reserva finalizada", text: "Se ha finalizado la reserva. " +
-          (mesas[indexMesa].estado === "Disponible" ? "La mesa ahora está disponible." : "La mesa sigue ocupada por otras reservas.")
+        icon: "success",
+        title: "Reserva finalizada",
+        text:
+          "Se ha finalizado la reserva. " +
+          (mesas[indexMesa].estado === "Disponible"
+            ? "La mesa ahora está disponible."
+            : "La mesa sigue ocupada por otras reservas."),
       });
     }
   });
@@ -704,19 +872,36 @@ function limpiarFiltros() {
 }
 
 // Funcion Validar Disponibilidad
-function validarDisponibilidadMesa(mesa, fechaReserva, horaReserva, ocasionActual, reservas) {
-  const nuevaInicio = parse(`${fechaReserva} ${horaReserva}`, 'yyyy-MM-dd HH:mm', new Date());
+function validarDisponibilidadMesa(
+  mesa,
+  fechaReserva,
+  horaReserva,
+  ocasionActual,
+  reservas
+) {
+  const nuevaInicio = parse(
+    `${fechaReserva} ${horaReserva}`,
+    "yyyy-MM-dd HH:mm",
+    new Date()
+  );
   const duracionActual = obtenerDuracionPorOcasion(ocasionActual);
   const nuevaFin = addMinutes(nuevaInicio, duracionActual);
 
   for (let r of reservas) {
-    if ((r.estadoReserva !== "Pendiente" && r.estadoReserva !== "Confirmada") || String(r.mesa) !== String(mesa)) {
+    if (
+      (r.estadoReserva !== "Pendiente" && r.estadoReserva !== "Confirmada") ||
+      String(r.mesa) !== String(mesa)
+    ) {
       continue;
     }
 
     if (r.fechaReserva !== fechaReserva) continue;
 
-    const inicioExistente = parse(`${r.fechaReserva} ${r.horaReserva}`, 'yyyy-MM-dd HH:mm', new Date());
+    const inicioExistente = parse(
+      `${r.fechaReserva} ${r.horaReserva}`,
+      "yyyy-MM-dd HH:mm",
+      new Date()
+    );
     const duracionExistente = obtenerDuracionPorOcasion(r.ocasion);
     const finExistente = addMinutes(inicioExistente, duracionExistente);
 
@@ -736,14 +921,14 @@ function validarDisponibilidadMesa(mesa, fechaReserva, horaReserva, ocasionActua
 // Funcion duracion de cada ocasion
 function obtenerDuracionPorOcasion(ocasion) {
   const duraciones = {
-    "Cumpleaños": 120,
-    "Compromiso": 180,
-    "Aniversario": 120,
-    "Graduación": 180,
+    Cumpleaños: 120,
+    Compromiso: 180,
+    Aniversario: 120,
+    Graduación: 180,
     "Reunión familiar": 180,
     "Cena de negocios": 120,
-    "Amigos": 30,
-    "Otro": 30
+    Amigos: 30,
+    Otro: 30,
   };
 
   return duraciones[ocasion] || 120;
@@ -759,7 +944,11 @@ function actualizarLimiteHora() {
 
   const duracion = obtenerDuracionPorOcasion(ocasion);
 
-  const apertura = parse(`${fechaReserva} 08:00`, "yyyy-MM-dd HH:mm", new Date());
+  const apertura = parse(
+    `${fechaReserva} 08:00`,
+    "yyyy-MM-dd HH:mm",
+    new Date()
+  );
   const cierre = parse(`${fechaReserva} 23:00`, "yyyy-MM-dd HH:mm", new Date());
 
   // Última hora válida de inicio = cierre - duración
@@ -771,3 +960,11 @@ function actualizarLimiteHora() {
 
   console.log("⏱️ Hora máxima permitida:", horaInput.max);
 }
+
+document.getElementById("Padre").innerHTML = `...`;
+
+setTimeout(() => {
+  document.getElementById("nombre").addEventListener("input", function () {
+    this.value = this.value.replace(/[^A-Za-zÁÉÍÓÚáéíóúÑñ\s]/g, "");
+  });
+}, 0);
