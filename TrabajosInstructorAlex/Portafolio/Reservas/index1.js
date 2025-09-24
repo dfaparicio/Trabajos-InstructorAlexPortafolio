@@ -1,6 +1,15 @@
-import {
-  parse, addMinutes, isBefore, isAfter, areIntervalsOverlapping
-} from "https://cdn.jsdelivr.net/npm/date-fns@3.6.0/+esm";
+  import {
+    parse, addMinutes, isBefore, isAfter, areIntervalsOverlapping, parseISO, startOfToday, format
+  } from "https://cdn.jsdelivr.net/npm/date-fns@3.6.0/+esm";
+
+  // Expón en window para que lo vean otros scripts
+  window.parse = parse;
+  window.addMinutes = addMinutes;
+  window.isBefore = isBefore;
+  window.isAfter = isAfter;
+  window.areIntervalsOverlapping = areIntervalsOverlapping;
+  window.parseISO = parseISO;
+  window.startOfToday = startOfToday;
 
 window.guardar = guardar;
 window.editarReserva = editarReserva;
@@ -210,10 +219,36 @@ function guardar() {
   if (!numeroPersonas || numeroPersonas <= 0) {
     return Swal.fire({ icon: "error", title: "Número inválido", text: "El número de personas debe ser mayor que 0." });
   }
-  const hoy = new Date().toISOString().split("T")[0];
-  if (!fechaReserva || fechaReserva < hoy) {
-    return Swal.fire({ icon: "error", title: "Fecha inválida", text: "La fecha debe ser igual o posterior a hoy." });
-  }
+
+
+if (!fechaReserva) {
+  return Swal.fire({
+    icon: "error",
+    title: "Fecha requerida",
+    text: "Por favor selecciona una fecha para la reserva."
+  });
+}
+
+const fechaSeleccionada = parseISO(fechaReserva);
+
+if (isNaN(fechaSeleccionada)) {
+  return Swal.fire({
+    icon: "error",
+    title: "Fecha inválida",
+    text: "La fecha ingresada no es válida."
+  });
+}
+
+if (isBefore(fechaSeleccionada, startOfToday())) {
+  return Swal.fire({
+    icon: "error",
+    title: "Fecha inválida",
+    text: "La fecha debe ser igual o posterior a hoy."
+  });
+}
+
+
+
   if (!horaReserva) {
     return Swal.fire({ icon: "error", title: "Hora requerida", text: "Por favor selecciona una hora de reserva." });
   }
@@ -707,8 +742,8 @@ function obtenerDuracionPorOcasion(ocasion) {
     "Graduación": 180,
     "Reunión familiar": 180,
     "Cena de negocios": 120,
-    "Amigos": 60,
-    "Otro": 60
+    "Amigos": 30,
+    "Otro": 30
   };
 
   return duraciones[ocasion] || 120;
