@@ -117,11 +117,17 @@ document.addEventListener("DOMContentLoaded", () => {
   </div>   
 </div>    
 
-<div id="bodyData"></div>
-
 <div class="mt-3">
-  <button type="button" class="btn btn-primary" onclick="window.location.href='../GestionDeMesas/index.html'">← Volver</button>
+  <button type="button" class="btn-volver" onclick="window.location.href='../GestionDeMesas/index.html'">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon-arrow-left" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <polyline points="15 18 9 12 15 6"></polyline>
+    </svg>
+    Volver
+  </button>
 </div>
+
+
+<div id="bodyData"></div>
 `;
 
   const params = new URLSearchParams(window.location.search);
@@ -968,3 +974,4 @@ setTimeout(() => {
     this.value = this.value.replace(/[^A-Za-zÁÉÍÓÚáéíóúÑñ\s]/g, "");
   });
 }, 0);
+
