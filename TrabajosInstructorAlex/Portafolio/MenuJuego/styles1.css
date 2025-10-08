@@ -185,7 +185,7 @@
   justify-content: center;
   width: 100vw;
   height: 100vh;
-  padding-top: 20px;
+  padding-top: 50px;
 }
 
 .perfil-panel {
@@ -724,9 +724,9 @@ img.perfil-guerrero {
 /******************** BOTÓN VOLVER ********************/
 .volver-btn2 {
   position: absolute;
-  left: 30px;
-  bottom: 20px;
-  padding: 12px 38px;
+  left: 15px;
+  top: 20px;
+  padding: 12px 20px;
   font-size: 1.05rem;
   letter-spacing: 1px;
   background: linear-gradient(180deg, #2a2010 0%, #3b2a15 40%, #1c150a 100%);
