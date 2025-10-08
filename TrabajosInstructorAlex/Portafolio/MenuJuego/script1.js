@@ -6,7 +6,7 @@ function inicializarMenuOpciones(playerName) {
 
   const contenidoModales2 = {
 nuevaPartida: `
-  <h3>⚔️ Elige tu Destino</h3>
+  <h3>Elige tu Destino</h3>
   <p>Selecciona entre los valientes Héroes o los temidos Villanos para comenzar tu travesía.</p>
 
   <div class="selector-personaje">
@@ -201,7 +201,8 @@ inventario: `
 `,
 
     opciones: `
-      <h3>Opciones del Juego</h3>
+<div class="OpOpOpciones">
+<h3>Opciones del Juego</h3>
       <div class="opciones-config">
         <label for="volumen">Volumen General</label>
         <input type="range" id="volumen" min="0" max="100" value="80">
@@ -222,6 +223,7 @@ inventario: `
       </div>
 <button class="Config-Gaurdar" onclick="guardarConfiguracion()">Guardar Configuración</button>
 
+</div>
     `
   };
 
