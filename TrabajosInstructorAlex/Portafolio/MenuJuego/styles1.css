@@ -47,17 +47,17 @@
 }
 
 .modal-content2 h3 {
-  font-size: 2rem;
-  padding-top: 20px;
+  font-size: 3rem;
+  padding-top: 60px;
   text-align: center;
   text-shadow: 0 0 8px rgba(180, 140, 60, 0.6);
 }
 
 .modal-content2 p {
   font-size: 1.1rem;
+  padding-top: 10px;
   line-height: 1.6;
   text-align: center;
-  margin-bottom: 25px;
 }
 
 .modal-content2 img {
@@ -84,77 +84,66 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 500px;
+  gap: 400px;
   padding-top: 100px;
-}
-
-.selector-personaje::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  filter: blur(10px);
+  position: relative;
 }
 
 .personajes {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 100px;
+  gap: 60px;
   text-align: center;
   cursor: pointer;
   position: relative;
-  transition: all 0.6s ease;
-  overflow: visible;
+  transition: transform 0.6s ease, filter 0.6s ease;
 }
-
 .personajes h4 {
-  font-size: 2.6rem;
+  font-size: 2.4rem;
   letter-spacing: 3px;
-  color: rgba(230, 220, 200, 0.85);
-  text-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
+  color: rgba(230, 220, 200, 0.8);
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
   transition: color 0.5s ease, text-shadow 0.5s ease, transform 0.5s ease;
-  z-index: 5;
+  z-index: 3;
 }
 
 .personajes img {
   width: 130%;
-  max-width: none;
   height: auto;
   object-fit: contain;
-  border-radius: 0;
-  filter: brightness(0) grayscale(2) contrast(1.1);
-  transform: scale(1.4);
+  filter: brightness(0) grayscale(1) contrast(1.2);
+  transform: scale(1.8);
   transition: transform 0.7s ease, filter 0.7s ease, box-shadow 0.7s ease;
+  animation: flotar 8s ease-in-out infinite;
   z-index: 2;
-  pointer-events: none;
 }
 
 .personajes:hover img,
 .personajes.activo img {
-  filter: brightness(1.25) grayscale(0) contrast(1.2);
-  transform: scale(1.8);
+  filter: brightness(1.5) grayscale(0) contrast(1.1);
+  transform: translateY(-60px) scale(1.9);
 }
 
 .personajes:hover h4,
 .personajes.activo h4 {
   color: rgb(227, 190, 133);
-  text-shadow: 0 0 25px rgba(0, 180, 255, 0.9), 0 0 45px rgba(227, 190, 133, 0.6);
-  transform: scale(1.1);
+  text-shadow: 0 0 25px rgba(0, 180, 255, 0.9),
+               0 0 45px rgba(227, 190, 133, 0.6);
+  transform: scale(1.15);
 }
 
 .personajes::before {
   content: "";
   position: absolute;
-  width: 600px;
-  height: 600px;
+  width: 500px;
+  height: 500px;
   background: radial-gradient(circle, rgba(0, 180, 255, 0.15) 0%, transparent 70%);
   border-radius: 50%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(1);
   opacity: 0;
-  pointer-events: none;
   transition: opacity 0.8s ease, transform 0.8s ease;
   z-index: 1;
 }
@@ -162,7 +151,7 @@
 .personajes:hover::before,
 .personajes.activo::before {
   opacity: 1;
-  transform: translate(-50%, -50%) scale(1.6);
+  transform: translate(-50%, -50%) scale(3);
 }
 
 .personajes.heroes:hover::before {
@@ -173,21 +162,15 @@
   background: radial-gradient(circle, rgba(255, 50, 50, 0.3) 0%, transparent 70%);
 }
 
-.personajes img {
-  animation: flotar 8s ease-in-out infinite;
-}
-
 @keyframes flotar {
-
-  0%,
-  100% {
+  0%, 100% {
     transform: translateY(0) scale(1.4);
   }
-
   50% {
-    transform: translateY(-25px) scale(1.45);
+    transform: translateY(-20px) scale(1.45);
   }
 }
+
 
 
 
@@ -200,33 +183,30 @@
 .perfil-container {
   display: flex;
   justify-content: center;
-  align-items: center;
   width: 100vw;
   height: 100vh;
+  padding-top: 20px;
 }
 
 .perfil-panel {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   background: rgba(10, 15, 25, 0.85);
   border: 1px solid rgba(255, 215, 128, 0.15);
   box-shadow:
     0 0 35px rgba(0, 180, 255, 0.1),
     inset 0 0 40px rgba(0, 0, 0, 0.8);
   border-radius: 18px;
-  padding: 30px;
+  padding: 80px 20px 0 20px ;
   width: 90%;
   max-width: 1600px;
-  height: 85vh;
+  height: 90vh;
   backdrop-filter: blur(4px);
 }
 
 .perfil-equipo {
   display: grid;
   grid-template-columns: 1fr 1.2fr 1fr;
-  grid-gap: 40px;
-  align-items: center;
 }
 
 .slot {
@@ -265,7 +245,7 @@
 }
 
 .item img {
-  width: 100%;
+  width: 900%;
   filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.3));
 }
 
@@ -287,13 +267,13 @@
   width: auto;
   height: 100%;
   max-height: 680px;
-  transform: scale(1.5);
+  transform: scale(1.2);
   filter: brightness(0.9) contrast(1.2) drop-shadow(0 0 30px rgba(0, 180, 255, 0.4));
   transition: 0.6s ease;
 }
 
 .perfil-guerrero:hover {
-  transform: scale(1.6);
+  transform: scale(1.5);
   filter: brightness(1.2) saturate(1.3) drop-shadow(0 0 60px rgba(0, 200, 255, 0.7));
 }
 
@@ -317,11 +297,10 @@ img.perfil-guerrero {
 
 .perfil-info {
   text-align: center;
-  margin-top: 90px;
 }
 
 .perfil-info h3 {
-  margin-bottom: 20px;
+
   text-shadow:
     0 0 12px rgba(255, 215, 0, 0.7),
     0 0 30px rgba(0, 180, 255, 0.2);
@@ -419,78 +398,6 @@ img.perfil-guerrero {
 
 
 
-
-
-/******************** BOTÓN VOLVER ********************/
-.volver-btn2 {
-  position: absolute;
-  left: 30px;
-  bottom: 20px;
-  padding: 12px 38px;
-  font-size: 1.05rem;
-  letter-spacing: 1px;
-  background: linear-gradient(180deg, #2a2010 0%, #3b2a15 40%, #1c150a 100%);
-  border: 1px solid rgba(210, 175, 100, 0.8);
-  border-radius: 12px;
-  text-shadow: 0 0 10px rgba(255, 230, 160, 0.3);
-  box-shadow:
-    inset 0 0 8px rgba(255, 220, 140, 0.1),
-    0 0 14px rgba(0, 0, 0, 0.85),
-    0 0 20px rgba(70, 50, 20, 0.2);
-  cursor: pointer;
-  transition: all 0.25s ease;
-  z-index: 30;
-  overflow: hidden;
-  animation: glowPulse 3s infinite ease-in-out;
-}
-
-.volver-btn2::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: -70%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(120deg,
-      transparent,
-      rgba(255, 220, 150, 0.25),
-      transparent);
-  transform: skewX(-25deg);
-  transition: left 0.8s ease;
-}
-
-.volver-btn2:hover::before {
-  left: 130%;
-}
-
-.volver-btn2:hover {
-  background: linear-gradient(180deg, #6b5020 0%, #b08a3b 60%, #4b3718 100%);
-  border-color: rgba(255, 230, 150, 0.9);
-  box-shadow:
-    0 0 24px rgba(255, 215, 120, 0.6),
-    0 0 48px rgba(255, 200, 80, 0.25);
-  transform: scale(1.07);
-}
-
-@keyframes glowPulse {
-
-  0%,
-  100% {
-    box-shadow:
-      0 0 12px rgba(255, 220, 130, 0.25),
-      0 0 20px rgba(70, 50, 20, 0.2);
-  }
-
-  50% {
-    box-shadow:
-      0 0 22px rgba(255, 220, 150, 0.5),
-      0 0 36px rgba(255, 210, 100, 0.25);
-  }
-}
-
-
-
-
 /***************************** INVENTARIO *******************************/
 .inventario {
   display: flex;
@@ -506,14 +413,13 @@ img.perfil-guerrero {
 }
 
 .titulo {
-  font-size: 3rem;
+  font-size: 2.5rem;
   text-shadow: 0 0 15px #c49a48, 0 0 40px #8b5e1a;
   letter-spacing: 2px;
 }
 
 .subtitulo {
   font-size: 1rem;
-  margin-bottom: 1rem;
   text-shadow: 0 0 6px rgba(100, 70, 20, 0.5);
 }
 
@@ -521,7 +427,7 @@ img.perfil-guerrero {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  gap: 50px;
+  gap: 20px;
   width: 90%;
   height: 70%;
 }
@@ -531,7 +437,6 @@ img.perfil-guerrero {
   background: linear-gradient(180deg, rgba(20, 10, 0, 0.7), rgba(10, 5, 0, 0.8));
   border: 2px solid rgba(255, 215, 130, 0.2);
   border-radius: 14px;
-  padding: 1rem 1.2rem;
   box-shadow:
     0 0 15px rgba(255, 200, 120, 0.05),
     inset 0 0 25px rgba(120, 80, 20, 0.15);
@@ -540,6 +445,7 @@ img.perfil-guerrero {
   justify-content: center;
   gap: 30px;
   transition: all 0.4s ease;
+  padding-bottom: 20px;
 }
 
 .bloque:hover {
@@ -563,7 +469,7 @@ img.perfil-guerrero {
   grid-template-columns: repeat(5, 1fr);
   justify-items: center;
   align-items: center;
-  gap: 35px;
+  gap: 10px;
 }
 
 .carta {
@@ -631,8 +537,8 @@ img.perfil-guerrero {
 }
 
 .carta img {
-  width: 65px;
-  height: 65px;
+  width: 50px;
+  height: 50px;
   object-fit: contain;
   filter: drop-shadow(0 0 5px rgba(255, 220, 150, 0.25));
   transition: filter 0.3s ease, transform 0.3s ease;
@@ -645,7 +551,6 @@ img.perfil-guerrero {
 
 .carta span {
   font-size: 0.7rem;
-  margin-top: 5px;
   text-align: center;
   text-shadow: 0 0 5px rgba(255, 230, 150, 0.3);
   letter-spacing: 0.6px;
@@ -668,33 +573,14 @@ img.perfil-guerrero {
 
 
 /******************** OPCIONES RPG MEDIEVAL OSCURO********************/
-.opciones {
+.OpOpOpciones{
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  gap: 100px;
   width: 100%;
-  height: 100%;
-  text-align: center;
-  background: radial-gradient(circle at center, #0a0500 0%, #050301 100%);
-  border: 1px solid rgba(255, 200, 100, 0.2);
-  border-radius: 18px;
-  box-shadow:
-    0 0 25px rgba(255, 220, 140, 0.08),
-    inset 0 0 30px rgba(0, 0, 0, 0.9);
-  padding: 40px 60px;
-  position: relative;
 }
-
-.opciones h3 {
-  font-family: "Cinzel", serif;
-  font-size: 2.1rem;
-  color: #f2d58b;
-  text-shadow: 0 0 12px #c49a48, 0 0 25px #8b5e1a;
-  margin-bottom: 35px;
-  letter-spacing: 2px;
-}
-
 .opciones-config {
   display: flex;
   flex-direction: column;
@@ -710,17 +596,6 @@ img.perfil-guerrero {
     inset 0 0 10px rgba(0, 0, 0, 0.7);
 }
 
-.opciones-config label {
-  font-family: "Cinzel", serif;
-  color: #e6d5a3;
-  font-weight: 600;
-  font-size: 1rem;
-  text-shadow: 0 0 5px rgba(255, 200, 120, 0.3);
-  margin-bottom: 5px;
-  letter-spacing: 0.5px;
-  display: block;
-  text-align: left;
-}
 
 .opciones-config input[type="range"] {
   -webkit-appearance: none;
@@ -760,7 +635,6 @@ img.perfil-guerrero {
   color: #f4e1b0;
   padding: 8px;
   font-weight: 600;
-  font-family: "Cinzel", serif;
   text-shadow: 0 0 4px rgba(255, 200, 120, 0.3);
   transition: all 0.3s ease;
 }
@@ -787,7 +661,6 @@ img.perfil-guerrero {
   border: 1px solid rgba(210, 175, 100, 0.8);
   border-radius: 12px;
   color: #f9e7c0;
-  font-family: "Cinzel", serif;
   text-shadow: 0 0 10px rgba(255, 230, 160, 0.3);
   box-shadow:
     inset 0 0 8px rgba(255, 220, 140, 0.1),
@@ -836,6 +709,78 @@ img.perfil-guerrero {
       0 0 12px rgba(255, 220, 130, 0.25),
       0 0 20px rgba(70, 50, 20, 0.2);
   }
+  50% {
+    box-shadow:
+      0 0 22px rgba(255, 220, 150, 0.5),
+      0 0 36px rgba(255, 210, 100, 0.25);
+  }
+}
+
+
+
+
+
+
+/******************** BOTÓN VOLVER ********************/
+.volver-btn2 {
+  position: absolute;
+  left: 30px;
+  bottom: 20px;
+  padding: 12px 38px;
+  font-size: 1.05rem;
+  letter-spacing: 1px;
+  background: linear-gradient(180deg, #2a2010 0%, #3b2a15 40%, #1c150a 100%);
+  border: 1px solid rgba(210, 175, 100, 0.8);
+  border-radius: 12px;
+  text-shadow: 0 0 10px rgba(255, 230, 160, 0.3);
+  box-shadow:
+    inset 0 0 8px rgba(255, 220, 140, 0.1),
+    0 0 14px rgba(0, 0, 0, 0.85),
+    0 0 20px rgba(70, 50, 20, 0.2);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  z-index: 30;
+  overflow: hidden;
+  animation: glowPulse 3s infinite ease-in-out;
+}
+
+.volver-btn2::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: -70%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg,
+      transparent,
+      rgba(255, 220, 150, 0.25),
+      transparent);
+  transform: skewX(-25deg);
+  transition: left 0.8s ease;
+}
+
+.volver-btn2:hover::before {
+  left: 130%;
+}
+
+.volver-btn2:hover {
+  background: linear-gradient(180deg, #6b5020 0%, #b08a3b 60%, #4b3718 100%);
+  border-color: rgba(255, 230, 150, 0.9);
+  box-shadow:
+    0 0 24px rgba(255, 215, 120, 0.6),
+    0 0 48px rgba(255, 200, 80, 0.25);
+  transform: scale(1.07);
+}
+
+@keyframes glowPulse {
+
+  0%,
+  100% {
+    box-shadow:
+      0 0 12px rgba(255, 220, 130, 0.25),
+      0 0 20px rgba(70, 50, 20, 0.2);
+  }
+
   50% {
     box-shadow:
       0 0 22px rgba(255, 220, 150, 0.5),
