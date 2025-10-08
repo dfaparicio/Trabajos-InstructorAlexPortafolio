@@ -6,6 +6,7 @@ function inicializarMenuOpciones(playerName) {
 
   const contenidoModales2 = {
 nuevaPartida: `
+<H3>FALTA POR TERMINAR LA PARTE MAS IMPROTANTE, DEMOSTRACION PRESONAJES..............</H3>
   <h3>Elige tu Destino</h3>
   <p>Selecciona entre los valientes Héroes o los temidos Villanos para comenzar tu travesía.</p>
 
@@ -320,3 +321,4 @@ function guardarConfiguracion() {
 
   alert("Configuración guardada correctamente.");
 }
+
