@@ -175,10 +175,6 @@
 
 
 
-
-
-
-
 /******************** PERFIL ********************/
 .perfil-container {
   display: flex;
@@ -787,3 +783,7 @@ img.perfil-guerrero {
       0 0 36px rgba(255, 210, 100, 0.25);
   }
 }
+
+
+
+
