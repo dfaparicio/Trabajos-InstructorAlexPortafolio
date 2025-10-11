@@ -312,6 +312,7 @@ body {
 .hero1 {
   left: 3%;
   bottom: 5%;
+  z-index: 99;
 }
 
 .hero2 {
@@ -669,5 +670,6 @@ h4 {
   transform: rotate(90deg) scale(1.2);
   filter: drop-shadow(0 0 18px orange);
 }
+
 
 
