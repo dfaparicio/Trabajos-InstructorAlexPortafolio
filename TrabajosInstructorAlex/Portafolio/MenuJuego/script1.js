@@ -6,23 +6,24 @@ function inicializarMenuOpciones(playerName) {
 
   const contenidoModales2 = {
 nuevaPartida: `
-<H3>FALTA POR TERMINAR LA PARTE MAS IMPROTANTE, DEMOSTRACION PRESONAJES..............</H3>
   <h3>Elige tu Destino</h3>
   <p>Selecciona entre los valientes Héroes o los temidos Villanos para comenzar tu travesía.</p>
 
-  <div class="selector-personaje">
+<div class="selector-personaje">
 
-    <div class="personajes heroes">
-      <h4>HÉROES</h4>
-      <img src="img/Heroes.png" alt="Héroes del Reino">
-    </div>
+  <a href="../Personajes/Heroes/index.html" class="personajes heroes">
+    <h4>HÉROES</h4>
+    <img src="img/Heroes.png" alt="Héroes del Reino">
+  </a>
 
-    <div class="personajes villanos">
-      <h4>VILLANOS</h4>
-      <img src="img/Villanos.png" alt="Villanos del Abismo">
-    </div>
+  <a href="../Personajes/Villanos/index.html" class="personajes villanos">
+    <h4>VILLANOS</h4>
+    <img src="img/Villanos.png" alt="Villanos del Abismo">
+  </a>
 
-  </div>
+</div>
+
+
 `
 ,
 
@@ -321,4 +322,7 @@ function guardarConfiguracion() {
 
   alert("Configuración guardada correctamente.");
 }
+
+
+
 
