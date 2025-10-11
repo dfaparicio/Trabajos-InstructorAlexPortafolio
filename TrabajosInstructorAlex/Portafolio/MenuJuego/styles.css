@@ -533,3 +533,11 @@ body {
   box-shadow: 0 0 10px rgba(255, 210, 100, 0.6);
   transform: scale(1.05);
 }
+
+
+
+/******************** A PERSONAJES ********************/
+a {
+  text-decoration: none;
+  color: inherit; /* Mantiene el color del texto que ya tienes */
+}
