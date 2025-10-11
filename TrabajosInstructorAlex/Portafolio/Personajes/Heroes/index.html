@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eternal Realms Players</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+</head>
+
+<body>
+  <div id="scene"></div>
+
+
+  <div id="modalPersonaje" class="modal hidden" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-content">
+
+
+      <button id="closeModal" class="close-btn" aria-label="Cerrar">
+        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="32" height="32">
+          <path d="M10 14L14 10L54 50L50 54Z" fill="#c9a64b" />
+          <path d="M14 54L10 50L50 10L54 14Z" fill="#c9a64b" />
+        </svg>
+      </button>
+
+      <div class="char-header">
+        <div>
+          <h2 id="charName"></h2>
+          <h3 id="charClass"></h3>
+        </div>
+      </div>
+
+      <div class="char-info">
+        <p><strong>Raza:</strong> <span id="charRace"></span></p>
+        <p><strong>Edad:</strong> <span id="charAge"></span></p>
+        <p><strong>Reino:</strong> <span id="charRealm"></span></p>
+        <p><strong>Alineación:</strong> <span id="charAlign"></span></p>
+        <p><strong>Arma Favorita:</strong> <span id="charWeapon"></span></p>
+        <p><strong>Nivel:</strong> <span id="charLevel"></span></p>
+      </div>
+
+
+      <p class="char-story" id="charStory"></p>
+
+
+      <div class="stats">
+        <div class="stat"><label>Fuerza</label>
+          <div class="bar">
+            <div id="statStrength"></div>
+          </div><span id="percentStrength"></span>
+        </div>
+        <div class="stat"><label>Magia</label>
+          <div class="bar">
+            <div id="statMagic"></div>
+          </div><span id="percentMagic"></span>
+        </div>
+        <div class="stat"><label>Defensa</label>
+          <div class="bar">
+            <div id="statDefense"></div>
+          </div><span id="percentDefense"></span>
+        </div>
+        <div class="stat"><label>Velocidad</label>
+          <div class="bar">
+            <div id="statSpeed"></div>
+          </div><span id="percentSpeed"></span>
+        </div>
+        <div class="stat"><label>Corrupción</label>
+          <div class="bar">
+            <div id="statCorruption"></div>
+          </div><span id="percentCorruption"></span>
+        </div>
+        <div class="stat"><label>Vitalidad</label>
+          <div class="bar">
+            <div id="statVitality"></div>
+          </div><span id="percentVitality"></span>
+        </div>
+        <div class="stat"><label>Maná</label>
+          <div class="bar">
+            <div id="statMana"></div>
+          </div><span id="percentMana"></span>
+        </div>
+      </div>
+
+
+      <h4>Poderes Especiales</h4>
+      <div class="powers-grid" id="charPowers"></div>
+
+    </div>
+  </div>
+
+
+
+
+
+  <script src="script.js"></script>
+</body>
+
+</html>
