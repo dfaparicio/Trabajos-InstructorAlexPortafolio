@@ -182,8 +182,11 @@ container.innerHTML = characters
   .join("");
 
 
-const fixedX = window.innerWidth * 0.22;
+const fixedX = window.innerWidth * 0.48;
 const fixedY = window.innerHeight * 0.50;
+
+
+
 
 document.querySelectorAll(".hero").forEach((hero, index) => {
   hero.addEventListener("click", () => {
@@ -203,11 +206,12 @@ document.querySelectorAll(".hero").forEach((hero, index) => {
     const moveY = fixedY - (rect.top + rect.height / 2);
 
     gsap.to(hero, {
-      duration: 1.8,
+      duration: 2,
       ease: "power3.inOut",
       x: moveX,
       y: moveY,
-      scale: 2.2,
+      scale: 1.4,
+      zIndex: 999999,
       onComplete: () => {
         hero.classList.add("active-hero");
         modal.classList.add("show");
@@ -274,11 +278,11 @@ closeModal.addEventListener("click", () => {
   document.querySelectorAll(".hero").forEach((h) => {
     h.classList.remove("hide", "active-hero");
     gsap.to(h, {
-      duration: 1.2,
+      duration: 2,
       ease: "power3.inOut",
       x: 0,
       y: 0,
-      scale: 1,
+      scale: 0.5,
       onComplete: () => gsap.set(h, { clearProps: "all" }),
     });
   });
