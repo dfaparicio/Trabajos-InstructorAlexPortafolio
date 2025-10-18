@@ -1,5 +1,3 @@
-//////////////////////// BASE DE DATOS DE PERSONAJES ////////////////////////
-
 const characters = [
   {
     img: "img/Heroe1.png",
@@ -148,71 +146,74 @@ const characters = [
   },
 ];
 
-//////////////////////// REFERENCIAS A ELEMENTOS HTML ////////////////////////
-
 const container = document.getElementById("scene");
 const modal = document.getElementById("modalPersonaje");
 const closeModal = document.getElementById("closeModal");
 
-//////////////////////// GENERAR HEROES EN PANTALLA ////////////////////////
-
-// Inserta cada personaje en el contenedor principal con sus partículas visuales
 container.innerHTML = characters
   .map(
     (c, i) => `
   <div class="hero hero${i + 1}" tabindex="0" role="button" aria-label="${c.nombre}">
     <img src="${c.img}" alt="${c.nombre}">
     
-    <!-- 🌟 Partículas épicas (decoración animada de fondo) -->
-    <div class="particles">
-      ${Array(15).fill("<span></span>").join("")}
-    </div>
+    <!-- 🌟 Partículas épicas -->
+<div class="particles">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <!-- Agrega más spans hasta llegar a 15 -->
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
   </div>`
   )
   .join("");
 
-//////////////////////// CONFIGURACIÓN DE POSICIÓN DE FOCO ////////////////////////
 
-// Posición fija donde se centrará el héroe al hacer clic
-const fixedX = window.innerWidth * 0.22;
+const fixedX = window.innerWidth * 0.48;
 const fixedY = window.innerHeight * 0.50;
-
-//////////////////////// EVENTO DE SELECCIÓN DE HEROE ////////////////////////
 
 document.querySelectorAll(".hero").forEach((hero, index) => {
   hero.addEventListener("click", () => {
-    // Evita abrir más de un modal al mismo tiempo
+
     if (modal.classList.contains("show")) return;
 
-    // Obtiene los datos del personaje seleccionado
     const char = characters[index];
 
-    // Aplica estilos para resaltar el héroe activo y ocultar los demás
     document.querySelectorAll(".hero").forEach((h) => {
       h.classList.remove("active-hero");
       if (h !== hero) h.classList.add("hide");
       else h.classList.remove("hide");
     });
 
-    // Calcula desplazamiento para centrar el personaje seleccionado
     const rect = hero.getBoundingClientRect();
     const moveX = fixedX - (rect.left + rect.width / 2);
     const moveY = fixedY - (rect.top + rect.height / 2);
 
-    // Animación de movimiento y zoom con GSAP
     gsap.to(hero, {
-      duration: 1.8,
+      duration: 2,
       ease: "power3.inOut",
       x: moveX,
       y: moveY,
-      scale: 2.2,
+      scale: 1.4,
+      zIndex: 999999,
       onComplete: () => {
         hero.classList.add("active-hero");
         modal.classList.add("show");
       },
     });
-
-    //////////////////////// MOSTRAR DETALLES EN EL MODAL ////////////////////////
 
     document.getElementById("charName").textContent = char.nombre;
     document.getElementById("charClass").textContent = char.clase;
@@ -224,21 +225,14 @@ document.querySelectorAll(".hero").forEach((hero, index) => {
     document.getElementById("charWeapon").textContent = char.armaFavorita;
     document.getElementById("charLevel").textContent = char.nivel;
 
-    //////////////////////// ANIMACIÓN DE BARRAS DE ESTADÍSTICAS ////////////////////////
-
-    // Función para animar cada barra con porcentaje
     const setStat = (id, percentId, value) => {
       const bar = document.getElementById(id);
       const percent = document.getElementById(percentId);
-
-      // Anima el ancho de la barra
       gsap.to(bar, {
         width: `${value}%`,
         duration: 1.4,
         ease: "power2.out",
       });
-
-      // Anima el contador del porcentaje visual
       let counter = { val: 0 };
       gsap.to(counter, {
         val: value,
@@ -250,7 +244,6 @@ document.querySelectorAll(".hero").forEach((hero, index) => {
       });
     };
 
-    // Aplica la animación a cada estadística
     const stats = char.stats;
     setStat("statStrength", "percentStrength", stats.fuerza);
     setStat("statMagic", "percentMagic", stats.magia);
@@ -260,9 +253,6 @@ document.querySelectorAll(".hero").forEach((hero, index) => {
     setStat("statVitality", "percentVitality", stats.vitalidad);
     setStat("statMana", "percentMana", stats.mana);
 
-    //////////////////////// ICONOS DE PODER ////////////////////////
-
-    // Inserta los íconos de poderes con sus nombres
     const powersContainer = document.getElementById("charPowers");
     powersContainer.innerHTML = char.poderes
       .map(
@@ -271,7 +261,6 @@ document.querySelectorAll(".hero").forEach((hero, index) => {
       )
       .join("");
 
-    // Anima la aparición de los íconos
     gsap.fromTo(
       ".power-icon",
       { opacity: 0, y: 15 },
@@ -280,22 +269,18 @@ document.querySelectorAll(".hero").forEach((hero, index) => {
   });
 });
 
-//////////////////////// EVENTO DE CIERRE DEL MODAL ////////////////////////
-
 closeModal.addEventListener("click", () => {
   modal.classList.remove("show");
 
-  // Restaura todos los héroes a su posición original
   document.querySelectorAll(".hero").forEach((h) => {
     h.classList.remove("hide", "active-hero");
-
     gsap.to(h, {
-      duration: 1.2,
+      duration: 2,
       ease: "power3.inOut",
       x: 0,
       y: 0,
-      scale: 1,
-      onComplete: () => gsap.set(h, { clearProps: "all" }), // Limpia propiedades transform
+      scale: 0.5,
+      onComplete: () => gsap.set(h, { clearProps: "all" }),
     });
   });
 });
