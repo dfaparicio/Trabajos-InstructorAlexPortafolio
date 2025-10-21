@@ -149,52 +149,28 @@ const characters = [
 const container = document.getElementById("scene");
 const modal = document.getElementById("modalPersonaje");
 const closeModal = document.getElementById("closeModal");
+const volverBtn = document.getElementById("volverBtn");
 
 container.innerHTML = characters
   .map(
     (c, i) => `
   <div class="hero hero${i + 1}" tabindex="0" role="button" aria-label="${c.nombre}">
     <img src="${c.img}" alt="${c.nombre}">
-    
-    <!-- 🌟 Partículas épicas -->
-<div class="particles">
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <!-- Agrega más spans hasta llegar a 15 -->
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-</div>
-
+    <div class="particles">
+      ${Array(15).fill("<span></span>").join("")}
+    </div>
   </div>`
   )
   .join("");
 
-
-const fixedX = window.innerWidth * 0.48;
+const fixedX = window.innerWidth * 0.46;
 const fixedY = window.innerHeight * 0.50;
-
-
-
 
 document.querySelectorAll(".hero").forEach((hero, index) => {
   hero.addEventListener("click", () => {
-
     if (modal.classList.contains("show")) return;
 
     const char = characters[index];
-
     document.querySelectorAll(".hero").forEach((h) => {
       h.classList.remove("active-hero");
       if (h !== hero) h.classList.add("hide");
@@ -215,6 +191,7 @@ document.querySelectorAll(".hero").forEach((hero, index) => {
       onComplete: () => {
         hero.classList.add("active-hero");
         modal.classList.add("show");
+        modal.classList.remove("hidden");
       },
     });
 
@@ -272,8 +249,9 @@ document.querySelectorAll(".hero").forEach((hero, index) => {
   });
 });
 
-closeModal.addEventListener("click", () => {
+function cerrarModal() {
   modal.classList.remove("show");
+  modal.classList.add("hidden");
 
   document.querySelectorAll(".hero").forEach((h) => {
     h.classList.remove("hide", "active-hero");
@@ -286,4 +264,12 @@ closeModal.addEventListener("click", () => {
       onComplete: () => gsap.set(h, { clearProps: "all" }),
     });
   });
+}
+
+closeModal.addEventListener("click", cerrarModal);
+
+document.getElementById("volverBtn").addEventListener("click", () => {
+  localStorage.setItem("volverModal", "nuevaPartida");
+
+  window.location.href = "../../Iniciar/index.html";
 });
