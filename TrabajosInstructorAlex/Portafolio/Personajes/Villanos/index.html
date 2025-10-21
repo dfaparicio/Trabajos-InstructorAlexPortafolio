@@ -13,10 +13,7 @@
 <body>
   <div id="scene"></div>
 
-  
-
-
-
+  <!-- MODAL -->
   <div id="modalPersonaje" class="modal hidden" role="dialog" aria-modal="true" aria-hidden="true">
     <div class="modal-content">
 
@@ -28,7 +25,7 @@
         </svg>
       </button>
 
-      <!-- 🧭 ENCABEZADO -->
+      <!-- ENCABEZADO -->
       <div class="char-section char-header">
         <div class="char-header-text">
           <h2 id="charName"></h2>
@@ -39,63 +36,25 @@
       <!-- IZQUIERDA -->
       <div class="Contenido11">
         <div class="char-info">
-          <p><strong>Raza:</strong> <span id="charRace"></span></p>
-          <p><strong>Edad:</strong> <span id="charAge"></span></p>
-          <p><strong>Reino:</strong> <span id="charRealm"></span></p>
-          <p><strong>Alineación:</strong> <span id="charAlign"></span></p>
-          <p><strong>Arma Favorita:</strong> <span id="charWeapon"></span></p>
-          <p><strong>Nivel:</strong> <span id="charLevel"></span></p>
+          <div><p><strong>Raza:</strong> <span id="charRace"></span></p></div>
+          <div><p><strong>Edad:</strong> <span id="charAge"></span></p></div>
+          <div><p><strong>Reino:</strong> <span id="charRealm"></span></p></div>
+          <div><p><strong>Alineación:</strong> <span id="charAlign"></span></p></div>
+          <div><p><strong>Arma Favorita:</strong> <span id="charWeapon"></span></p></div>
+          <div><p><strong>Nivel:</strong> <span id="charLevel"></span></p></div>
         </div>
       </div>
 
-
-
       <!-- DERECHA -->
       <div class="Contenido22">
-        <!-- ESTADÍSTICAS -->
         <div class="stats">
-          <div class="stat"><label>Fuerza</label>
-            <div class="bar">
-              <div id="statStrength"></div>
-            </div>
-            <span id="percentStrength"></span>
-          </div>
-          <div class="stat"><label>Magia</label>
-            <div class="bar">
-              <div id="statMagic"></div>
-            </div>
-            <span id="percentMagic"></span>
-          </div>
-          <div class="stat"><label>Defensa</label>
-            <div class="bar">
-              <div id="statDefense"></div>
-            </div>
-            <span id="percentDefense"></span>
-          </div>
-          <div class="stat"><label>Velocidad</label>
-            <div class="bar">
-              <div id="statSpeed"></div>
-            </div>
-            <span id="percentSpeed"></span>
-          </div>
-          <div class="stat"><label>Corrupción</label>
-            <div class="bar">
-              <div id="statCorruption"></div>
-            </div>
-            <span id="percentCorruption"></span>
-          </div>
-          <div class="stat"><label>Vitalidad</label>
-            <div class="bar">
-              <div id="statVitality"></div>
-            </div>
-            <span id="percentVitality"></span>
-          </div>
-          <div class="stat"><label>Maná</label>
-            <div class="bar">
-              <div id="statMana"></div>
-            </div>
-            <span id="percentMana"></span>
-          </div>
+          <div class="stat"><label>Fuerza</label><div class="bar"><div id="statStrength"></div></div><span id="percentStrength"></span></div>
+          <div class="stat"><label>Magia</label><div class="bar"><div id="statMagic"></div></div><span id="percentMagic"></span></div>
+          <div class="stat"><label>Defensa</label><div class="bar"><div id="statDefense"></div></div><span id="percentDefense"></span></div>
+          <div class="stat"><label>Velocidad</label><div class="bar"><div id="statSpeed"></div></div><span id="percentSpeed"></span></div>
+          <div class="stat"><label>Corrupción</label><div class="bar"><div id="statCorruption"></div></div><span id="percentCorruption"></span></div>
+          <div class="stat"><label>Vitalidad</label><div class="bar"><div id="statVitality"></div></div><span id="percentVitality"></span></div>
+          <div class="stat"><label>Maná</label><div class="bar"><div id="statMana"></div></div><span id="percentMana"></span></div>
         </div>
 
         <!-- PODERES -->
@@ -105,26 +64,17 @@
         </div>
       </div>
 
-      <!-- 📜 HISTORIA -->
+      <!-- HISTORIA -->
       <div class="char-section char-story">
         <p id="charStory"></p>
       </div>
-
     </div>
   </div>
 
-
-
-
-
-  </div>
-
-
-
-
+  <!-- BOTÓN VOLVER -->
+    <button class="volver-btn2" id="volverBtn">Volver</button>
 
 
   <script src="script.js"></script>
 </body>
-
 </html>
