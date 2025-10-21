@@ -266,11 +266,12 @@ function cerrarModal() {
   });
 }
 
-closeModal.addEventListener("click", cerrarModal);
+document.getElementById("closeModal").addEventListener("click", cerrarModal);
 
 document.getElementById("volverBtn").addEventListener("click", (event) => {
   event.preventDefault();
   event.stopImmediatePropagation();
 
-  window.location.href = "../../Iniciar/index.html";
+  window.location.href = "/Iniciar/index.html"; 
 });
+
