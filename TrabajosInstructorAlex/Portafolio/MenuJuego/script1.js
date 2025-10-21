@@ -5,7 +5,7 @@ function inicializarMenuOpciones(playerName) {
   const claves = ["nuevaPartida", "perfil", "inventario", "opciones"];
 
   const contenidoModales2 = {
-nuevaPartida: `
+    nuevaPartida: `
   <h3>Elige tu Destino</h3>
   <p>Selecciona entre los valientes Héroes o los temidos Villanos para comenzar tu travesía.</p>
 
@@ -25,102 +25,78 @@ nuevaPartida: `
 
 
 `
-,
+    ,
 
     perfil: `
 <div class="perfil-container">
   <div class="perfil-panel">
-    <div class="perfil-equipo">
 
-      <!-- Armas a distancia -->
-      <div class="slot slot-ranged">
-        <h4>Ranged</h4>
-        <div class="item">
-          <span>Lv 23</span>
-          <img src="img/arc1.png" alt="Arco Principal">
-          <p>QLT 58</p>
+    <!-- EQUIPO -->
+    <div class="perfil-equipo">
+      <div class="slot">
+        <h4>RANGED</h4>
+        <div class="OrdenArmas">
+        <div class="item"><span>Lv 23</span><img src="img/Flechas1.png"><p>QLT 58</p></div>
+        <div class="item"><span>Lv 22</span><img src="img/Bara1.png"><p>QLT 56</p></div>
         </div>
-        <div class="item">
-          <span>Lv 22</span>
-          <img src="img/arc2.png" alt="Arco Secundario">
-          <p>QLT 56</p>
-        </div>
+        
       </div>
 
-      <!-- Personaje central -->
       <div class="perfil-personaje">
-        <img src="img/Perfil.png" alt="Guerrero" class="perfil-guerrero">
+        <img src="img/Perfil.png" class="perfil-guerrero">
         <div class="nivel">LVL 25</div>
       </div>
 
-      <!-- Armas cuerpo a cuerpo -->
-      <div class="slot slot-melee">
-        <h4>Melee</h4>
-        <div class="item">
-          <span>Lv 23</span>
-          <img src="img/arma1.png" alt="Maza">
-          <p>QLT 58</p>
-        </div>
-        <div class="item">
-          <span>Lv 18</span>
-          <img src="img/arma2.png" alt="Lanza">
-          <p>QLT 49</p>
-        </div>
+      <div class="slot">
+        <h4>MELEE</h4>
+        <div class="OrdenArmas">
+        <div class="item"><span>Lv 23</span><img src="img/Espada1.png"><p>QLT 58</p></div>
+        <div class="item"><span>Lv 18</span><img src="img/Martillo1.png"><p>QLT 49</p></div></div>
       </div>
     </div>
 
-    <!-- Estadísticas -->
+    <!-- INFO -->
     <div class="perfil-info">
-      <h3>${playerName}</h3>
+      <h3>DRAGÓN #429</h3>
 
       <div class="stats-grid">
         <div class="stat">
-          <span>⚔️ Ataque</span>
-          <div class="bar-container">
-            <div class="bar-fill" style="width: 82%;"></div>
-          </div>
+          <label>⚔️ Ataque</label>
+          <div class="bar-container"><div class="bar-fill" style="width: 82%;"></div></div>
           <small>338</small>
         </div>
 
         <div class="stat">
-          <span>🛡️ Defensa</span>
-          <div class="bar-container">
-            <div class="bar-fill" style="width: 64%;"></div>
-          </div>
+          <label>🛡️ Defensa</label>
+          <div class="bar-container"><div class="bar-fill" style="width: 64%;"></div></div>
           <small>163</small>
         </div>
 
         <div class="stat">
-          <span>❤️ Salud</span>
-          <div class="bar-container">
-            <div class="bar-fill" style="width: 95%; background: linear-gradient(90deg, #ff3c3c, #ff8888);"></div>
-          </div>
+          <label>❤️ Salud</label>
+          <div class="bar-container"><div class="bar-fill" style="width: 95%; background: linear-gradient(90deg, #ff3c3c, #ff8888);"></div></div>
           <small>1656</small>
         </div>
 
         <div class="stat">
-          <span>⚡ Energía</span>
-          <div class="bar-container">
-            <div class="bar-fill" style="width: 74%; background: linear-gradient(90deg, #00f2ff, #5effa1);"></div>
-          </div>
+          <label>⚡ Energía</label>
+          <div class="bar-container"><div class="bar-fill" style="width: 74%; background: linear-gradient(90deg, #00f2ff, #5effa1);"></div></div>
           <small>92</small>
         </div>
       </div>
 
-      <!-- Barra de experiencia -->
-      <div class="xp-bar">
+      <div class="xp-bar" style="margin-top:1rem;">
         <span>Experiencia</span>
-        <div class="xp-container">
-          <div class="xp-fill" style="width: 52%;"></div>
-        </div>
+        <div class="xp-container"><div class="xp-fill" style="width: 52%;"></div></div>
         <small>4,910 / 9,400 XP</small>
       </div>
     </div>
   </div>
 </div>
+
     `,
 
-inventario: `
+    inventario: `
 <section class="inventario">
   <h1 class="titulo">INVENTARIO</h1>
   <p class="subtitulo">Runas legendarias y reliquias de poder ancestral.</p>
@@ -326,3 +302,22 @@ function guardarConfiguracion() {
 
 
 
+//////////////////////// VOLVER DESDE PERSONAJES ////////////////////////
+document.addEventListener("DOMContentLoaded", () => {
+  const volverModal = localStorage.getItem("volverModal");
+
+  if (volverModal === "nuevaPartida") {
+    // Esperamos a que el menú esté listo
+    setTimeout(() => {
+      // Busca el botón correspondiente directamente
+      const btnNuevaPartida = document.querySelector("#Opciones .EditOpciones:nth-child(1)");
+
+      if (btnNuevaPartida) {
+        btnNuevaPartida.click(); // Abre el modal de Nueva Partida automáticamente
+      }
+
+      // Limpia la bandera para no repetirlo
+      localStorage.removeItem("volverModal");
+    }, 500);
+  }
+});
