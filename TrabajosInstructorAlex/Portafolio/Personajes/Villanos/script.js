@@ -268,8 +268,9 @@ function cerrarModal() {
 
 closeModal.addEventListener("click", cerrarModal);
 
-document.getElementById("volverBtn").addEventListener("click", () => {
-  localStorage.setItem("volverModal", "nuevaPartida");
+document.getElementById("volverBtn").addEventListener("click", (event) => {
+  event.preventDefault();
+  event.stopImmediatePropagation();
 
   window.location.href = "../../Iniciar/index.html";
 });
