@@ -307,17 +307,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const volverModal = localStorage.getItem("volverModal");
 
   if (volverModal === "nuevaPartida") {
-    // Esperamos a que el menú esté listo
     setTimeout(() => {
-      // Busca el botón correspondiente directamente
       const btnNuevaPartida = document.querySelector("#Opciones .EditOpciones:nth-child(1)");
 
       if (btnNuevaPartida) {
-        btnNuevaPartida.click(); // Abre el modal de Nueva Partida automáticamente
+        btnNuevaPartida.click(); 
       }
-
-      // Limpia la bandera para no repetirlo
       localStorage.removeItem("volverModal");
     }, 500);
   }
 });
+
