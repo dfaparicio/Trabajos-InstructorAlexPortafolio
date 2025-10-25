@@ -151,17 +151,22 @@ const modal = document.getElementById("modalPersonaje");
 const closeModal = document.getElementById("closeModal");
 const volverBtn = document.getElementById("volverBtn");
 
-container.innerHTML = characters
-  .map(
-    (c, i) => `
-  <div class="hero hero${i + 1}" tabindex="0" role="button" aria-label="${c.nombre}">
-    <img src="${c.img}" alt="${c.nombre}">
-    <div class="particles">
-      ${Array(15).fill("<span></span>").join("")}
-    </div>
-  </div>`
-  )
-  .join("");
+container.innerHTML = `
+  <div class="mapa">
+    <img src="./img/Mapa.png" alt="">
+  </div>
+  ${characters
+    .map(
+      (c, i) => `
+        <div class="hero hero${i + 1}" tabindex="0" role="button" aria-label="${c.nombre}">
+          <img src="${c.img}" alt="${c.nombre}">
+          <div class="particles">
+            ${Array(15).fill("<span></span>").join("")}
+          </div>
+        </div>`
+    )
+    .join("")}
+`;
 
 const fixedX = window.innerWidth * 0.46;
 const fixedY = window.innerHeight * 0.50;
@@ -282,6 +287,7 @@ const bgMusic = document.getElementById("bg-music");
 bgMusic.play().catch(() => {
   console.log("El navegador requiere interacción para iniciar la música.");
 });
+
 
 
 
