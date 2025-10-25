@@ -279,7 +279,7 @@ document.getElementById("volverBtn").addEventListener("click", (event) => {
   event.preventDefault();
   event.stopImmediatePropagation();
 
-  window.location.href = "../../Iniciar/index.html";
+  window.location.href = "../../MenuJuego/index.html";
 });
 
 
@@ -291,3 +291,4 @@ const bgMusic = document.getElementById("bg-music");
 bgMusic.play().catch(() => {
   console.log("El navegador requiere interacción para iniciar la música.");
 });
+
