@@ -276,3 +276,11 @@ document.getElementById("volverBtn").addEventListener("click", (event) => {
 });
 
 
+
+
+const bgMusic = document.getElementById("bg-music");
+
+bgMusic.play().catch(() => {
+  console.log("El navegador requiere interacción para iniciar la música.");
+});
+
