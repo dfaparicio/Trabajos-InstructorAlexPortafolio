@@ -292,3 +292,4 @@ bgMusic.play().catch(() => {
   console.log("El navegador requiere interacción para iniciar la música.");
 });
 
+
