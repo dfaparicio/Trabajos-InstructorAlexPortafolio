@@ -229,42 +229,42 @@ body {
 
 
 .hero1::after {
-  width: clamp(130px, 14vw, 200px);
-  height: clamp(30px, 3.2vw, 45px);
+  width: clamp(130px, 14vw, 300px);
+  height: clamp(30px, 3.2vw, 70px);
   bottom: 15px;
   left: 52%;
   opacity: 0.7;
 }
 
 .hero2::after {
-  width: clamp(180px, 19vw, 280px);
-  height: clamp(33px, 3.5vw, 50px);
-  bottom: 5px;
-  left: 50%;
+  width: clamp(180px, 19vw, 400px);
+  height: clamp(33px, 3.5vw, 90px);
+  bottom: -25px;
+  left: 53%;
   opacity: 0.75;
 }
 
 .hero3::after {
-  width: clamp(160px, 17vw, 250px);
-  height: clamp(40px, 4.2vw, 60px);
-  bottom: 45px;
-  left: 54%;
+  width: clamp(160px, 17vw, 400px);
+  height: clamp(40px, 4.2vw, 90px);
+  bottom:-20px;
+  left: 64%;
   opacity: 0.9;
 }
 
 .hero4::after {
-  width: clamp(160px, 17vw, 250px);
-  height: clamp(33px, 3.5vw, 50px);
-  bottom: 25px;
-  left: 45%;
+  width: clamp(160px, 17vw, 300px);
+  height: clamp(33px, 3.5vw, 90px);
+  bottom: -20px;
+  left: 47%;
   opacity: 0.8;
 }
 
 .hero5::after {
-  width: clamp(160px, 17vw, 250px);
-  height: clamp(36px, 3.8vw, 55px);
-  bottom: 10px;
-  left: 50%;
+  width: clamp(160px, 17vw, 350px);
+  height: clamp(36px, 25vw, 90px);
+  bottom:-35px;
+  left: 42%;
   opacity: 0.75;
 }
 
