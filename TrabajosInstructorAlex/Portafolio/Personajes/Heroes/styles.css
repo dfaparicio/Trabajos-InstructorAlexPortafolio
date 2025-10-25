@@ -624,3 +624,15 @@ h4 {
       0 0 36px rgba(255, 210, 100, 0.25);
   }
 }
+
+.mapa {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+}
+
+.mapa img {
+  width: clamp(180px, 15vw, 400px);
+  height: auto;
+}
