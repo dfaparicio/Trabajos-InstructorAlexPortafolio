@@ -1,13 +1,13 @@
 <template>
   <div class="contendorprincipal">
     <header class="encabezado">
-      <div class="imagen"><img src="./assets/Logo.png" alt="Logo" /></div>
+      <div class="imagen"><img :src="Logo" alt="Logo" /></div>
       <div class="opciones">
 
         <div class="buscar">
           <input type="search" v-model="busqueda" @keyup.enter="buscarPokemon" placeholder="Ingresa nombre o ID" />
           <div class="lupa">
-            <img src="./assets/Lupa.png" alt="" @click="buscarPokemon">
+            <img :src="Lupa" alt="" @click="buscarPokemon">
           </div>
         </div>
       </div>
@@ -42,7 +42,7 @@
                 <h2>Tipo</h2>
               </div>
               <div class="infotipos">
-                <div v-for="(tipo, index) in tipos" :key="index">
+                <div v-for="(tipo, index) in tipos" :key="index" :class="['type', `type-${tipo.type.name}`]">
                   <p>{{ tipo.type.name.toUpperCase() }}</p>
                 </div>
               </div>
@@ -51,27 +51,39 @@
           </div>
 
           <div class="altupeso">
-            <div>
-              <h2>Altura</h2>
-              <p>{{ altura }} M</p>
+
+            <div class="altura">
+              <div>
+                <h2>Altura</h2>
+              </div>
+              <div>
+                <p>{{ altura }} M</p>
+              </div>
             </div>
-            <div>
-              <h2>Peso</h2>
-              <p>{{ peso }} kg</p>
+
+            <div class="peso">
+              <div>
+                <h2>Peso</h2>
+              </div>
+              <div>
+                <p>{{ peso }}  M</p>
+              </div>
             </div>
+
           </div>
 
           <div class="debilidades">
             <div>
               <h2>Debilidades</h2>
             </div>
-            <div class="debi">
-              <p>HOLA</p>
-              <p>HOLA</p>
-              <p>HOLA</p>
-              <p>HOLA</p>
-              <p>HOLA</p>
+            <div class="infodebil">
+              <div class="infodebilidad" v-for="(deb, index) in debilidades" :key="index">
+                <p v-for="(debilidad, index) in deb.debilidades" :key="index" :class="['type', `type-${debilidad}`]">
+                  {{ debilidad.toUpperCase() }}
+                </p>
+              </div>
             </div>
+
           </div>
 
         </div>
@@ -146,6 +158,8 @@
 <script setup>
 import axios from "axios";
 import { ref } from "vue";
+import Logo from "./assets/Logo.png";
+import Lupa from "./assets/Lupa.png";
 
 
 const busqueda = ref('');
@@ -169,8 +183,7 @@ const peso = ref('');
 const movimientos = ref([]);
 const detallesmovimientos = ref([]);
 const resultadoevoluciones = ref([]);
-
-
+const debilidades = ref([]);
 
 
 async function buscarPokemon() {
@@ -197,7 +210,20 @@ async function buscarPokemon() {
       max: MAX_STATS[stats.stat.name] || 255
     }));
 
-    tipos.value = informacion.data.types || "Desconocido";
+    tipos.value = informacion.data.types || [];
+
+    const detallesdebil = await Promise.all(
+      tipos.value.map(async (tipo) => {
+        const jsontipo = await axios.get(tipo.type.url);
+        const data = jsontipo.data;
+        return {
+          debilidades: data.damage_relations?.double_damage_from?.map(d => d.name) || []
+        }
+      })
+    )
+    debilidades.value = detallesdebil;
+
+
     movimientos.value = informacion.data.moves;
 
     const detalles = await Promise.all(
@@ -233,19 +259,21 @@ async function buscarPokemon() {
         try {
           const pokeRes = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
           return {
-            name: name,
-            image: pokeRes.data.sprites.other["official-artwork"].front_default || imagenP
+            name,
+            image: pokeRes.data.sprites.other["official-artwork"].front_default || imagenP,
           };
         } catch {
+          console.warn(`No se encontró información para ${name}`);
           return {
-            name: name || nombre,
-            image: imagenP
+            name,
+            image: imagenP,
           };
         }
       })
     );
 
     resultadoevoluciones.value = resultadoevo;
+
 
 
 
@@ -264,7 +292,6 @@ buscarPokemon();
 <style>
 @import url("https://fonts.cdnfonts.com/css/pokemon-solid");
 
-/* ===================== GLOBAL ===================== */
 * {
   margin: 0;
   padding: 0;
@@ -278,26 +305,25 @@ html,
 body {
   width: 100%;
   height: 100%;
-  margin: 0;
-  padding: 0;
   overflow-x: hidden;
   background-color: white;
+  margin: 0;
+  padding: 0;
 }
 
+/* ---------- CONTENEDOR PRINCIPAL ---------- */
 #app,
 .contenedorprincipal {
   width: 100%;
   max-width: 1920px;
   height: 100vh;
   overflow-y: auto;
-  padding: 0;
-
   background-image: url('./assets/Fondo.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-
   position: relative;
+  padding: 0;
 }
 
 #app::before,
@@ -305,16 +331,13 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-
   background: linear-gradient(180deg,
       rgba(0, 0, 30, 0.8) 0%,
       rgba(0, 0, 0, 0.4) 40%,
       rgba(0, 0, 0, 0.8) 100%);
-
   pointer-events: none;
   z-index: 1;
 }
-
 
 #app>*,
 .contenedorprincipal>* {
@@ -322,24 +345,15 @@ body {
   z-index: 2;
 }
 
-
-
-main {
-  width: 100%;
-  max-width: 1920px;
-  height: auto;
-  margin: 0 auto;
-}
-
-/* ===================== ENCABEZADO ===================== */
+/* ---------- ENCABEZADO ---------- */
 .encabezado {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  padding: 20px 40px 10px 40px;
   flex-wrap: wrap;
   gap: 1rem;
+  width: 100%;
+  padding: 20px 40px 10px 40px;
 }
 
 .imagen img {
@@ -349,14 +363,9 @@ main {
 
 .opciones {
   display: flex;
-  gap: clamp(0.5rem, 2vw, 1.5rem);
   align-items: center;
   flex-wrap: wrap;
-}
-
-.opciones a {
-  text-decoration: none;
-  cursor: pointer;
+  gap: clamp(0.5rem, 2vw, 1.5rem);
 }
 
 .buscar {
@@ -366,31 +375,21 @@ main {
 }
 
 .buscar input {
-  text-align: center;
   width: clamp(150px, 25vw, 350px);
   height: 40px;
-  cursor: pointer;
+  text-align: center;
   padding: 0.5rem;
-
-
+  cursor: pointer;
   background: rgba(255, 255, 255, 0.07);
   backdrop-filter: blur(12px) saturate(1.3);
-  -webkit-backdrop-filter: blur(12px) saturate(1.3);
   border-radius: 18px;
   border: 1px solid rgba(255, 255, 255, 0.25);
   box-shadow: 0 0 12px rgba(255, 255, 255, 0.12);
-
-
-}
-
-.buscar input::-ms-clear {
-  display: none;
 }
 
 input::placeholder {
-  color: rgb(255, 255, 255);
+  color: #fff;
 }
-
 
 input[type="search"]:focus {
   outline: none;
@@ -407,8 +406,10 @@ input[type="search"]:focus {
   height: auto;
 }
 
-/* ===================== ESTRUCTURA ===================== */
 main {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
   overflow-y: hidden;
   box-sizing: border-box;
 }
@@ -417,31 +418,25 @@ main {
   display: flex;
   justify-content: center;
   gap: 50px;
-  padding: 0 20px 0 20px;
-  box-shadow: none;
-  background-color: none;
+  padding: 0 20px;
 }
 
-/* ===================== BLOQUE IZQUIERDO ===================== */
+/* ---------- BLOQUE IZQUIERDO---------- */
 .info1 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 40vw, 500px), 1fr));
-  width: 100%;
   gap: 30px;
+  width: 100%;
 }
 
+/* ---------- DIV POKEMON ---------- */
 .pokemon {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  height: auto;
   padding: 10px;
-
-
   background: rgba(255, 255, 255, 0.07);
   backdrop-filter: blur(12px) saturate(1.3);
-  -webkit-backdrop-filter: blur(12px) saturate(1.3);
   border-radius: 18px;
   border: 1px solid rgba(255, 255, 255, 0.25);
   box-shadow: 0 0 12px rgba(255, 255, 255, 0.12);
@@ -451,8 +446,7 @@ main {
   padding-bottom: 30px;
 }
 
-
-/* ===================== IMAGEN PRINCIPAL ===================== */
+/* ---------- IMAGEN PRINCIPAL ---------- */
 .pokemonimg {
   display: flex;
   justify-content: center;
@@ -465,7 +459,7 @@ main {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 8px 15px rgba(1, 160, 253, 0.596));
+  filter: drop-shadow(0 8px 15px rgba(1, 160, 253, 0.6));
   animation: float 4s ease-in-out infinite;
 }
 
@@ -481,7 +475,7 @@ main {
   }
 }
 
-/* ===================== IMAGENES SECUNDARIAS PEQUEÑAS ===================== */
+/* ---------- MINI IMAGINES ---------- */
 .pokemini {
   display: flex;
   justify-content: center;
@@ -493,7 +487,6 @@ main {
 .pokeminiimg {
   max-width: clamp(100px, 30vw, 250px);
   max-height: clamp(100px, 30vw, 250px);
-  object-fit: contain;
 }
 
 .pokeminiimg img {
@@ -504,42 +497,29 @@ main {
   animation: float 4s ease-in-out infinite;
 }
 
-/* ===================== BLOQUE IZQUIERDA INFORMACION ===================== */
+/* ---------- INFORMACION ---------- */
 .informacion {
   display: flex;
   flex-direction: column;
   gap: 30px;
-  height: auto;
   padding: 20px;
-
   background: rgba(255, 255, 255, 0.07);
   backdrop-filter: blur(12px) saturate(1.3);
-  -webkit-backdrop-filter: blur(12px) saturate(1.3);
   border-radius: 18px;
   border: 1px solid rgba(255, 255, 255, 0.25);
   box-shadow: 0 0 12px rgba(255, 255, 255, 0.12);
 }
 
-.informacion h2 {
-  padding-bottom: 10px;
-}
-
-.informacion p {
-  text-align: left;
-}
-
-
-/* ===================== ID Y TIPO ===================== */
 .idtipo {
   display: flex;
   justify-content: space-around;
 }
 
-
-/* ===================== TIPOS ===================== */
 .tipos {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  gap: 30px;
 }
 
 .infotipos {
@@ -549,7 +529,7 @@ main {
   gap: 50px;
 }
 
-/* ===================== ALTURA Y PESO ===================== */
+/* ---------- ALTURA Y PESO---------- */
 .altupeso {
   display: flex;
   justify-content: space-around;
@@ -559,56 +539,59 @@ main {
   text-align: center;
 }
 
+.altura, .peso{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
 
-/* ===================== DEBILIDADES ===================== */
 .debilidades {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 15px;
-}
-
-.debi {
-  display: flex;
-  flex-wrap: wrap;
   gap: 30px;
 }
 
+.infodebil {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
 
-/* ===================== BLOQUE HORIZONTAL ===================== */
+.infodebilidad {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* ---------- Movimientos ---------- */
 .informacion1 {
   display: flex;
   justify-content: space-around;
-  width: 100%;
-  height: auto;
   gap: 20px;
-  box-sizing: border-box;
-  grid-column: 1 / 3;
   padding: 20px;
-
   background: rgba(255, 255, 255, 0.07);
   backdrop-filter: blur(12px) saturate(1.3);
-  -webkit-backdrop-filter: blur(12px) saturate(1.3);
   border-radius: 18px;
   border: 1px solid rgba(255, 255, 255, 0.25);
   box-shadow: 0 0 12px rgba(255, 255, 255, 0.12);
+  grid-column: 1 / 3;
 }
 
-/* ===================== MOVIMIENTOS ===================== */
 .movimientos {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   gap: 20px;
 }
 
-
 .infomovimiento {
   display: flex;
-  gap: 40px;
   flex-wrap: wrap;
+  gap: 40px;
 }
 
 .infomovimiento h3 {
@@ -620,14 +603,24 @@ main {
   text-align: left;
 }
 
+/* ---------- BLOQUE DERECHO ---------- */
+.informacion2 {
+  width: 100%;
+  max-width: clamp(300px, 35vw, 450px);
+  padding: clamp(10px, 2vw, 40px);
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(12px) saturate(1.3);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.12);
+}
 
-/* ===================== ESTADISTICAS ===================== */
+/* ---------- Estadísticas ---------- */
 .estadisticas {
   width: 100%;
   max-width: clamp(300px, 50vw, 600px);
-  border-radius: 15px;
   padding: clamp(10px, 2vw, 20px);
-  overflow: hidden;
+  border-radius: 15px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -636,40 +629,27 @@ main {
 .label {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 8px;
   font-size: clamp(10px, 1.5vw, 12px);
-  color: #2a5298;
   text-transform: uppercase;
   letter-spacing: 1px;
-}
-
-.label span:first-child {
-  font-weight: bold;
+  margin-bottom: 8px;
 }
 
 .bar {
-  background: #ffffff;
+  background: #fff;
   border-radius: 8px;
   height: 12px;
   overflow: hidden;
-  position: relative;
 }
 
 .fill {
-  position: relative;
   height: 100%;
   border-radius: 5px;
+  transition: width 0.5s ease;
+  position: relative;
   background: gray;
   width: 0;
-  transition: width 0.5s ease;
   animation: fillBar 1s forwards;
-  overflow: hidden;
-}
-
-@keyframes fillBar {
-  to {
-    width: var(--width-final);
-  }
 }
 
 .fill::after {
@@ -681,7 +661,12 @@ main {
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
   animation: shine 2s infinite;
-  pointer-events: none;
+}
+
+@keyframes fillBar {
+  to {
+    width: var(--width-final);
+  }
 }
 
 @keyframes shine {
@@ -689,20 +674,18 @@ main {
     left: -50%;
   }
 
-  50% {
-    left: 100%;
-  }
-
+  50%,
   100% {
     left: 100%;
   }
 }
 
+/* ---------- COLORES PARA CADA UNA DE LAS STAST ---------- */
 .hp .fill {
   --color-start: #ff3b3b;
   --color-end: #d90000;
   --max: 255;
-  --width-final: min(calc((var(--value) / var(--max)) * 100%), 100%);
+  --width-final: min(calc((var(--value)/var(--max))*100%), 100%);
   background: linear-gradient(90deg, var(--color-start), var(--color-end));
   width: var(--width-final);
 }
@@ -711,7 +694,7 @@ main {
   --color-start: #ffa64d;
   --color-end: #ff6600;
   --max: 190;
-  --width-final: min(calc((var(--value) / var(--max)) * 100%), 100%);
+  --width-final: min(calc((var(--value)/var(--max))*100%), 100%);
   background: linear-gradient(90deg, var(--color-start), var(--color-end));
   width: var(--width-final);
 }
@@ -720,7 +703,7 @@ main {
   --color-start: #6fa8ff;
   --color-end: #2b6dff;
   --max: 230;
-  --width-final: min(calc((var(--value) / var(--max)) * 100%), 100%);
+  --width-final: min(calc((var(--value)/var(--max))*100%), 100%);
   background: linear-gradient(90deg, var(--color-start), var(--color-end));
   width: var(--width-final);
 }
@@ -729,7 +712,7 @@ main {
   --color-start: #ff66a3;
   --color-end: #e60073;
   --max: 194;
-  --width-final: min(calc((var(--value) / var(--max)) * 100%), 100%);
+  --width-final: min(calc((var(--value)/var(--max))*100%), 100%);
   background: linear-gradient(90deg, var(--color-start), var(--color-end));
   width: var(--width-final);
 }
@@ -738,7 +721,7 @@ main {
   --color-start: #8ae66b;
   --color-end: #4cb32f;
   --max: 230;
-  --width-final: min(calc((var(--value) / var(--max)) * 100%), 100%);
+  --width-final: min(calc((var(--value)/var(--max))*100%), 100%);
   background: linear-gradient(90deg, var(--color-start), var(--color-end));
   width: var(--width-final);
 }
@@ -747,34 +730,15 @@ main {
   --color-start: #ffe066;
   --color-end: #ffb700;
   --max: 200;
-  --width-final: min(calc((var(--value) / var(--max)) * 100%), 100%);
+  --width-final: min(calc((var(--value)/var(--max))*100%), 100%);
   background: linear-gradient(90deg, var(--color-start), var(--color-end));
   width: var(--width-final);
 }
 
-
-
-
-/* ===================== BLOQUE DERECHO ===================== */
-.informacion2 {
-  width: 100%;
-  max-width: clamp(300px, 35vw, 450px);
-  height: auto;
-  padding: clamp(10px, 2vw, 40px);
-
-  background: rgba(255, 255, 255, 0.07);
-  backdrop-filter: blur(12px) saturate(1.3);
-  -webkit-backdrop-filter: blur(12px) saturate(1.3);
-  border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.12);
-}
-
-/* ===================== EVOLUCION ===================== */
+/* ---------- Evolución ---------- */
 .evolucion {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   gap: 50px;
 }
@@ -786,21 +750,145 @@ main {
 .logoevo {
   max-width: clamp(50px, 10vw, 150px);
   max-height: clamp(50px, 10vw, 200px);
-  object-fit: contain;
 }
 
 .logoevo img {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  padding: 0;
 }
 
 .imgevo {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   gap: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ---------- COLORES PARA TIPOS Y ---------- */
+.type {
+  position: relative;
+  display: inline-block;
+  padding: 10px;
+  border-radius: 20px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.type::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  transform: skewX(-25deg);
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% {
+    left: -75%;
+  }
+
+  50% {
+    left: 125%;
+  }
+
+  100% {
+    left: 125%;
+  }
+}
+
+.type:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+}
+
+
+.type-normal {
+  background: linear-gradient(135deg, #A8A77A, #C6C4A1);
+}
+
+.type-fire {
+  background: linear-gradient(135deg, #EE8130, #F5AF19);
+}
+
+.type-water {
+  background: linear-gradient(135deg, #6390F0, #74c0fc);
+}
+
+.type-electric {
+  background: linear-gradient(135deg, #F7D02C, #FFD43B);
+}
+
+.type-grass {
+  background: linear-gradient(135deg, #7AC74C, #9bdc65);
+}
+
+.type-ice {
+  background: linear-gradient(135deg, #96D9D6, #b8f1ee);
+}
+
+.type-fighting {
+  background: linear-gradient(135deg, #C22E28, #E13C30);
+}
+
+.type-poison {
+  background: linear-gradient(135deg, #A33EA1, #C76CD0);
+}
+
+.type-ground {
+  background: linear-gradient(135deg, #E2BF65, #C99846);
+}
+
+.type-flying {
+  background: linear-gradient(135deg, #A98FF3, #C6B7F5);
+}
+
+.type-psychic {
+  background: linear-gradient(135deg, #F95587, #ff8ab6);
+}
+
+.type-bug {
+  background: linear-gradient(135deg, #A6B91A, #c6da3c);
+}
+
+.type-rock {
+  background: linear-gradient(135deg, #B6A136, #d6c04c);
+}
+
+.type-ghost {
+  background: linear-gradient(135deg, #735797, #9f80c7);
+}
+
+.type-dragon {
+  background: linear-gradient(135deg, #6F35FC, #8757ff);
+}
+
+.type-dark {
+  background: linear-gradient(135deg, #705746, #8a6b5c);
+}
+
+.type-steel {
+  background: linear-gradient(135deg, #B7B7CE, #D1D1E0);
+}
+
+.type-fairy {
+  background: linear-gradient(135deg, #D685AD, #f0a8cc);
 }
 </style>
