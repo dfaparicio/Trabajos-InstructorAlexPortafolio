@@ -146,8 +146,9 @@
 <script setup>
 import axios from "axios";
 import { ref } from "vue";
-import Logo from './assets/Logo.png'
-import Lupa from './assets/Lupa.png'
+
+import Logo from '@/assets/Logo.png'
+import Lupa from '@/assets/Lupa.png'
 
 const busqueda = ref('');
 const id = ref('');
