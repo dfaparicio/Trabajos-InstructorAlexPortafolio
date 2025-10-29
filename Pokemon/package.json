@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
-    "deploy": "vite build && cp -r dist ../Portafolio/Pokemon"
+    "preview": "vite preview"
   },
   "dependencies": {
     "axios": "^1.12.2",

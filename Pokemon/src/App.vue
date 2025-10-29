@@ -1,13 +1,13 @@
 <template>
   <div class="contendorprincipal">
     <header class="encabezado">
-      <div class="imagen"><img :src="Logo" alt="Logo" /></div>
+      <div class="imagen"><img src="./assets/Logo.png" alt="Logo" /></div>
       <div class="opciones">
 
         <div class="buscar">
           <input type="search" v-model="busqueda" @keyup.enter="buscarPokemon" placeholder="Ingresa nombre o ID" />
           <div class="lupa">
-            <img :src="Lupa" alt="" @click="buscarPokemon">
+            <img src="./assets/Lupa.png" alt="" @click="buscarPokemon">
           </div>
         </div>
       </div>
@@ -147,8 +147,6 @@
 import axios from "axios";
 import { ref } from "vue";
 
-import Logo from './src/assets/Logo.png'
-import Lupa from './src/assets/Lupa.png'
 
 const busqueda = ref('');
 const id = ref('');
