@@ -1,0 +1,710 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+body{
+    font-family: 'Source Code Pro', monospace;
+    margin: 0;
+    height: 100vh;
+    color: rgb(0, 0, 0);
+    background-color: rgb(11, 7, 95, 0.1);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.ContenedorPadre{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+}
+
+.ContenedorHijo1{
+
+    .ContenedorInfo{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 50px;
+
+        padding: 50px;
+
+        background-color: rgba(0, 0, 0, 0.1);
+        box-shadow:  0 5px 20px rgb(11, 7, 95, 0.5);
+        border-radius: 10px;
+        
+        position: fixed;
+        top: 50%;            
+        left: 50px;            
+        transform: translateY(-50%);
+
+        width: 400px;
+        
+
+        img{
+            width: 300px;
+            height: 300px;
+        }
+
+        button{
+            padding: 10px 30px 10px 30px;
+            border-radius: 99px;
+            border: none;
+            box-shadow:  0 0 30px rgb(11, 7, 95, 0.5);
+            transition: border 0.3s ease, box-shadow 0.3s ease;
+            background-color: rgb(11, 7, 95);
+            color: white;
+        }
+        button:hover{
+            box-shadow:  0 0 30px rgb(11, 7, 95, 1);
+            transform:scale(1.1);
+            
+        }
+        button a{
+            color: white;
+            text-decoration: none;
+        }
+    }
+}
+
+.ContenedorHijo2::-webkit-scrollbar {
+    display: none;
+}
+
+.ContenedorHijo2 {
+    position: fixed;
+    top: 50%;            
+    right: 50px;         
+    transform: translateY(-50%);
+    width: 60%;
+
+
+
+    border-radius: 10px;
+
+    max-height: 90vh;
+    overflow-y: scroll;
+    
+
+    .ContenedorInfo2{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 50px;
+
+
+
+ 
+
+        .Barra{
+            display: flex;
+            justify-content: right;
+            align-items: center;
+            gap: 250px;
+            cursor: pointer;
+            padding: 30px 0 0 0;
+
+            a{
+                text-decoration: none;
+                color: black;
+            }
+            
+            h3{
+                border-radius: 10px;
+                padding: 10px;
+                box-shadow: 0 4px 5px rgb(11, 7, 95, 0.5);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            
+            h3:hover {
+                transform: translateY(-15px);
+                box-shadow: 0 10px 20px rgb(11, 7, 95);
+            }
+        }
+
+        .Presentacion{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 50px;
+
+            padding: 100px 0 100px 0;
+            
+            h1{
+                font-size: 50px;
+            }
+
+            p{
+                text-align: center;
+                width: 80%;
+            }
+            .Lenguajes{
+                display: flex;
+                gap: 50px;
+
+                a{
+                    font-size: 80px;
+                    color: rgb(11, 7, 95);
+                }
+            }
+
+        }
+    }
+}
+
+
+.Flecha {
+    width: 30px;
+    height: 30px;
+    border-left: 4px solid rgb(11, 7, 95);
+    border-bottom: 4px solid rgb(11, 7, 95);
+    transform: rotate(-45deg);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    margin: 0 0 100px 0;
+    color: blueviolet;
+  }
+
+  .Flecha:hover {
+    transform: rotate(-45deg) scale(1.5);
+  }
+
+
+.Proyectos{
+    display: flex;
+    justify-content: center;
+
+    width: 100%;
+
+    .TituloProyectos{
+        font-size: 35px;
+        text-align: center;
+    }
+
+    .Listado{
+        display: flex;
+        flex-direction: column;
+        gap: 100px;
+        width: 100%;
+        border-radius: 10px;
+
+    }
+
+    .ProyectosC{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        justify-content: center;
+        align-items: center;
+        gap: 35px;
+
+    }
+    
+    .NewDiseño{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .DiseñoP{
+        display: flex;
+        flex-direction: column;
+        gap:50px;
+        justify-content: center;
+        align-items: center;
+
+        width: 340px;
+        height: 390px;
+       
+
+        margin:  0 0 50px 0;
+        padding: 20px;
+
+        border-radius: 20px;
+        box-shadow: 0px 10px 15px rgb(11, 7, 95, 0.3);
+
+        .INPUT{
+            padding: 20px 0 0 0 ;
+        }
+        .input1{
+            background: none;
+            border: transparent;
+            border-radius: 100%;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        img{
+            width: 150px;
+            height: 150px;
+        }
+        h1{
+            text-align: center;
+        }
+
+
+    }
+
+.input1:hover{
+    box-shadow: 0 0 30px rgb(0, 0, 0);
+}   
+}
+
+
+.DiseñoP{
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.DiseñoP:hover {
+    transform: translateY(-30px);
+    box-shadow: 0 10px 20px rgb(11, 7, 95, 1);
+}
+
+.RedesSociales{
+    display: flex;
+    gap: 50px;
+    
+    a{
+        font-size: 50px;
+        color: rgb(11, 7, 95);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-radius: 15px;
+        padding: 5px;
+    }
+
+    a:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 1)
+}
+}
+
+  .Flecha2 {
+    width: 30px;
+    height: 30px;
+    border-left: 4px solid rgb(11, 7, 95);
+    border-bottom: 4px solid rgb(11, 7, 95);
+    transform: rotate(135deg);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .Flecha2:hover {
+    transform: rotate(135deg) scale(1.5);
+  }
+
+.ListadoRedes{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+
+.InformacionContactos{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+
+
+.InfoContac{
+    display: flex;
+    gap: 100px;
+    
+    img{
+        width: 300px;
+        height: 300px;
+    }
+    .Redes{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 45px;
+        a{
+            font-size: 25px;
+            color: rgb(11, 7, 95);
+            text-decoration: none;
+        }
+        a i{
+            margin-right: 20px;
+        }
+        
+    }
+}
+
+
+.IContac{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    h1{
+        font-size: 50px;
+    }
+
+}
+
+
+.InformacionEmail{
+    display: flex;
+
+    input{
+        width: 300px;
+        padding: 10px;
+        border-radius: 10px;
+        border: none;
+    }
+
+    form{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 100px;
+    }
+    .Cuadros{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .Inputs{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    textarea{
+        width: 300px;
+        height: 130px;
+        border-radius: 10px;
+        padding: 10px;
+        border: none;
+    }
+
+    .Mensaje{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+        gap: 20px;
+        padding: 95px 0 0 0 ;
+
+        button{
+            padding: 10px 30px 10px 30px;
+            border-radius: 99px;
+            border: none;
+            box-shadow:  0 0 30px rgb(11, 7, 95, 0.5);
+            transition: border 0.3s ease, box-shadow 0.3s ease;
+            background-color: rgb(11, 7, 95);
+            color: white;
+        }
+        button:hover{
+            box-shadow:  0 0 30px rgb(11, 7, 95, 1);
+            transform:scale(1.1);
+        }
+    }
+}
+
+
+#ContenedorInfo2{
+    padding:30px 0 20px 0;
+    .Barra{
+        gap: 50px;
+        padding: 0;
+    }
+    
+    h5{
+        border-radius: 10px;
+        padding: 10px;
+         box-shadow: 0 4px 5px rgb(11, 7, 95, 0.5);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .BarraNew{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 100px;
+    }
+}
+
+
+
+
+
+@media (min-width: 1400px) and (max-width: 1700px) {
+.ContenedorHijo1{
+
+    .ContenedorInfo{
+        top: 50%;            
+        left: 10px;            
+    }
+
+}
+
+.ContenedorHijo2 {
+    top: 50%;            
+    right: 10px;         
+    width: 60%;
+}
+
+
+}
+
+@media (min-width: 1200px) and (max-width: 1400px) {
+.ContenedorHijo1{
+
+    .ContenedorInfo{
+        top: 50%;            
+        left: 10px;            
+    }
+
+}
+
+.ContenedorHijo2 {
+    top: 50%;            
+    right: 10px;         
+    width: 55%;
+
+    .ContenedorInfo2{
+        
+        .Barra{
+            gap: 100px;
+        }
+    }
+}
+
+.Proyectos{
+
+    .DiseñoP{
+        width: 260px;
+    }
+}
+
+.InfoContac{
+    display: flex;
+    flex-direction: column;
+}
+form{
+    display: flex;
+    flex-direction: column;
+}
+.InformacionEmail{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    .Mensaje{
+        padding: 0;
+    }
+}
+
+
+}
+
+
+
+@media (min-width: 300px) and (max-width: 1200px) {
+    
+    body {
+        flex-direction: column;
+        align-items: center;
+        overflow-x: hidden;
+        height: auto;
+    }
+    
+    .ContenedorPadre {
+        display: flex;
+        flex-direction: column;
+    }
+
+  .ContenedorHijo1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+
+    .ContenedorInfo {
+        position: static;
+        transform: none;
+        width: 80%;
+    }
+  }
+
+  .ContenedorHijo2 {
+    position: static;
+    transform: none;
+    width: 90%;
+    max-height: none;
+  }
+
+  .Barra {
+    justify-content: center;
+    gap: 30px;
+  }
+
+  .RedesSociales {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+  }
+
+  .InfoContac{
+    display: flex;
+    flex-direction: column;
+}
+form{
+    display: flex;
+    flex-direction: column;
+}
+.InformacionEmail{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    .Mensaje{
+        padding: 0;
+    }
+}
+}
+
+
+@media (min-width: 300px) and (max-width: 900px) {
+    
+    .Proyectos{
+        
+        .ProyectosC{
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+    
+.ContenedorHijo2 {
+    .ContenedorInfo2{
+        
+        .Barra{
+            gap: 50px;
+        }
+    }
+}
+    
+}
+
+
+@media (min-width: 300px) and (max-width: 700px) {
+    
+  .ContenedorHijo1{
+    .ContenedorInfo {
+        width: 60%;
+    }
+  }
+
+  .ContenedorHijo2 {
+    width: 90%;
+  }
+  
+  .BarraNew{
+    display: flex;
+    flex-direction: column;
+    gap: 50px !important;
+}
+.Lenguajes{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+}
+
+@media (min-width: 300px) and (max-width: 500px) {
+
+  .ContenedorHijo1{
+    .ContenedorInfo {
+        width: 50%;
+        
+        img{
+            width: 180px;
+            height: 180px;
+        }
+    }
+  }
+.ContenedorHijo2 {
+    .ContenedorInfo2{
+        
+        .Barra{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+    }
+}
+
+.Proyectos{
+
+    .DiseñoP{
+        width: 200px;
+        height: 450px;
+    }
+}
+
+.InfoContac{
+    .Redes{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+}
+.TituloProyectos{
+    h1{
+        font-size: 50px;
+    }
+}
+.InfoContac{
+    img{
+        width: 200px;
+        height: 200px;
+    }
+}
+
+.InformacionEmail{
+    
+    input{
+        width: 200px;
+    }
+    textarea{
+        width: 200px;
+        height: 130px;
+    }
+    h2{
+        width: 200px;
+    }
+}
+
+ 
+}
+
+
+/* Cargando */
+
+.Cargando {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid rgb(11, 7, 95);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 3s linear infinite 1s;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="res"></h1>
+    <input type="text" id="n1">
+    <input type="text" id="n2">
+    <button onclick="operacion()">Sumar</button>
+
+    <script>
+        function operacion(){
+            let r = document.getElementById("res")
+            let num1 = document.getElementById("n1")
+            let num2 = document.getElementById("n2")
+            r.textContent = parseInt(num1.value) + parseInt(num2.value)
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        input y eventos
+    </title>
+</head>
+<body>
+    <h1 id="con">0</h1>
+    <button id="ct">Contar</button>
+    <button id="rt">Restar</button>
+    <script>
+        let contador = document.getElementById("con")
+
+        document.getElementById("ct").addEventListener("click",()=>{
+            contador.textContent++
+        })
+       function sumar(){
+            contador.textContent++
+        }
+
+        function restar(){
+            if(contador.textContent>0){
+                contador.textContent--
+            }
+            
+        } 
+
+    </script>
+</body>
+</html>

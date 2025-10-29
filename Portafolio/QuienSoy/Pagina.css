@@ -1,0 +1,557 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+.Contenido1{
+    position: fixed;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    background-color: #424242;
+    color: white;
+    
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+.Nombre{
+    display: flex;
+    gap: 5px;
+    font-size: 25px;
+    padding-left: 120px;
+}
+.D{
+    font-weight: bold;
+}
+.Informacion{
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+    gap: 20px;
+    padding: 20px 20px 20px 0;
+}
+.Gris{
+    gap: 20px;
+}
+a{
+    text-decoration: none;
+}
+.QuienInicio{
+    color: white;
+}
+.ColorGris{
+    color: #919191;
+}
+
+
+.Contenido2{
+    display: grid;
+    grid-template-columns: repeat(2,  1fr);
+    padding: 80px 0 20px 0;
+}
+.Señor{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.Señor1{
+    padding: 0 0 0 150px;
+}
+.Quiensoy{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 110px 0 0;
+}
+.Quien{
+    color: #ff3300de;
+    font-size: 55px;
+    font-family: sans-serif;
+    padding: 0 0 0 25px;
+}
+.Lorem1{
+    padding: 10px 0 0 25px;
+    width: 65%;
+    font-size: 18px;
+    line-height: 1.4em;;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #585858;
+}
+.Leer1{
+    padding: 10px 20px 10px 20px;
+    font-size: 16px;
+    border-color: red;
+    border-radius:  5px;
+    color: white;
+    background-color: #ff3300de;
+    margin: 20px 0 0 25px;
+}
+
+
+.Contenido3{
+    display: flex;
+    flex-direction: column;
+    background-color: #ff3300de;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+ .Avatar1{
+    width: 260px;
+    height: 260px;
+    padding: 20px 0 0 0;
+ }
+.Lorem2{
+    font-size: 35px;
+    color:white;
+    width: 147cqh;
+    max-width: 1000;
+    text-align: center;
+    padding: 20px 0 0 0;
+    line-height: 1.6;
+}
+.Autor{
+    font-size: 25px;
+    color:white;
+    width: 65%;
+    text-align: center;
+    padding: 0 0 20px 0;
+    font-style: italic;
+}
+
+
+.Contenedor4{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 0 20px 0;
+}
+.TitutloMPS{
+    padding: 30px 0 30px 0;
+    font-size: 60px;
+    font-family: sans-serif;
+    color: #424242;
+    text-align: center;
+}
+.MisProyectos{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    text-align: center;
+    gap: 40px;
+    padding: 0 130px 0 130px;
+    
+}
+.Proyectos1234{
+    border: 1px solid rgb(231, 230, 230); 
+    font-size: 20px;
+    
+}
+.TituloPros{
+    padding: 20px 0 0 0;
+    color: #585858;
+    font-size: 25px;
+}
+.LoremProyectos{
+    color: #585858;
+    padding: 20px 20px 20px 20px;
+  
+}
+.VPro1{
+    font-size: 15px;
+    border-radius:  5px;
+    border-color: red;
+    color: white;
+    background-color: #ff3300de;
+    padding: 10px 12px 10px 12px;
+    margin: 0 0 20px 0;
+}
+.ImgPro1{
+    width: 100%;
+}
+.Copy{
+    display: flex;
+    width: 100%;
+    height: 7vh;
+    place-items: center;
+    justify-content:flex-end;
+    background-color: #424242;
+    color: white;
+}
+.BarraCopy{
+    font-size: 19px;
+    padding-right: 7vw;
+}
+@media (min-width: 300px) and (max-width: 500px) {
+.Contenido1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 10px 0 0 0;
+    gap: 20px;
+  }
+.Nombre{
+    font-size: 20px;
+    padding: 10px 0 0 0;
+}
+.Informacion{
+    font-size: 15px;
+    padding: 0 0 20px 0;
+    
+}
+.Contenido2{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    gap: 20px;
+}
+.Señor{
+    padding-top: 40px;
+}
+.Señor1{
+    width: 280px;
+    padding: 0;
+}
+.Quiensoy{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+.Quien{
+    font-size: 20px;
+    padding: 0;
+}
+.Lorem1{
+    font-size: 12px;
+    padding: 10px 0 10px 0;
+    text-align: justify;
+}
+.Leer{
+    padding: 10px 0 20px 20px;
+}
+.Leer1{
+    margin: 0;
+    font-size: 12px;
+}
+.Avatar1{
+    width: 150px;
+    height: 150px;
+}
+.Lorem2{
+    font-size: 12px;
+    text-align: justify;
+    width: 80%;
+}
+.Autor{
+    padding: 10px 0 10px 0;
+    font-size: 20px;
+}
+.MisProyectos{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    padding: 0 80px 0 80px;
+}
+.TitutloMPS{
+    font-size: 30px;
+}
+.Copy{
+    height: 40px;
+}
+.BarraCopy{
+    font-size: 12px;
+    text-align:right;
+}
+}
+@media (min-width: 501px) and (max-width: 800px) {
+.Contenido1{
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    gap: 120px;
+  }
+.Nombre{
+    font-size: 20px;
+    padding: 20px 0 20px 0;
+ 
+}
+.Informacion{
+    font-size: 15px;
+    gap: 8px;
+    padding: 20px 0 20px 0;
+}
+.Contenido2{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    gap: 20px;
+}
+.Señor{
+    padding-top: 0;
+}
+.Señor1{
+    width: 400px;
+    padding: 0;
+}
+.Quiensoy{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+.Quien{
+    font-size: 40px;
+    padding: 0;
+}
+.Lorem1{
+    font-size: 15px;
+    padding: 10px 0 10px 0;
+    text-align: justify;
+}
+.Leer{
+    padding: 10px 0 20px 20px;
+}
+.Leer1{
+    margin: 0;
+    font-size: 15px;
+}
+.Avatar1{
+    width: 250px;
+    height: 250px;
+}
+.Lorem2{
+    font-size: 18px;
+    text-align: justify;
+    width: 90%;
+}
+.Autor{
+    padding: 10px 0 10px 0;
+    font-size: 22px;
+}
+.MisProyectos{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 20px 0 20px;
+}
+.TitutloMPS{
+    font-size: 30px;
+}
+.Copy{
+    height: 40px;
+}
+.BarraCopy{
+    font-size: 12px;
+    text-align:right;
+}
+}
+@media (min-width: 600px) and (max-width: 800px) {
+.Contenido1{
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    gap: 240px;
+  }
+.Nombre{
+    font-size: 20px;
+    padding: 20px 0 20px 0;
+ 
+}
+.Informacion{
+    font-size: 15px;
+    gap: 8px;
+    padding: 20px 0 20px 0;
+}
+.MisProyectos{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 40px 0 40px;
+}
+.TitutloMPS{
+    font-size: 30px;
+}
+.Copy{
+    height: 40px;
+}
+.BarraCopy{
+    font-size: 12px;
+    text-align:right;
+}
+}
+@media (min-width: 801px) and (max-width: 1000px) { 
+.Contenido1{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) ;
+    padding: 0;
+    gap: 0;
+  }
+.Nombre{
+    font-size: 25px;
+    padding: 20px 0 20px 40px;
+    justify-content: left;
+}
+.Informacion{
+    font-size: 20px;
+    padding: 20px 40px 20px 0;
+    gap: 20px;
+    justify-content: right;
+}
+.Contenido2{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-items: center;
+    height: 350px;
+    padding: 60px 0 0 0;
+}
+.Señor{
+    padding: 0;
+}
+.Señor1{
+    width: 400px;
+    padding: 0 5px 0 20px;
+}
+.Quiensoy{
+    width: 100%;
+    padding: 0;
+
+}
+.Quien{
+    width: 250px;
+    font-size: 35px;
+    padding: 0 0 20px 0;
+}
+.Lorem1{
+    font-size: 20px;
+    width: 90%;
+    padding: 0 0 20px 0;
+    text-align: justify;
+}
+.Leer{
+    padding: 0;
+    width: 110px;
+}
+.Leer1{
+    margin: 0;
+    font-size: 15px;
+}
+.Avatar1{
+    width: 300px;
+    height: 300px;
+}
+.Lorem2{
+    font-size: 20px;
+    text-align: justify;
+    width: 90%;
+}
+.Autor{
+    padding: 10px 0 10px 0;
+    font-size: 30px;
+}
+.MisProyectos{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 0 10px 0 10px;
+    gap: 5px;
+}
+.TitutloMPS{
+    font-size: 30px;
+}
+.Copy{
+    height: 40px;
+}
+.BarraCopy{
+    font-size: 12px;
+    text-align:right;
+}
+}
+@media (min-width: 1001px) and (max-width: 1600px) {    
+.Contenido1{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) ;
+    padding: 0;
+    gap: 0;
+  }
+.Nombre{
+    font-size: 25px;
+    padding: 20px 0 20px 40px;
+    justify-content: left;
+}
+.Informacion{
+    font-size: 20px;
+    padding: 20px 40px 20px 0;
+    gap: 20px;
+    justify-content: right;
+}
+
+.Contenido2{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-items: center;
+    height: 350px;
+    padding: 60px 0 0 0;
+}
+.Señor{
+    padding: 0;
+}
+.Señor1{
+    width: 400px;
+    padding: 0 5px 0 20px;
+}
+.Quiensoy{
+    width: 100%;
+    padding: 0;
+
+}
+.Quien{
+    width: 250px;
+    font-size: 35px;
+    padding: 0 0 20px 0;
+}
+.Lorem1{
+    font-size: 20px;
+    width: 90%;
+    padding: 0 0 20px 0;
+    text-align: justify;
+}
+.Leer{
+    padding: 0;
+    width: 110px;
+}
+.Leer1{
+    margin: 0;
+    font-size: 15px;
+}
+.Avatar1{
+    width: 300px;
+    height: 300px;
+}
+.Lorem2{
+    font-size: 23px;
+    text-align: justify;
+    width: 70%;
+}
+.Autor{
+    padding: 10px 0 10px 0;
+    font-size: 30px;
+}
+.MisProyectos{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 0 10px 0 10px;
+    gap: 5px;
+}
+.TitutloMPS{
+    font-size: 30px;
+}
+.Copy{
+    height: 40px;
+}
+.BarraCopy{
+    font-size: 12px;
+    text-align:right;
+}
+}

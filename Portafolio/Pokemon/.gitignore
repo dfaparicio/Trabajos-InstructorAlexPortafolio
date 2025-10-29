@@ -1,0 +1,22 @@
+# Dependencias que NO se deben subir
+/node_modules/
+
+# Archivos de build
+/dist/
+
+# Configs locales del entorno
+.env
+.env.*
+!.env.example
+
+# Archivos temporales del sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Config de VSCode
+.vscode/

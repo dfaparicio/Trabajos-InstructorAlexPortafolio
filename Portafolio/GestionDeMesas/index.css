@@ -1,0 +1,264 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Quicksand', sans-serif;
+}
+
+body {
+    background-color: #fcf0e4;
+    background-image: url('https://www.transparenttextures.com/patterns/fabric-of-squares.png');
+    background-repeat: repeat;
+    background-size: auto;
+    color: #1C1C1C;
+}
+
+p,
+h1,
+h5 {
+    margin: 0;
+}
+
+.Padre {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding-top: 10px;
+    padding-bottom: 50px;
+}
+
+.Encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    padding: 12px 20px;
+    background: rgba(255, 253, 253, 0.9); 
+    border-radius: 20px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(222, 212, 203, 0.6);
+    backdrop-filter: saturate(180%) blur(10px);
+    -webkit-backdrop-filter: saturate(180%) blur(10px);
+}
+
+h1 {
+    font-weight: 900;
+    font-size: 30px;
+}
+
+.TituloRegistro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.Opciones {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.Data {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    padding: 20px;
+}
+
+.DivMesa {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 25px;
+    height: fit-content;
+    background: rgba(255, 253, 253, 0.9); 
+    border-radius: 20px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(150, 75, 50, 0.15); 
+    outline: 2px solid rgba(200, 120, 100, 0.3); 
+    outline-offset: -10px;
+}
+
+.DivMesa img {
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin: 0 auto;
+}
+
+.editMesa {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+
+    h5 {
+        padding-top: 12px;
+    }
+}
+
+.editMesa h1,
+.editMesa h5 {
+    text-align: center;
+}
+
+.botonesMesas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.botonesMesas button {
+    padding: 10px 15px;
+    border-radius: 12px;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: #5a2a27;
+    background: linear-gradient(145deg, #f5cdc0, #f3d7c9);
+    box-shadow: 0 6px 12px rgba(100, 40, 20, 0.15);
+    cursor: pointer;
+}
+
+.botonesMesas button:hover {
+    transform: scale(1.08);
+    background: linear-gradient(145deg, #fbd4c6, #f7bfa1);
+    box-shadow: 0 8px 16px rgba(100, 40, 20, 0.25);
+}
+
+.botonesMesas button:active {
+    transform: scale(1);
+    box-shadow: 0 4px 8px rgba(100, 40, 20, 0.2);
+}
+
+.btn {
+    transition: transform 0.5s ease;
+    background-color: transparent;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.btn:hover {
+    background-color: transparent;
+    color: black;
+    transform: scale(1.1);
+}
+
+.btn {
+    color: black;
+    border: solid 1px black !important;
+}
+
+button:active {
+    background-color: white !important;
+}
+
+.RegistrosMesas {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.Estado {
+    font-size: 13px;
+    padding: 6px 10px;
+    border-radius: 30px;
+    font-weight: bold;
+    color: white;
+    margin-top: 10px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+.EstadoDisponible .Estado {
+    background-color: #4caf50;
+}
+
+.EstadoOcupada .Estado {
+    background-color: #2196f3;
+}
+
+.EstadoDeshabilitada .Estado {
+    background-color: #9e9e9e;
+}
+
+@media (min-width: 300px) and (max-width: 750px) {
+
+    .Encabezado {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        h1 {
+            text-align: center;
+        }
+    }
+
+    .Opciones {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .Data {
+        display: grid !important;
+        grid-template-columns: repeat(1, 1fr) !important;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+    }
+}
+
+@media (min-width: 300px) and (max-width: 400px) {
+    .DivMesa {
+        padding: 10px;
+    }
+
+    .Opciones {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 750px) and (max-width: 1200px) {
+
+    .Data {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+}
+@media (min-width: 1200px) and (max-width: 1400px) {
+
+    .Data {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+}
+
+@media (min-width: 1400px) and (max-width: 1700px) {
+
+    .Data {
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr) !important;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+}

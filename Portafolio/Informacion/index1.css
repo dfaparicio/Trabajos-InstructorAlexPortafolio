@@ -1,0 +1,187 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Cinzel', serif;
+    user-select: none;
+}
+
+.Imagen{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img{
+        width: 500px;
+        height: 700px;
+    }
+}
+
+.ContenedorG{
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 23px 0 50px 0;  
+}
+
+.Encabezado{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+
+    h1{
+        font-size: 50px;
+        border-radius: 10px;
+        box-shadow: 0 0 25px rgb(0, 0, 0, 1);
+        background-color: rgba(255, 255, 255, 0.6);
+        padding: 10px 20px 10px 20px;
+    }
+
+    img{
+        border-radius: 10px;
+        box-shadow: 0 20px 30px 20px rgb(0, 0, 0, 0.7);
+    }
+    }
+
+
+.TodaInformacion{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+    padding: 0 100px 0 0 ;
+}
+
+.DatosBasicos,.Ubicacion,.DatosInteresantes,.ActividadesRecomendadas{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px 50px;
+
+    border-radius: 10px;
+    box-shadow: 0 0 25px rgb(0, 0, 0, 1);
+    background-color: rgba(255, 255, 255, 0.5);
+    font-weight: bold;
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    p{
+        width: 50%;
+    }
+}
+
+.DatosBasicos:hover,.Ubicacion:hover,.DatosInteresantes:hover,.ActividadesRecomendadas:hover{
+   transform: translateY(-30px) scale(1.10);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+
+ul{
+    padding: 0 0 0 20px;
+}
+
+.Volver{
+    a{
+        text-decoration: none;
+        font-size: 20px;
+        color: black;
+    }
+}
+
+
+
+
+
+
+
+ @media (min-width: 300px) and (max-width: 1400px) {
+
+.ContenedorG{
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.TodaInformacion{
+    padding: 100px 100px 0;
+ }
+
+ .Volver{
+    padding: 0 0 50px 0;
+}
+}
+
+
+
+
+ @media (min-width: 300px) and (max-width: 1000px) {
+
+.ContenedorG{
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.TodaInformacion{
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 100px 50px;
+}
+
+ 
+}
+
+
+
+ @media (min-width: 300px) and (max-width: 600px) {
+
+.Imagen{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img{
+        width: 400px;
+        height: 500px;
+    }
+}
+
+
+.ContenedorG{
+    padding: 10px;
+}
+
+.TodaInformacion{
+    padding: 100px 20px;
+}
+ 
+}
+
+
+
+ @media (min-width: 300px) and (max-width: 430px) {
+
+.Imagen{
+
+    img{
+        width: 290px;
+        height: 390px;
+    }
+}
+
+.ContenedorG{
+    padding: 10px;
+}
+
+.TodaInformacion{
+    padding: 100px 0;
+    font-size: 16px;
+}
+
+.DatosBasicos,.Ubicacion,.DatosInteresantes,.ActividadesRecomendadas{
+    padding: 20px 20px;
+}
+ 
+}
