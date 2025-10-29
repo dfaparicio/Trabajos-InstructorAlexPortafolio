@@ -1,9 +1,18 @@
 <template>
-  <div class="contendorprincipal">
-    <header class="encabezado">
-      <div class="imagen"><img :src="Logo" alt="Logo" /></div>
-      <div class="opciones">
 
+  <!-------------  CONTENEDOR PRINCIPAL ------------->
+  <div class="contendorprincipal">
+
+    <!-------------  ENCABEZADO ------------->
+    <header class="encabezado">
+
+      <!-------------  LOGO ------------->
+      <div class="imagen">
+        <img :src="Logo" alt="Logo" />
+      </div>
+
+      <!------------- BUSCADOR ------------->
+      <div class="opciones">
         <div class="buscar">
           <input type="search" v-model="busqueda" @keyup.enter="buscarPokemon" placeholder="Ingresa nombre o ID" />
           <div class="lupa">
@@ -11,28 +20,45 @@
           </div>
         </div>
       </div>
+
     </header>
 
+    <!-------------  CONTENIDO PRINCIPAL ------------->
     <main class="contenedor1">
+
+      <!-------------  INFORMACIÓN GENERAL ------------->
       <div class="info1">
+
+        <!-------------  SECCIÓN POKÉMON ------------->
         <div class="pokemon">
-          <h1>{{ nombre ? nombre.charAt(0).toUpperCase() + nombre.slice(1).toLowerCase() : '' }}</h1>
-          <div class="pokemonimg"><img :src="imagenP" alt="" /></div>
+          <h1>
+            {{ nombre ? nombre.charAt(0).toUpperCase() + nombre.slice(1).toLowerCase() : '' }}
+          </h1>
+
+          <!-------------  IMAGEN PRINCIPAL ------------->
+          <div class="pokemonimg">
+            <img v-if="tipos.length > 0" :src="imagenP" alt="" class="pokemonimg" :style="{
+              '--type-color1': colores[tipos[0]?.type?.name] || '#fff',
+              '--type-color2': tipos[1] ? colores[tipos[1]?.type?.name] : null
+            }" />
+          </div>
+
+          <!------------- MINI IMÁGENES EXTRA ------------->
           <div class="pokemini">
-
-
             <div v-for="(img, index) in extraimagenes" :key="index">
-              <div class="pokeminiimg"><img :src="img" alt="Imagen Pokémon" /></div>
+              <div class="pokeminiimg">
+                <img :src="img" alt="Imagen Pokémon" />
+              </div>
             </div>
-
-
           </div>
 
         </div>
-        <div class="informacion">
 
+        <!------------- INFORMACIÓN GENERAL ------------->
+        <div class="informacion">
           <h1>Información</h1>
 
+          <!------------- ID Y TIPO ------------->
           <div class="idtipo">
 
             <h1>#{{ id }}</h1>
@@ -41,6 +67,7 @@
               <div>
                 <h2>Tipo</h2>
               </div>
+
               <div class="infotipos">
                 <div v-for="(tipo, index) in tipos" :key="index" :class="['type', `type-${tipo.type.name}`]">
                   <p>{{ tipo.type.name.toUpperCase() }}</p>
@@ -50,6 +77,7 @@
 
           </div>
 
+          <!------------- ALTURA Y PESO ------------->
           <div class="altupeso">
 
             <div class="altura">
@@ -66,16 +94,18 @@
                 <h2>Peso</h2>
               </div>
               <div>
-                <p>{{ peso }}  M</p>
+                <p>{{ peso }} M</p>
               </div>
             </div>
 
           </div>
 
+          <!------------- DEBILIDADES ------------->
           <div class="debilidades">
             <div>
               <h2>Debilidades</h2>
             </div>
+
             <div class="infodebil">
               <div class="infodebilidad" v-for="(deb, index) in debilidades" :key="index">
                 <p v-for="(debilidad, index) in deb.debilidades" :key="index" :class="['type', `type-${debilidad}`]">
@@ -83,15 +113,13 @@
                 </p>
               </div>
             </div>
-
           </div>
 
         </div>
 
+        <!------------- MOVIMIENTOS ------------->
         <div class="informacion1">
-
           <div class="movimientos">
-
             <div>
               <h1>Movimientos</h1>
             </div>
@@ -104,58 +132,65 @@
                 <p>Tipo: {{ mov.tipom }}</p>
               </div>
             </div>
-
           </div>
-
         </div>
 
       </div>
 
+      <!-------------  SECCIÓN ESTADÍSTICAS ------------->
       <div class="informacion2">
-        <h1>Estadisticas</h1>
+
+        <h1>Estadísticas</h1>
+
         <div class="estadisticas">
           <div class="stat" v-for="(stat, index) in stats" :class="stat.name" :key="index">
-            <div class="label"><span>{{ stat.label }}</span><span>{{ stat.value }} / {{ stat.max }}</span></div>
+            <div class="label">
+              <span>{{ stat.label }}</span>
+              <span>{{ stat.value }} / {{ stat.max }}</span>
+            </div>
             <div class="bar">
               <div class="fill" :class="stat.name" :style="`--value: ${stat.value};`"></div>
             </div>
           </div>
         </div>
 
+        <!--------------------  EVOLUCIÓN ---------------------->
+        <div class="evolucion">
+          <div>
+            <h1>Evolución</h1>
+          </div>
 
-        <div>
-          <div class="evolucion">
-            <div class="evolucion">
-              <div>
-                <h1>Evolución</h1>
-              </div>
-              <div class="pokeevo">
-                <div v-for="(evo, index) in resultadoevoluciones" :key="index">
-                  <div class="logoevo">
-                    <div class="imgevo">
-                      <img :src="evo.image ? evo.image : imagenP" :alt="evo.name ? evo.name : nombre"
-                        @error="e => e.target.src = imagenP" />
-                      {{ evo.name ? evo.name.charAt(0).toUpperCase() + evo.name.slice(1).toLowerCase()
-                        : nombre ? nombre.charAt(0).toUpperCase() + nombre.slice(1).toLowerCase() : 'Desconocida' }}
-                    </div>
-                  </div>
+          <div class="pokeevo">
+            <div v-for="(evo, index) in resultadoevoluciones" :key="index">
+              <div class="logoevo">
+                <div class="imgevo">
+                  <img :src="evo.image ? evo.image : imagenP" :alt="evo.name ? evo.name : nombre"
+                    @error="e => e.target.src = imagenP" />
+                  {{ evo.name
+                    ? evo.name.charAt(0).toUpperCase() + evo.name.slice(1).toLowerCase()
+                    : nombre
+                      ? nombre.charAt(0).toUpperCase() + nombre.slice(1).toLowerCase()
+                      : 'Desconocida' }}
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-
       </div>
+
     </main>
 
   </div>
+
 </template>
 
 
 
 
+
 <script setup>
+
 import axios from "axios";
 import { ref } from "vue";
 import Logo from "./assets/Logo.png";
@@ -184,6 +219,8 @@ const movimientos = ref([]);
 const detallesmovimientos = ref([]);
 const resultadoevoluciones = ref([]);
 const debilidades = ref([]);
+const colores = ref([]);
+
 
 
 async function buscarPokemon() {
@@ -275,8 +312,6 @@ async function buscarPokemon() {
     resultadoevoluciones.value = resultadoevo;
 
 
-
-
   } catch (error) {
     console.error("Error en la consulta:", error);
   }
@@ -284,7 +319,29 @@ async function buscarPokemon() {
 
 buscarPokemon();
 
+colores.value = {
+  normal: '#B8B89A',
+  fire: '#FF6B35',
+  water: '#339AF0',
+  electric: '#FFD43B',
+  grass: '#66BB6A',
+  ice: '#74C0FC',
+  fighting: '#D32F2F',
+  poison: '#B852B8',
+  ground: '#D2A679',
+  flying: '#9C8CFC',
+  psychic: '#FF77A9',
+  bug: '#A8C53A',
+  rock: '#C0A060',
+  ghost: '#8463C3',
+  dragon: '#7B4CFF',
+  dark: '#5A4B3F',
+  steel: '#B0B8C0',
+  fairy: '#F19CBB'
+};
+
 </script>
+
 
 
 
@@ -453,14 +510,8 @@ main {
   align-items: center;
   width: clamp(140px, 25vw, 300px);
   height: clamp(140px, 25vw, 300px);
-}
-
-.pokemonimg img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 8px 15px rgba(1, 160, 253, 0.6));
   animation: float 4s ease-in-out infinite;
+  transition: filter 0.3s ease;
 }
 
 @keyframes float {
@@ -473,6 +524,16 @@ main {
   50% {
     transform: translateY(-8px);
   }
+}
+
+.pokemonimg {
+  filter:
+    drop-shadow(0 0 25px var(--type-color1)) drop-shadow(0 0 50px var(--type-color1)) drop-shadow(0 0 75px var(--type-color1)) brightness(1.2) contrast(1.1) saturate(1.2);
+}
+
+.pokemonimg[style*="--type-color2"] {
+  filter:
+    drop-shadow(0 0 15px var(--type-color1)) drop-shadow(0 0 15px var(--type-color2)) drop-shadow(0 0 15px var(--type-color1)) drop-shadow(0 0 15px var(--type-color2)) drop-shadow(0 0 70px color-mix(in srgb, var(--type-color1) 50%, var(--type-color2) 70%)) brightness(1.2) contrast(1.1) saturate(1.2);
 }
 
 /* ---------- MINI IMAGINES ---------- */
@@ -539,7 +600,8 @@ main {
   text-align: center;
 }
 
-.altura, .peso{
+.altura,
+.peso {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -765,18 +827,6 @@ main {
   gap: 20px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 /* ---------- COLORES PARA TIPOS Y ---------- */
 .type {
   position: relative;
@@ -786,6 +836,10 @@ main {
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   overflow: hidden;
   transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.type {
+  background: linear-gradient(135deg, var(--type-color1));
 }
 
 .type::after {
@@ -819,76 +873,93 @@ main {
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
 }
 
-
-.type-normal {
-  background: linear-gradient(135deg, #A8A77A, #C6C4A1);
+.type-normal,
+.pokemonimg.type-normal {
+  --type-color1: #B8B89A;
 }
 
-.type-fire {
-  background: linear-gradient(135deg, #EE8130, #F5AF19);
+.type-fire,
+.pokemonimg.type-fire {
+  --type-color1: #FF6B35;
 }
 
-.type-water {
-  background: linear-gradient(135deg, #6390F0, #74c0fc);
+.type-water,
+.pokemonimg.type-water {
+  --type-color1: #339AF0;
 }
 
-.type-electric {
-  background: linear-gradient(135deg, #F7D02C, #FFD43B);
+.type-electric,
+.pokemonimg.type-electric {
+  --type-color1: #FFD43B;
 }
 
-.type-grass {
-  background: linear-gradient(135deg, #7AC74C, #9bdc65);
+.type-grass,
+.pokemonimg.type-grass {
+  --type-color1: #66BB6A;
 }
 
-.type-ice {
-  background: linear-gradient(135deg, #96D9D6, #b8f1ee);
+.type-ice,
+.pokemonimg.type-ice {
+  --type-color1: #74C0FC;
 }
 
-.type-fighting {
-  background: linear-gradient(135deg, #C22E28, #E13C30);
+.type-fighting,
+.pokemonimg.type-fighting {
+  --type-color1: #D32F2F;
 }
 
-.type-poison {
-  background: linear-gradient(135deg, #A33EA1, #C76CD0);
+.type-poison,
+.pokemonimg.type-poison {
+  --type-color1: #B852B8;
 }
 
-.type-ground {
-  background: linear-gradient(135deg, #E2BF65, #C99846);
+.type-ground,
+.pokemonimg.type-ground {
+  --type-color1: #D2A679;
 }
 
-.type-flying {
-  background: linear-gradient(135deg, #A98FF3, #C6B7F5);
+.type-flying,
+.pokemonimg.type-flying {
+  --type-color1: #9C8CFC;
 }
 
-.type-psychic {
-  background: linear-gradient(135deg, #F95587, #ff8ab6);
+.type-psychic,
+.pokemonimg.type-psychic {
+  --type-color1: #FF77A9;
 }
 
-.type-bug {
-  background: linear-gradient(135deg, #A6B91A, #c6da3c);
+.type-bug,
+.pokemonimg.type-bug {
+  --type-color1: #A8C53A;
 }
 
-.type-rock {
-  background: linear-gradient(135deg, #B6A136, #d6c04c);
+.type-rock,
+.pokemonimg.type-rock {
+  --type-color1: #C0A060;
 }
 
-.type-ghost {
-  background: linear-gradient(135deg, #735797, #9f80c7);
+.type-ghost,
+.pokemonimg.type-ghost {
+  --type-color1: #8463C3;
 }
 
-.type-dragon {
-  background: linear-gradient(135deg, #6F35FC, #8757ff);
+.type-dragon,
+.pokemonimg.type-dragon {
+  --type-color1: #7B4CFF;
 }
 
-.type-dark {
-  background: linear-gradient(135deg, #705746, #8a6b5c);
+.type-dark,
+.pokemonimg.type-dark {
+  --type-color1: #5A4B3F;
 }
 
-.type-steel {
-  background: linear-gradient(135deg, #B7B7CE, #D1D1E0);
+.type-steel,
+.pokemonimg.type-steel {
+  --type-color1: #B0B8C0;
 }
 
-.type-fairy {
-  background: linear-gradient(135deg, #D685AD, #f0a8cc);
+.type-fairy,
+.pokemonimg.type-fairy {
+  --type-color1: #F19CBB;
 }
 </style>
