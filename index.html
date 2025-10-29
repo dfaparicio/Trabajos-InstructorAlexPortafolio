@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Audiowide&family=Monoton&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Audiowide&family=Monoton&family=Press+Start+2P&display=swap"
+        rel="stylesheet">
     <title>PortafolioGeneral</title>
 </head>
+
 <body>
 
     <div class="ContenedorPadre">
@@ -27,228 +31,277 @@
         <div class="ContenedorHijo2">
 
             <div id="Padre" class="ContenedorInfo2">
-            <div id="Barra" class="Barra">
-                <a href="#Padre"><h3>Inicio</h3></a>
-                <a href="#Proyectos"><h3>Proyectos</h3></a>
-                <a href="#InformacionContactos"><h3>Contactos</h3></a>
+                <div id="Barra" class="Barra">
+                    <a href="#Padre">
+                        <h3>Inicio</h3>
+                    </a>
+                    <a href="#Proyectos">
+                        <h3>Proyectos</h3>
+                    </a>
+                    <a href="#InformacionContactos">
+                        <h3>Contactos</h3>
+                    </a>
+                </div>
+
+                <div class="Presentacion">
+                    <h1>Mi Nombre es Diego Aparicio</h1>
+                    <p>Soy un programador con conocimientos básicos en desarrollo web y lógica de programación. Me gusta
+                        aprender constantemente, resolver problemas y trabajar en proyectos sencillos pero funcionales.
+                        Estoy en proceso de mejorar cada día y construir bases sólidas para avanzar en el mundo del
+                        desarrollo.</p>
+                    <div class="Lenguajes">
+                        <a href="#"><i class="fab fa-html5"></i></a>
+                        <a href="#"><i class="fab fa-css3-alt"></i></a>
+                        <a href="#"><i class="fab fa-js"></i></a>
+                        <a href="#"><i class="fab fa-python"></i></a>
+                        <a href="#"><i class="fab fa-node-js"></i></a>
+                    </div>
+                </div>
+
+
+                <div class="Flecha"
+                    onclick="document.getElementById('Proyectos').scrollIntoView({behavior: 'smooth'});"></div>
+
+
+
+                <div id="Proyectos" class="Proyectos">
+                    <div class="Listado">
+
+                        <div class="TituloProyectos">
+                            <h1>PROYECTOS</h1>
+                        </div>
+
+                        <div class="ProyectosC">
+
+                            <div class="NewDiseño">
+                                <div class="DiseñoP">
+                                    <div>
+                                        <h1>Pagina Quien Soy</h1>
+                                    </div>
+                                    <div><img src="./QuienSoy/Avatar.png"></div>
+                                    <div class="INPUT">
+                                        <button class="input1" onclick="window.location.href='./QuienSoy/index.html'">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="NewDiseño">
+                                <div class="DiseñoP">
+                                    <div>
+                                        <h1>Hoja de Vida</h1>
+                                    </div>
+                                    <div><img src="./HojadeVida/Avatar.png"></div>
+                                    <div class="INPUT">
+                                        <button class="input1" onclick="window.location.href='./HojadeVida/index.html'">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="NewDiseño">
+                                <div class="DiseñoP">
+                                    <div>
+                                        <h1>Tienda Telefonos</h1>
+                                    </div>
+                                    <div><img src="./Telefonos/Phone.png"></div>
+                                    <div class="INPUT">
+                                        <button class="input1" onclick="window.location.href='./Telefonos/index.html'">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="NewDiseño">
+                                <div class="DiseñoP">
+                                    <div>
+                                        <h1>Operaciones</h1>
+                                    </div>
+                                    <div><img src="./Operaciones/Operaciones.png"></div>
+                                    <div class="INPUT">
+                                        <button class="input1"
+                                            onclick="window.location.href='./Operaciones/index.html'">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="NewDiseño">
+                                <div class="DiseñoP">
+                                    <div>
+                                        <h1>Maravillas Del Mundo</h1>
+                                    </div>
+                                    <div><img src="./Lugares/Fondo5.jpg"></div>
+                                    <div class="INPUT">
+                                        <button class="input1" onclick="window.location.href='./Lugares/index.html'">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="NewDiseño">
+                                <div class="DiseñoP">
+                                    <div>
+                                        <h1> Sistema de Reservas para Restaurante</h1>
+                                    </div>
+                                    <div><img src="./GestionDeMesas/Restaurante.jpg"></div>
+                                    <div class="INPUT">
+                                        <button class="input1"
+                                            onclick="window.location.href='./GestionDeMesas/index.html'">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="NewDiseño">
+                                <div class="DiseñoP">
+                                    <div>
+                                        <h1>Video Juego</h1>
+                                    </div>
+                                    <div><img src="./MenuJuego/img/espadas.png"></div>
+                                    <div class="INPUT">
+                                        <button class="input1" onclick="window.location.href='./MenuJuego/index.html'">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="NewDiseño">
+                                <div class="DiseñoP">
+                                    <div>
+                                        <h1>Proyecto Pokémon (Vue 3)</h1>
+                                    </div>
+                                    <div><img src="./Pokemon/src/assets/Logo.png"></div>
+                                    <div class="INPUT">
+                                        <button class="input1"
+                                            onclick="window.location.href='./Pokemon/dist/index.html'">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="NewDiseño">
+                                <div class="DiseñoP">
+                                    <div>
+                                        <h1>Proximo...</h1>
+                                    </div>
+                                    <div class="Cargando"></div>
+                                    <div class="INPUT">
+                                        <button class="input1" onclick="window.location.href=''">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="Flecha2" onclick="document.getElementById('Barra').scrollIntoView({behavior: 'smooth'});">
+                </div>
+
+
+
+                <div id="InformacionContactos" class="InformacionContactos">
+
+                    <div class="InfoContac">
+
+                        <div class="IContac">
+                            <h1>Contactos</h1>
+                            <div class="Redes">
+                                <a href="https://www.linkedin.com/in/dfaciepa/"><i
+                                        class="fab fa-linkedin-in"></i>Linkedin</a>
+                                <a href="https://www.facebook.com/diego.aparicio.865332"><i
+                                        class="fab fa-facebook-f"></i>Facebook</a>
+                                <a href="https://www.instagram.com/dfaparicio13/"><i
+                                        class="fab fa-instagram"></i>Instagram</a>
+                                <a href="https://w.app/zdchft"><i class="fab fa-whatsapp"></i>Whatsapp</a>
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <img src="./Avatar.png" alt="">
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="InformacionEmail">
+
+                        <form>
+                            <div class="Cuadros">
+                                <h2>Enviar Mensaje</h2>
+                                <div class="Inputs">
+                                    <input type="text" name="name" placeholder="Nombre">
+                                    <input type="email" name="email" placeholder="Email">
+                                </div>
+                            </div>
+
+                            <div class="Mensaje">
+                                <textarea name="message" placeholder="Mensaje"></textarea>
+                                <button type="submit">Enviar</button>
+                            </div>
+                        </form>
+
+                    </div>
+
+                </div>
+
+
+                <div class="Contactos">
+
+                    <div class="ListadoRedes">
+                        <div class="RedesSociales">
+                            <a href="#"><i class="fab fa-tiktok"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                            <a href="#"><i class="fab fa-telegram-plane"></i></a>
+                            <a href="#"><i class="fab fa-discord"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+
+                        </div>
+                    </div>
+
+
+                    <div id="ContenedorInfo2" class="ContenedorInfo2">
+
+                        <div class="BarraNew">
+                            <div>
+                                <h5>© 2025 Diego Aparicio.</h5>
+                            </div>
+                            <div id="Barra" class="Barra">
+                                <a href="#Padre">
+                                    <h5>Inicio</h5>
+                                </a>
+                                <a href="#Proyectos">
+                                    <h5>Proyectos</h5>
+                                </a>
+                                <a href="#InformacionContactos">
+                                    <h5>Contactos</h5>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
-
-            <div class="Presentacion">
-                <h1>Mi Nombre es Diego Aparicio</h1>
-                <p>Soy un programador con conocimientos básicos en desarrollo web y lógica de programación. Me gusta aprender constantemente, resolver problemas y trabajar en proyectos sencillos pero funcionales. Estoy en proceso de mejorar cada día y construir bases sólidas para avanzar en el mundo del desarrollo.</p>
-                <div class="Lenguajes">
-                    <a href="#"><i class="fab fa-html5"></i></a>
-                    <a href="#"><i class="fab fa-css3-alt"></i></a>
-                    <a href="#"><i class="fab fa-js"></i></a>
-                    <a href="#"><i class="fab fa-python"></i></a>
-                    <a href="#"><i class="fab fa-node-js"></i></a>
-                </div>
-            </div>
-            
-            
-            <div class="Flecha" onclick="document.getElementById('Proyectos').scrollIntoView({behavior: 'smooth'});"></div>
-            
-
-
-        <div id="Proyectos" class="Proyectos">
-            <div class="Listado">
-
-                <div class="TituloProyectos">
-                <h1>PROYECTOS</h1>
-                </div>
-
-                <div class="ProyectosC">
-
-                <div class="NewDiseño">
-                <div class="DiseñoP">
-                    <div><h1>Pagina Quien Soy</h1></div>
-                    <div><img src="./QuienSoy/Avatar.png"></div>
-                    <div class="INPUT">
-                        <button class="input1" onclick="window.location.href='./QuienSoy/index.html'">
-                            <i class="fa-solid fa-eye"></i>
-                        </button>
-                    </div>
-                </div>
-                </div>
-                
-                <div class="NewDiseño">
-                <div class="DiseñoP">
-                    <div><h1>Hoja de Vida</h1></div>
-                    <div><img src="./HojadeVida/Avatar.png"></div>
-                    <div class="INPUT">
-                        <button class="input1" onclick="window.location.href='./HojadeVida/index.html'">
-                            <i class="fa-solid fa-eye"></i>
-                        </button>
-                    </div>
-                </div>
-                </div>
-
-                <div class="NewDiseño">
-                <div class="DiseñoP">
-                    <div><h1>Tienda Telefonos</h1></div>
-                    <div><img src="./Telefonos/Phone.png"></div>
-                    <div class="INPUT">
-                        <button class="input1" onclick="window.location.href='./Telefonos/index.html'">
-                            <i class="fa-solid fa-eye"></i>
-                        </button>
-                    </div>
-                </div>
-                </div>
-
-                <div class="NewDiseño">
-                <div class="DiseñoP">
-                    <div><h1>Operaciones</h1></div>
-                    <div><img src="./Operaciones/Operaciones.png"></div>
-                    <div class="INPUT">
-                        <button class="input1" onclick="window.location.href='./Operaciones/index.html'">
-                            <i class="fa-solid fa-eye"></i>
-                        </button>
-                    </div>
-                </div>
-                </div>
-
-                <div class="NewDiseño">
-                <div class="DiseñoP">
-                    <div><h1>Maravillas Del Mundo</h1></div>
-                    <div><img src="./Lugares/Fondo5.jpg"></div>
-                    <div class="INPUT">
-                        <button class="input1" onclick="window.location.href='./Lugares/index.html'">
-                            <i class="fa-solid fa-eye"></i>
-                        </button>
-                    </div>
-                </div>
-                </div>
-
-                <div class="NewDiseño">
-                <div class="DiseñoP">
-                    <div><h1> Sistema de Reservas para Restaurante</h1></div>
-                    <div><img src="./GestionDeMesas/Restaurante.jpg"></div>
-                    <div class="INPUT">
-                        <button class="input1" onclick="window.location.href='./GestionDeMesas/index.html'">
-                            <i class="fa-solid fa-eye"></i>
-                        </button>
-                    </div>
-                </div>
-                </div>
-
-
-                <div class="NewDiseño">
-                <div class="DiseñoP">
-                    <div><h1>Video Juego</h1></div>
-                    <div><img src="./MenuJuego/img/espadas.png"></div>
-                    <div class="INPUT">
-                        <button class="input1" onclick="window.location.href='./MenuJuego/index.html'">
-                            <i class="fa-solid fa-eye"></i>
-                        </button>
-                    </div>
-                </div>
-                </div>
-                    
-
-                <div class="NewDiseño">
-                <div class="DiseñoP">
-                    <div><h1>Proximo...</h1></div>
-                    <div class="Cargando"></div>
-                    <div class="INPUT">
-                        <button class="input1" onclick="window.location.href=''">
-                            <i class="fa-solid fa-eye"></i>
-                        </button>
-                    </div>
-                </div>
-                </div>
-
-
-                </div>
-
-            </div>
-        </div>
-
-            <div class="Flecha2" onclick="document.getElementById('Barra').scrollIntoView({behavior: 'smooth'});"></div>
-
-
-
-        <div id="InformacionContactos" class="InformacionContactos">
-
-            <div class="InfoContac">
-                
-                <div class="IContac">
-                <h1>Contactos</h1>
-                <div class="Redes">
-                    <a href="https://www.linkedin.com/in/dfaciepa/"><i class="fab fa-linkedin-in"></i>Linkedin</a>
-                    <a href="https://www.facebook.com/diego.aparicio.865332"><i class="fab fa-facebook-f"></i>Facebook</a>
-                    <a href="https://www.instagram.com/dfaparicio13/"><i class="fab fa-instagram"></i>Instagram</a>
-                    <a href="https://w.app/zdchft"><i class="fab fa-whatsapp"></i>Whatsapp</a>
-                </div>
-                </div>
-
-
-            <div>
-                <img src="./Avatar.png" alt="">
-            </div>
-
-            </div>
-
-
-
-            <div class="InformacionEmail">
-                
-                <form>
-                    <div class="Cuadros">
-                    <h2>Enviar Mensaje</h2>
-                    <div class="Inputs">
-                    <input type="text" name="name" placeholder="Nombre">
-                    <input type="email" name="email" placeholder="Email">
-                    </div>
-                    </div>
-                    
-                    <div class="Mensaje">
-                        <textarea name="message" placeholder="Mensaje"></textarea>
-                        <button type="submit">Enviar</button>
-                    </div>
-                </form>
-
-            </div>
-
-        </div>
-
-
-        <div class="Contactos">
-            
-            <div class="ListadoRedes">
-                <div class="RedesSociales">
-                    <a href="#"><i class="fab fa-tiktok"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                    <a href="#"><i class="fab fa-telegram-plane"></i></a>
-                    <a href="#"><i class="fab fa-discord"></i></a>
-                    <a href="#"><i class="fab fa-github"></i></a>
-
-            </div>
-        </div>
-        
-        
-        <div id="ContenedorInfo2" class="ContenedorInfo2">
-
-            <div class="BarraNew">
-            <div>
-                <h5>© 2025 Diego Aparicio.</h5>
-            </div>
-            <div id="Barra" class="Barra">
-                <a href="#Padre"><h5>Inicio</h5></a>
-                <a href="#Proyectos"><h5>Proyectos</h5></a>
-                <a href="#InformacionContactos"><h5>Contactos</h5></a>
-            </div>
-            </div>
-
-        </div>
-     
-        </div>
-
-    </div>
 </body>
+
 </html>
-
-
-
-
-
-
