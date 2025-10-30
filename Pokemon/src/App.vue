@@ -375,7 +375,7 @@ body {
   max-width: 1920px;
   height: 100vh;
   overflow-y: auto;
-  background-image: url('./assets/Fondo.jpg');
+  background-image: url('./assets/Fondo.png');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -389,9 +389,9 @@ body {
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg,
-      rgba(0, 0, 30, 0.8) 0%,
-      rgba(0, 0, 0, 0.4) 40%,
-      rgba(0, 0, 0, 0.8) 100%);
+      rgba(0, 0, 30, 1) 0%,
+      rgba(0, 0, 0, 0.6) 40%,
+      rgba(0, 0, 0, 0.6) 100%);
   pointer-events: none;
   z-index: 1;
 }
