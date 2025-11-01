@@ -47,7 +47,10 @@
           <div class="pokemini">
             <div v-for="(img, index) in extraimagenes" :key="index">
               <div class="pokeminiimg">
-                <img :src="img" alt="Imagen Pokémon" />
+                <img :src="img" alt="Imagen Pokémon" class="dropmini" :style="{
+                  '--type-color1': colores[tipos[0]?.type?.name] || '#fff',
+                  '--type-color2': tipos[1] ? colores[tipos[1]?.type?.name] : null
+                }" />
               </div>
             </div>
           </div>
@@ -94,7 +97,7 @@
                 <h2>Peso</h2>
               </div>
               <div>
-                <p>{{ peso }} M</p>
+                <p>{{ peso }} Kg</p>
               </div>
             </div>
 
@@ -140,9 +143,8 @@
       <!-------------  SECCIÓN ESTADÍSTICAS ------------->
       <div class="informacion2">
 
-        <h1>Estadísticas</h1>
-
         <div class="estadisticas">
+          <h1>Estadísticas</h1>
           <div class="stat" v-for="(stat, index) in stats" :class="stat.name" :key="index">
             <div class="label">
               <span>{{ stat.label }}</span>
@@ -164,13 +166,18 @@
             <div v-for="(evo, index) in resultadoevoluciones" :key="index">
               <div class="logoevo">
                 <div class="imgevo">
-                  <img :src="evo.image ? evo.image : imagenP" :alt="evo.name ? evo.name : nombre"
-                    @error="e => e.target.src = imagenP" />
-                  {{ evo.name
-                    ? evo.name.charAt(0).toUpperCase() + evo.name.slice(1).toLowerCase()
-                    : nombre
-                      ? nombre.charAt(0).toUpperCase() + nombre.slice(1).toLowerCase()
-                      : 'Desconocida' }}
+                  <div>
+                    <img :src="evo.image ? evo.image : imagenP" :alt="evo.name ? evo.name : nombre"
+                      @error="e => e.target.src = imagenP" class="dropevo" :style="{
+                        '--type-color1': colores[tipos[0]?.type?.name] || '#fff',
+                        '--type-color2': tipos[1] ? colores[tipos[1]?.type?.name] : null
+                      }" />
+                  </div>
+                  <p>{{ evo.name
+                      ? evo.name.charAt(0).toUpperCase() + evo.name.slice(1).toLowerCase()
+                      : nombre
+                        ? nombre.charAt(0).toUpperCase() + nombre.slice(1).toLowerCase()
+                        : 'Desconocida' }}</p>
                 </div>
               </div>
             </div>
@@ -389,10 +396,15 @@ body {
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg,
-      rgba(0, 0, 30, 1) 0%,
-      rgba(0, 0, 0, 0.6) 40%,
-      rgba(0, 0, 0, 0.6) 100%);
+      rgba(0, 0, 0, 0) 0%,
+      /* parte superior - clara */
+      rgba(0, 0, 0, 0.3) 50%,
+      /* transición */
+      rgba(0, 0, 30, 0.9) 100%
+      /* parte inferior - más oscura */
+    );
   pointer-events: none;
+
   z-index: 1;
 }
 
@@ -410,12 +422,13 @@ body {
   flex-wrap: wrap;
   gap: 1rem;
   width: 100%;
-  padding: 20px 40px 10px 40px;
+  padding: 0 40px 0 40px;
 }
 
 .imagen img {
   width: clamp(100px, 15vw, 100px);
   height: auto;
+  filter: brightness(1.2);
 }
 
 .opciones {
@@ -438,10 +451,10 @@ body {
   padding: 0.5rem;
   cursor: pointer;
   background: rgba(255, 255, 255, 0.07);
-  backdrop-filter: blur(12px) saturate(1.3);
   border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px) saturate(1.3);
+  border: none;
+  box-shadow: 0 0 20px rgb(0, 0, 0);
 }
 
 input::placeholder {
@@ -461,6 +474,7 @@ input[type="search"]:focus {
 .lupa img {
   width: clamp(40px, 8vw, 70px);
   height: auto;
+  filter: brightness(1.2);
 }
 
 main {
@@ -495,8 +509,6 @@ main {
   background: rgba(255, 255, 255, 0.07);
   backdrop-filter: blur(12px) saturate(1.3);
   border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.12);
 }
 
 .pokemon h1 {
@@ -533,7 +545,7 @@ main {
 
 .pokemonimg[style*="--type-color2"] {
   filter:
-    drop-shadow(0 0 15px var(--type-color1)) drop-shadow(0 0 15px var(--type-color2)) drop-shadow(0 0 15px var(--type-color1)) drop-shadow(0 0 15px var(--type-color2)) drop-shadow(0 0 70px color-mix(in srgb, var(--type-color1) 50%, var(--type-color2) 70%)) brightness(1.2) contrast(1.1) saturate(1.2);
+    drop-shadow(0 10px 12px rgba(0, 0, 0, 0.8)) drop-shadow(0 -10px 10px color-mix(in srgb, var(--type-color1) 100%, white 10%)) drop-shadow(0 10px 14px color-mix(in srgb, var(--type-color2) 100%, white 15%)) saturate(1.3) brightness(1.2);
 }
 
 /* ---------- MINI IMAGINES ---------- */
@@ -554,8 +566,11 @@ main {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 8px 15px rgba(255, 255, 0, 0.2));
-  animation: float 4s ease-in-out infinite;
+}
+
+.dropmini[style*="--type-color2"] {
+  filter:
+    drop-shadow(0 5px 6px rgba(0, 0, 0, 0.8)) drop-shadow(0 -5px 5px color-mix(in srgb, var(--type-color1) 100%, white 10%)) drop-shadow(0 5px 7px color-mix(in srgb, var(--type-color2) 100%, white 15%)) saturate(1.3) brightness(1.2);
 }
 
 /* ---------- INFORMACION ---------- */
@@ -567,8 +582,6 @@ main {
   background: rgba(255, 255, 255, 0.07);
   backdrop-filter: blur(12px) saturate(1.3);
   border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.12);
 }
 
 .idtipo {
@@ -638,8 +651,6 @@ main {
   background: rgba(255, 255, 255, 0.07);
   backdrop-filter: blur(12px) saturate(1.3);
   border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.12);
   grid-column: 1 / 3;
 }
 
@@ -653,6 +664,8 @@ main {
 .infomovimiento {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   gap: 40px;
 }
 
@@ -673,8 +686,6 @@ main {
   background: rgba(255, 255, 255, 0.07);
   backdrop-filter: blur(12px) saturate(1.3);
   border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.12);
 }
 
 /* ---------- Estadísticas ---------- */
@@ -803,15 +814,18 @@ main {
   flex-direction: column;
   align-items: center;
   gap: 50px;
+  padding-bottom: 20px;
 }
 
 .pokeevo {
   display: flex;
+  gap: 20px;
 }
 
 .logoevo {
   max-width: clamp(50px, 10vw, 150px);
   max-height: clamp(50px, 10vw, 200px);
+  display: flex;
 }
 
 .logoevo img {
@@ -826,6 +840,12 @@ main {
   align-items: center;
   gap: 20px;
 }
+
+.dropevo[style*="--type-color2"] {
+  filter:
+    drop-shadow(0 5px 6px rgba(0, 0, 0, 0.8)) drop-shadow(0 -5px 5px color-mix(in srgb, var(--type-color1) 100%, white 10%)) drop-shadow(0 5px 7px color-mix(in srgb, var(--type-color2) 100%, white 15%)) saturate(1.3) brightness(1.2);
+}
+
 
 /* ---------- COLORES PARA TIPOS Y ---------- */
 .type {
@@ -962,4 +982,244 @@ main {
 .pokemonimg.type-fairy {
   --type-color1: #F19CBB;
 }
+
+
+
+
+@media (max-width: 1650px) {
+  .contenedor1 {
+    gap: 40px;
+  }
+
+  .informacion2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+  }
+
+  .infomovimiento {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  html,
+  body {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  #app,
+  .contenedorprincipal {
+    height: auto;
+    min-height: 100vh;
+    padding-bottom: 3rem;
+    background-attachment: scroll;
+    background-size: cover;
+    background-position: top center;
+  }
+
+  #app::before,
+  .contenedorprincipal::before {
+    background: linear-gradient(180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.3) 40%,
+        rgba(0, 0, 30, 0.9) 100%);
+  }
+}
+
+@media (max-width: 1400px) {
+  .encabezado {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .contenedor1 {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .informacion2 {
+    display: flex;
+    flex-direction: row;
+    max-width: 100%;
+  }
+
+  .infomovimiento {
+    display: flex;
+  }
+
+  #app,
+  .contenedorprincipal {
+    padding-bottom: 4rem;
+  }
+
+  #app::before,
+  .contenedorprincipal::before {
+    background: linear-gradient(180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.3) 35%,
+        rgba(0, 0, 30, 0.9) 100%);
+  }
+}
+
+@media (max-width: 1000px) {
+  .encabezado {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .infomovimiento {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  #app::before,
+  .contenedorprincipal::before {
+    background: linear-gradient(180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.3) 35%,
+        rgba(0, 0, 30, 0.9) 100%);
+  }
+}
+
+.info1 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 40vw, 500px), 1fr));
+  gap: 30px;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .encabezado {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .info1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+  }
+
+  .contenedor1 {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .informacion2 {
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+    gap: 20px;
+  }
+
+  .evolucion {
+    padding-bottom: 50px;
+  }
+
+  #app,
+  .contenedorprincipal {
+    padding-bottom: 5rem;
+  }
+
+  #app::before,
+  .contenedorprincipal::before {
+    background: linear-gradient(180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.3) 30%,
+        rgba(0, 0, 30, 0.9) 100%);
+  }
+}
+
+@media (max-width: 600px) {
+  .encabezado {
+    padding-top: 20px;
+  }
+
+  .infomovimiento {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .info1 {
+    width: 90%;
+  }
+
+  .informacion2 {
+    max-width: 90%;
+  }
+
+  h1 {
+    font-size: 25px;
+  }
+
+  h3 {
+    font-size: 12px;
+  }
+
+  p {
+    font-size: 10px;
+  }
+
+  .idtipo,
+  .altupeso {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #app,
+  .contenedorprincipal {
+    padding-bottom: 6rem;
+  }
+
+  #app::before,
+  .contenedorprincipal::before {
+    background: linear-gradient(180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.3) 25%,
+        rgba(0, 0, 30, 0.9) 100%);
+  }
+}
+
+@media (max-width: 400px) {
+  .encabezado {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .buscar input {
+    width: clamp(200px, 25vw, 350px);
+  }
+
+  #app,
+  .contenedorprincipal {
+    padding-bottom: 7rem;
+  }
+
+  #app::before,
+  .contenedorprincipal::before {
+    background: linear-gradient(180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.3) 20%,
+        rgba(0, 0, 30, 0.9) 100%);
+  }
+
+  .informacion2{
+    padding: 40px;
+  }
+
+  .pokeevo {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 50px;
+}
+}
+
 </style>
